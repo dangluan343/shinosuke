@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ink: #1e1b18;
+    --font-bricolage: 'Bricolage Grotesque', sans-serif;
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    --font-space: 'Space Grotesk', sans-serif;
+  }
+
+  body {
+    background-color: theme('colors.background');
+    color: theme('colors.on-background');
+    font-family: var(--font-jakarta), sans-serif;
+  }
+}
+
+/* Neo-Brutalist Core Styles from Google Stitch */
+.neo-brutalist-border {
+  border: 3px solid #1e1b18;
+}
+
+.hard-shadow {
+  box-shadow: 4px 4px 0px 0px #1e1b18;
+}
+
+.hard-shadow-hover {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hard-shadow-hover:hover {
+  box-shadow: 8px 8px 0px 0px #1e1b18;
+  transform: translate(-2px, -2px);
+}
+
+.hard-shadow-active {
+  transition: all 0.1s ease-in;
+}
+
+.hard-shadow-active:active {
+  box-shadow: 0px 0px 0px 0px #1e1b18;
+  transform: translate(4px, 4px);
+}
+
+/* Comic Book Halftone & Hatch Patterns */
+.comic-hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(30, 27, 24, 0.08) 10px,
+    rgba(30, 27, 24, 0.08) 20px
+  );
+}
+
+/* Shin-chan Butt Dance Wiggle Animation */
+@keyframes butt-wiggle {
+  0%, 100% {
+    transform: rotate(-10deg) translateX(-12px);
+  }
+  50% {
+    transform: rotate(10deg) translateX(12px);
+  }
+}
+
+.animate-butt-wiggle {
+  animation: butt-wiggle 0.35s ease-in-out infinite;
+}
+
+@keyframes butt-wiggle-fast {
+  0%, 100% {
+    transform: rotate(-14deg) translateX(-16px) scale(1.05);
+  }
+  50% {
+    transform: rotate(14deg) translateX(16px) scale(1.05);
+  }
+}
+
+.animate-butt-wiggle-fast {
+  animation: butt-wiggle-fast 0.2s ease-in-out infinite;
+}
+
+.hatch-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.1) 10px,
+    rgba(0, 0, 0, 0.1) 20px
+  );
+}
+
+/* Material Symbols Outlined Variable Font */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

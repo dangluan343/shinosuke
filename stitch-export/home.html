@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHIN-CHAN! - HEY, HEY, HEY!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#4d4800",
+                      "surface-dim": "#e1d8d4",
+                      "surface-bright": "#fff8f5",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#1f1c00",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#004788",
+                      "background": "#fff8f5",
+                      "surface-container-highest": "#e9e1dc",
+                      "surface-container": "#f5ece7",
+                      "on-tertiary-container": "#454100",
+                      "on-primary": "#ffffff",
+                      "secondary": "#0b5eaf",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed-dim": "#d6ca00",
+                      "on-primary-fixed-variant": "#930007",
+                      "inverse-on-surface": "#f8efea",
+                      "on-primary-fixed": "#410001",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#b7000c",
+                      "tertiary-container": "#b9ae00",
+                      "inverse-surface": "#34302c",
+                      "inverse-primary": "#ffb4aa",
+                      "surface-variant": "#e9e1dc",
+                      "outline-variant": "#e9bcb6",
+                      "on-background": "#1e1b18",
+                      "secondary-container": "#6ba7fd",
+                      "surface-container-low": "#fbf2ed",
+                      "on-primary-container": "#fff7f6",
+                      "surface-tint": "#c0000d",
+                      "primary-fixed-dim": "#ffb4aa",
+                      "on-secondary-container": "#003b74",
+                      "on-secondary-fixed": "#001b3b",
+                      "primary-fixed": "#ffdad5",
+                      "tertiary": "#666000",
+                      "surface": "#fff8f5",
+                      "secondary-fixed-dim": "#a7c8ff",
+                      "on-surface-variant": "#5f3f3b",
+                      "tertiary-fixed": "#f4e700",
+                      "surface-container-high": "#efe6e2",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "section-gap": "80px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-bold": ["Space Grotesk"],
+                      "caption": ["Plus Jakarta Sans"],
+                      "display-lg-mobile": ["Bricolage Grotesque"],
+                      "headline-md": ["Bricolage Grotesque"],
+                      "display-lg": ["Bricolage Grotesque"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "headline-sm": ["Bricolage Grotesque"]
+              },
+              "fontSize": {
+                      "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "800"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .neo-brutalist-border { border: 3px solid #1e1b18; }
+        .neo-brutalist-shadow { shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
+        .hard-shadow { box-shadow: 4px 4px 0px 0px #1e1b18; }
+        .hard-shadow-hover:hover { box-shadow: 8px 8px 0px 0px #1e1b18; transform: translate(-2px, -2px); transition: all 0.2s ease-out; }
+        .hard-shadow-active:active { box-shadow: 0px 0px 0px 0px #1e1b18; transform: translate(4px, 4px); transition: all 0.1s; }
+        
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .animate-shin-bounce { animation: bounce-slow 3s ease-in-out infinite; }
+
+        .hatch-pattern {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-[3px] border-on-background bg-surface dark:bg-inverse-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-[32px] md:text-display-lg text-primary uppercase italic tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                SHIN-CHAN!
+            </span>
+</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-secondary font-label-bold border-b-[3px] border-secondary pb-1 hover:translate-x-[2px] hover:translate-y-[2px] transition-all" href="#">Home</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Squad</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Giggles</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Kasukabe</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block px-6 py-2 bg-primary text-on-primary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold uppercase">
+                ACTION MASK!
+            </button>
+<button class="md:hidden p-2 text-on-background">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative px-margin-mobile md:px-margin-desktop py-section-gap overflow-hidden bg-surface-container-low border-b-[3px] border-on-background">
+<div class="absolute inset-0 opacity-10 hatch-pattern pointer-events-none"></div>
+<div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-section-gap items-center relative z-10">
+<div class="space-y-8">
+<div class="inline-block px-4 py-2 bg-tertiary-fixed text-on-tertiary-fixed neo-brutalist-border rounded-full font-label-bold rotate-[-2deg]">
+                        NEW TROUBLE AHEAD!
+                    </div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background tracking-tighter leading-none">
+                        HEY, HEY, HEY! <br/>
+<span class="text-primary underline decoration-[8px] decoration-secondary">WELCOME</span> TO MY WORLD!
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        Join Shinnosuke Nohara for another day of high-energy mischief, chocolate stars, and Action Mask adventures in Kasukabe!
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="px-10 py-4 bg-primary text-on-primary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold text-lg uppercase tracking-wider">
+                            Let's Play!
+                        </button>
+<button class="px-10 py-4 bg-white text-on-background neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold text-lg uppercase tracking-wider">
+                            The Squad
+                        </button>
+</div>
+</div>
+<div class="flex justify-center relative">
+<div class="w-full max-w-[500px] aspect-square bg-secondary-container neo-brutalist-border hard-shadow rotate-[3deg] relative overflow-hidden">
+<img class="w-full h-full object-cover animate-shin-bounce" data-alt="A dynamic, high-energy illustration of Shinnosuke Nohara (Shin-chan) in a playful 90s anime style. He is making a silly face with his signature round cheeks and thick eyebrows. The background is a bright yellow with comic-style halftone dots and action lines. The overall aesthetic is bold neo-brutalism with thick black ink borders and high contrast primary colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJzfrVp_SX7TABT8zh_b-U5CRvaprVtjs6OZlRGWt9OHVO7680e69c0OvoUva4IGeSCdzSqnACeGkntX7uRgQNHmddUNt1I40ZEeYPvKpa8pvbcMFk4CVl-KcmJNOhZnSKwu0yyC9iC8kN6KkS__x-AmQhnWJSRnE7JbO5ZnaWMQNIBB5xeQhARW30QtxVAYPAEJdQB6ogtiPDP2Fm5nZbWfCJm0K5a0MQb8UZU92ArC1IVswgvn_vJw"/>
+</div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-tertiary-container neo-brutalist-border hard-shadow rounded-full flex items-center justify-center -rotate-12 z-20">
+<span class="font-label-bold text-center text-on-tertiary-container">Silly <br/> Level: MAX</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Mischief & Meters -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Trouble Meter Widget -->
+<div class="md:col-span-2 bg-white neo-brutalist-border hard-shadow p-8 flex flex-col justify-between space-y-6">
+<div>
+<div class="flex justify-between items-start">
+<h2 class="font-headline-md text-headline-md text-on-background uppercase">Trouble Meter</h2>
+<span class="material-symbols-outlined text-4xl text-primary" data-weight="fill">warning</span>
+</div>
+<p class="font-body-md text-on-surface-variant mt-2">How much mischief is Shin-chan causing today?</p>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between font-label-bold">
+<span>Misae's Anger Level</span>
+<span id="anger-val">85%</span>
+</div>
+<div class="w-full h-10 bg-surface-container neo-brutalist-border relative overflow-hidden">
+<div class="h-full bg-primary hatch-pattern transition-all duration-1000" id="anger-bar" style="width: 85%"></div>
+</div>
+<div class="flex justify-between font-label-bold pt-4">
+<span>Chocobi Supply</span>
+<span id="chocobi-val">12%</span>
+</div>
+<div class="w-full h-10 bg-surface-container neo-brutalist-border relative overflow-hidden">
+<div class="h-full bg-secondary hatch-pattern transition-all duration-1000" id="chocobi-bar" style="width: 12%"></div>
+</div>
+</div>
+<button class="w-full py-4 bg-tertiary text-on-tertiary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold uppercase" onclick="increaseTrouble()">
+                        Cause More Trouble!
+                    </button>
+</div>
+<!-- Daily Giggles Card -->
+<div class="bg-tertiary-fixed-dim neo-brutalist-border hard-shadow p-8 flex flex-col space-y-4">
+<div class="w-16 h-16 bg-white neo-brutalist-border rounded-lg flex items-center justify-center rotate-6">
+<span class="material-symbols-outlined text-primary text-3xl">sentiment_very_satisfied</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-tertiary-fixed">Daily Giggle</h3>
+<p class="font-body-md text-on-tertiary-fixed flex-grow">
+                        "Hey Misae, do you want to play a game? It's called 'Where did I hide the laundry?'"
+                    </p>
+<div class="pt-4 border-t-2 border-on-tertiary-fixed-variant border-dashed">
+<p class="font-caption text-on-tertiary-fixed-variant italic">- Shinnosuke, 8:42 AM</p>
+</div>
+</div>
+<!-- Mischief News Feed -->
+<div class="md:col-span-3 bg-surface-container-high neo-brutalist-border hard-shadow p-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="px-6 py-2 bg-on-background text-white font-label-bold uppercase -rotate-2">
+                            Mischief News
+                        </div>
+<div class="h-[3px] flex-grow bg-on-background"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- News Item 1 -->
+<div class="space-y-4 group">
+<div class="aspect-video bg-white neo-brutalist-border overflow-hidden group-hover:-translate-y-1 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A comic-style illustration of the Nohara family house with a giant Action Mask poster pinned to the roof. Vibrant colors, thick outlines, and whimsical details like Shiro the dog chasing a bone in the yard. The sky is a bright blue with fluffy stylized clouds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6op4WHAzIDa3GuXAQTNPW97jgiWJmXH-Fe1zFwUquP7bX_hJCiA7K8GgzJi_S1JC7_YdSqHENyC1JIwJSQJ9RrU_9swFbnNFGRceLMd0jmrwv52iEluBDDgKj9wqLA2MGdpxtQiZQ6mENx-qdyWDts3cUpzE6ghD7zDCi5sdFfbRFrSD84MI38Oaxjc6zZwgEHr6xW7o3bgvssV7ndHNPnsHmHaylPUSusuY8TH3jVhM9UEbPMo1OcQ"/>
+</div>
+<span class="font-caption text-primary uppercase font-bold">Local Alert</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight hover:underline cursor-pointer">The Great Crayon Shortage in Kasukabe</h4>
+<p class="font-body-md text-on-surface-variant">Authorities report all red crayons have mysteriously vanished from local kindergartens...</p>
+</div>
+<!-- News Item 2 -->
+<div class="space-y-4 group">
+<div class="aspect-video bg-white neo-brutalist-border overflow-hidden group-hover:-translate-y-1 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A highly detailed close-up of a box of Chocobi chocolate star snacks. The packaging is neon green with a cute pink dinosaur mascot. The stars are scattered around the box against a bright teal background. High saturation and bold commercial art style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdA6Ki6Pga8AT3KMXo9dihfA18tU8v1zlbkDA4nubCMKnAndP402vlvG7OkmDYJMlshiguPoc3V8fRCMltSVg55qAb1zBrf8kAXPXoWuG1OA5RCwp0XRDYguCZC4INyX6zS67awFYV7NmqN3o-OnZu0T5yW2_53ECRMWzF2mJ-WDyTERg-lGElLz_GNumcllkggP4-ieT7TPRhEr6gUIHmJCZV36PlF_N90RG9U1AqWj9qgGlDg-uVLg"/>
+</div>
+<span class="font-caption text-secondary uppercase font-bold">Food &amp; Snacks</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight hover:underline cursor-pointer">New Chocobi Flavor Released Today!</h4>
+<p class="font-body-md text-on-surface-variant">The limited edition 'Action Blue' flavor promises a cosmic explosion of sugar and fun...</p>
+</div>
+<!-- News Item 3 -->
+<div class="space-y-4 group">
+<div class="aspect-video bg-white neo-brutalist-border overflow-hidden group-hover:-translate-y-1 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A dynamic action-packed scene of Action Mask striking a heroic pose on top of a skyscraper. He is wearing his iconic green and silver costume. The background is a dramatic sunset with purple and orange hues. Bold ink lines and comic book aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkBtD5OJDUPPivNHVQhJWMWpCVMguBWdG1_T2rSt-S30j8yBPZvMZbrZlLsHQbQuj9OfJmamdwwopgy-y0kOWCzP1EisgCRtyvBEKUDKCi7rM7HlJbqL1G9YjFmLlE8PfmQfJB7POX9TsQ6xX6JsBaTvaPMrZNkfUm4-LjnOGuJzgGOqv2pDM8VuFA9ZHr8UVJCFkdqpV3AXkHj9uBbJo4qFK5ROM_mhXQrrarrW4vnhyz8H3i77sYOQ"/>
+</div>
+<span class="font-caption text-tertiary uppercase font-bold">TV Specials</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight hover:underline cursor-pointer">Action Mask Marathon This Weekend</h4>
+<p class="font-body-md text-on-surface-variant">Don't miss 48 hours of non-stop action, justice, and the legendary Action Beam!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap mb-20">
+<div class="bg-secondary-container neo-brutalist-border hard-shadow p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-20">
+<span class="material-symbols-outlined text-[200px]" data-weight="fill">shield</span>
+</div>
+<div class="relative z-10 max-w-2xl space-y-6">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-secondary-container leading-none uppercase">Join the Action Mask Fan Club</h2>
+<p class="font-body-lg text-on-secondary-container">Get exclusive access to secret missions, limited edition stickers, and your very own Action Mask cape! Are you brave enough?</p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<input class="flex-grow px-6 py-4 neo-brutalist-border font-label-bold focus:ring-0 focus:border-primary" placeholder="YOUR HERO EMAIL" type="email"/>
+<button class="px-10 py-4 bg-primary text-on-primary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold uppercase">
+                            Sign Me Up!
+                        </button>
+</div>
+<p class="font-caption text-on-secondary-fixed-variant">By joining, you agree to always fight for justice (and snacks).</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col items-center gap-unit text-center bg-tertiary-fixed dark:bg-tertiary border-t-[3px] border-on-background">
+<span class="font-headline-sm text-headline-sm text-on-tertiary-fixed uppercase italic tracking-tighter">
+            SHIN-CHAN!
+        </span>
+<div class="flex flex-wrap justify-center gap-gutter my-8">
+<a class="text-on-tertiary-fixed-variant font-label-bold hover:text-primary transition-colors hover:scale-105" href="#">Privacy Policy</a>
+<a class="text-on-tertiary-fixed-variant font-label-bold hover:text-primary transition-colors hover:scale-105" href="#">Help Misae</a>
+<a class="text-on-tertiary-fixed-variant font-label-bold hover:text-primary transition-colors hover:scale-105" href="#">Action Mask Fan Club</a>
+</div>
+<div class="flex gap-4 mb-8">
+<div class="w-12 h-12 bg-white neo-brutalist-border flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-primary">thumb_up</span>
+</div>
+<div class="w-12 h-12 bg-white neo-brutalist-border flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+</div>
+<div class="w-12 h-12 bg-white neo-brutalist-border flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-primary">share</span>
+</div>
+</div>
+<p class="font-body-md text-on-tertiary-fixed max-w-md">
+            © USUI YOSHITO / SHIN-EI ANIMATION - NO MISCHIEF INTENDED!
+        </p>
+</footer>
+<script>
+        function increaseTrouble() {
+            const angerBar = document.getElementById('anger-bar');
+            const chocobiBar = document.getElementById('chocobi-bar');
+            const angerVal = document.getElementById('anger-val');
+            const chocobiVal = document.getElementById('chocobi-val');
+            
+            let currentAnger = parseInt(angerBar.style.width);
+            let currentChocobi = parseInt(chocobiBar.style.width);
+            
+            // Randomly update values
+            currentAnger = Math.min(100, currentAnger + Math.floor(Math.random() * 10));
+            currentChocobi = Math.max(0, currentChocobi - Math.floor(Math.random() * 5));
+            
+            angerBar.style.width = currentAnger + '%';
+            chocobiBar.style.width = currentChocobi + '%';
+            
+            angerVal.innerText = currentAnger + '%';
+            chocobiVal.innerText = currentChocobi + '%';
+
+            if(currentAnger >= 100) {
+                alert("OH NO! Misae is super angry! Time to hide!");
+                angerBar.style.width = '20%';
+                angerVal.innerText = '20%';
+            }
+        }
+
+        // Add some atmospheric floaters
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.body;
+            for(let i = 0; i < 5; i++) {
+                const star = document.createElement('div');
+                star.className = 'fixed pointer-events-none opacity-20 z-0';
+                star.innerHTML = `<span class="material-symbols-outlined text-primary text-${Math.floor(Math.random()*4+2)}xl">star</span>`;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.transform = `rotate(${Math.random()*360}deg)`;
+                container.appendChild(star);
+            }
+        });
+    </script>
+</body></html>

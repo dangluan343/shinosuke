@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHIN-CHAN! - About Kasukabe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .comic-hatch {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px);
+        }
+        .bouncing {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#4d4800",
+                      "surface-dim": "#e1d8d4",
+                      "surface-bright": "#fff8f5",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#1f1c00",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#004788",
+                      "background": "#fff8f5",
+                      "surface-container-highest": "#e9e1dc",
+                      "surface-container": "#f5ece7",
+                      "on-tertiary-container": "#454100",
+                      "on-primary": "#ffffff",
+                      "secondary": "#0b5eaf",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed-dim": "#d6ca00",
+                      "on-primary-fixed-variant": "#930007",
+                      "inverse-on-surface": "#f8efea",
+                      "on-primary-fixed": "#410001",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#b7000c",
+                      "tertiary-container": "#b9ae00",
+                      "inverse-surface": "#34302c",
+                      "inverse-primary": "#ffb4aa",
+                      "surface-variant": "#e9e1dc",
+                      "outline-variant": "#e9bcb6",
+                      "on-background": "#1e1b18",
+                      "secondary-container": "#6ba7fd",
+                      "surface-container-low": "#fbf2ed",
+                      "on-primary-container": "#fff7f6",
+                      "surface-tint": "#c0000d",
+                      "primary-fixed-dim": "#ffb4aa",
+                      "on-secondary-container": "#003b74",
+                      "on-secondary-fixed": "#001b3b",
+                      "primary-fixed": "#ffdad5",
+                      "tertiary": "#666000",
+                      "surface": "#fff8f5",
+                      "secondary-fixed-dim": "#a7c8ff",
+                      "on-surface-variant": "#5f3f3b",
+                      "tertiary-fixed": "#f4e700",
+                      "surface-container-high": "#efe6e2",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "section-gap": "80px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-bold": ["Space Grotesk"],
+                      "caption": ["Plus Jakarta Sans"],
+                      "display-lg-mobile": ["Bricolage Grotesque"],
+                      "headline-md": ["Bricolage Grotesque"],
+                      "display-lg": ["Bricolage Grotesque"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "headline-sm": ["Bricolage Grotesque"]
+              },
+              "fontSize": {
+                      "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "800"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-secondary-container">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-[3px] border-on-background bg-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<h1 class="font-display-lg text-display-lg text-primary uppercase italic tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">SHIN-CHAN!</h1>
+</div>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Home</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Squad</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Giggles</a>
+<a class="text-secondary font-label-bold border-b-[3px] border-secondary pb-1 hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Kasukabe</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary font-label-bold px-6 py-2 border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all uppercase">
+                ACTION MASK!
+            </button>
+</div>
+</header>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-secondary-container relative overflow-hidden border-b-[3px] border-on-background">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-gutter items-center relative z-10">
+<div class="space-y-6">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-bold px-4 py-1 rounded-full border-[3px] border-on-background inline-block">Saitama Prefecture</span>
+<h2 class="font-display-lg text-display-lg text-on-secondary-container leading-none uppercase">Welcome to <br/><span class="text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">Kasukabe City!</span></h2>
+<p class="font-body-lg text-body-lg text-on-secondary-container max-w-md">The most chaotic town in Japan, where mischief is a way of life and every street corner has a story of a five-year-old making adults cry (with laughter).</p>
+<div class="flex gap-4">
+<button class="bg-on-background text-white font-label-bold px-8 py-4 border-[3px] border-on-background shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all uppercase">Start Exploring</button>
+</div>
+</div>
+<div class="relative">
+<div class="bg-white border-[3px] border-on-background p-4 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] -rotate-2 transform transition-transform hover:rotate-0 duration-300">
+<img class="w-full aspect-video object-cover border-[3px] border-on-background" data-alt="A vibrant digital illustration of Kasukabe City in the style of 90s character animation. The image shows a bright sunny day with high-saturation colors, featuring red-roofed suburban houses, green trees with thick black outlines, and a blue sky with fluffy white cartoon clouds. The aesthetic is hand-drawn and playful with bold neo-brutalist strokes and a nostalgic Japanese suburbia atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVXIjw1sS1BU_XnCRqtqCHKyQNb_7avJpITJu4L8A8RjCYHgaZUfk715Ledglhb3CPfqWqBqZS1qX1gm-9Y-kG_12MCqi-yhSs1aLVBOCNy56n-f14nFQQFU7Cdlj2tZw3LlzvHsgdvDBhB8jXdLL1azgQKenwjdKDwa-mq8caFdDZRXrx63cu_iuMO0VbJV0vFaFApjtyXKh9OxVvLxjr1R2YDMp1iaeg3iNN2ctij91SFMgMSs7qRg"/>
+<p class="font-caption text-caption mt-4 italic text-center">Photo by: Shin-chan (he stole Hiroshi's camera)</p>
+</div>
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary border-[3px] border-on-background rounded-full flex items-center justify-center rotate-12 shadow-lg animate-bounce">
+<span class="text-white font-label-bold text-center leading-tight">100%<br/>FUN!</span>
+</div>
+</div>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute bottom-0 right-0 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'FILL' 1;">landscape</span>
+</div>
+</section>
+<!-- The Map Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary uppercase">The Grand Tour</h3>
+<p class="font-body-md text-body-md">Don't get lost! Here are the most important spots in town.</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-primary border-2 border-on-background rounded-full"></div>
+<span class="font-label-bold">Mischief Zones</span>
+</div>
+</div>
+<!-- Bento Map Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Nohara Residence -->
+<div class="md:col-span-8 bg-surface-container-low border-[3px] border-on-background p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all group">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="w-full md:w-1/2 overflow-hidden border-[3px] border-on-background bg-white">
+<img class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A stylized 2D drawing of the Nohara family house, a classic two-story Japanese suburban home with a red roof, cream walls, and a small yard. The image uses thick black outlines and vibrant flat colors characteristic of Shin-chan's anime style. A white dog house for Shiro is visible in the yard. The lighting is bright and cheerful." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzU0HnzblnJh983GOhGcBf5wMO-DtIHi9K4uXzAPhLImNitW0d2DsGHrdN4DlOiktXOG1M_nT7_EojE8BGy2U_uyW-cnGU9RWWHGqLJ9TmAblACtNsLuRSJsXL7EeeU_FP2W23vy8OUzk76VzEsnjCtn8SrWtuJs5RwL-KekYyzZXpLFCla5VEpwmPT-vb18law9sT5_y6Id_PMDJXVZYZtSh_DcBaJYy5y3jCV_GpauxgABhkB4rGfA"/>
+</div>
+<div class="w-full md:w-1/2 space-y-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<h4 class="font-headline-sm text-headline-sm uppercase">Nohara House</h4>
+</div>
+<p class="font-body-md text-body-md">Ground zero for most trouble. Features a 32-year mortgage (sorry Hiroshi!), a fridge full of Chocobi, and a very tired dog named Shiro.</p>
+<div class="bg-tertiary-container/20 p-4 border-l-4 border-tertiary-container">
+<p class="font-caption text-caption italic">"Stay away from the snacks or Misae will give you the 'Noogie of Death'!"</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Mart -->
+<div class="md:col-span-4 bg-tertiary-fixed border-[3px] border-on-background p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all">
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-on-tertiary-fixed">
+<span class="material-symbols-outlined" data-icon="shopping_cart" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<h4 class="font-headline-sm text-headline-sm uppercase">Supermarket</h4>
+</div>
+<div class="h-40 bg-white border-[3px] border-on-background mb-4">
+<img class="w-full h-full object-cover" data-alt="A fun cartoon depiction of a Japanese supermarket named Action Mart. The storefront is brightly colored with yellow and red signage, featuring a stylized mascot character. Cartoon produce crates and sale posters with thick black outlines are visible in the window. The style is bouncy and high-energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZz64meADwCivF0MmnEUie_erupbnDpznpXMulyUyKOoe0tQYxzIDftbM_1yPaPqVUHdHmBOr2-CnAogEPEVMKjdQ0t4nXP8Lx1Bs5pdEwrqoS259kupskUV4XRmokBMlK_GiZVtakj8aORC200TD_tI0WKClOvZClI5ru2RTJ4ALK8NKd7KfiwA7dG7QdHYtCqTxTqd1N6v9cTEcUjZhe16W40DD0mqI3VUQzEGcVx9Ggza0F8D6kow"/>
+</div>
+<p class="font-body-md text-body-md text-on-tertiary-fixed">Where Misae hunts for sales and Shin-chan gets lost in the candy aisle. Famous for 'Radish Disasters'.</p>
+</div>
+</div>
+<!-- Futaba Kindergarten -->
+<div class="md:col-span-6 bg-secondary-fixed border-[3px] border-on-background p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all">
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+<h4 class="font-headline-sm text-headline-sm uppercase">Kindergarten</h4>
+</div>
+<span class="bg-white px-3 py-1 border-2 border-on-background font-label-bold rounded-full">Kasukabe Defense Group HQ</span>
+</div>
+<p class="font-body-md text-body-md">Run by 'The Boss' (Principal Takakura). Home to the Sunflower and Rose classes. Don't be fooled by the principal's face—he's actually a sweetheart!</p>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-primary/20 aspect-square border-2 border-on-background flex items-center justify-center"><span class="material-symbols-outlined text-primary">child_care</span></div>
+<div class="bg-secondary/20 aspect-square border-2 border-on-background flex items-center justify-center"><span class="material-symbols-outlined text-secondary">toys</span></div>
+<div class="bg-tertiary/20 aspect-square border-2 border-on-background flex items-center justify-center"><span class="material-symbols-outlined text-tertiary">mood_bad</span></div>
+</div>
+</div>
+</div>
+<!-- The Park -->
+<div class="md:col-span-6 bg-surface-container-highest border-[3px] border-on-background p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden group">
+<div class="comic-hatch absolute inset-0 opacity-10"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined" data-icon="park" style="font-variation-settings: 'FILL' 1;">park</span>
+<h4 class="font-headline-sm text-headline-sm uppercase">Kasukabe Park</h4>
+</div>
+<div class="mt-4 flex gap-4">
+<div class="flex-1">
+<p class="font-body-md text-body-md">The legendary meeting spot for the Kasukabe Defense Group. Features a slide that has seen too many 'butt-alien' dances.</p>
+<button class="mt-4 text-primary font-label-bold flex items-center gap-2 group">
+                                        Check Patrol Schedule 
+                                        <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="w-32 h-32 rounded-full border-[3px] border-on-background bg-white flex-shrink-0 flex items-center justify-center rotate-12 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Fun Stats Section -->
+<section class="bg-primary px-margin-mobile md:px-margin-desktop py-section-gap border-t-[3px] border-on-background">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="text-center space-y-2">
+<div class="text-white font-display-lg text-display-lg drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">9,999+</div>
+<div class="font-label-bold text-on-primary-container uppercase bg-white border-2 border-on-background px-2 py-1 inline-block">Chocobis Eaten</div>
+</div>
+<div class="text-center space-y-2">
+<div class="text-white font-display-lg text-display-lg drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">∞</div>
+<div class="font-label-bold text-on-primary-container uppercase bg-white border-2 border-on-background px-2 py-1 inline-block">Mischief Levels</div>
+</div>
+<div class="text-center space-y-2">
+<div class="text-white font-display-lg text-display-lg drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">32yr</div>
+<div class="font-label-bold text-on-primary-container uppercase bg-white border-2 border-on-background px-2 py-1 inline-block">Mortgage Left</div>
+</div>
+<div class="text-center space-y-2">
+<div class="text-white font-display-lg text-display-lg drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">0</div>
+<div class="font-label-bold text-on-primary-container uppercase bg-white border-2 border-on-background px-2 py-1 inline-block">Normal Days</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Fan Club CTA -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="max-w-4xl mx-auto bg-surface border-[3px] border-on-background p-12 shadow-[12px_12px_0px_0px_rgba(11,94,175,1)] relative">
+<div class="absolute -top-6 -left-6 bg-secondary text-white p-4 border-[3px] border-on-background rotate-[-5deg]">
+<span class="font-label-bold">JOIN THE CLUB!</span>
+</div>
+<div class="text-center space-y-6">
+<h3 class="font-headline-md text-headline-md uppercase">Action Mask Fan Club</h3>
+<p class="font-body-lg text-body-lg">Get the latest rumors from Kasukabe and exclusive Action Mask updates delivered by Shiro's express delivery!</p>
+<div class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+<input class="flex-grow border-[3px] border-on-background p-4 focus:ring-0 focus:border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]" placeholder="Your hero email..." type="email"/>
+<button class="bg-primary text-on-primary font-label-bold px-8 py-4 border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all uppercase">
+                            Sign Up
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col items-center gap-unit text-center bg-tertiary-fixed border-t-[3px] border-on-background">
+<h2 class="font-headline-sm text-headline-sm text-on-tertiary-fixed mb-4">SHIN-CHAN!</h2>
+<nav class="flex flex-wrap justify-center gap-gutter mb-8">
+<a class="text-on-tertiary-fixed-variant font-label-bold hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-tertiary-fixed-variant font-label-bold hover:text-primary transition-colors" href="#">Help Misae</a>
+<a class="text-on-tertiary-fixed-variant font-label-bold hover:text-primary transition-colors" href="#">Action Mask Fan Club</a>
+</nav>
+<p class="font-body-md text-body-md text-on-tertiary-fixed opacity-70">© USUI YOSHITO / SHIN-EI ANIMATION - NO MISCHIEF INTENDED!</p>
+<div class="mt-8 flex gap-4">
+<div class="w-10 h-10 bg-on-tertiary-fixed rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-white text-xl" data-icon="share">share</span>
+</div>
+<div class="w-10 h-10 bg-on-tertiary-fixed rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-white text-xl" data-icon="thumb_up">thumb_up</span>
+</div>
+<div class="w-10 h-10 bg-on-tertiary-fixed rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-white text-xl" data-icon="star">star</span>
+</div>
+</div>
+</footer>
+<!-- Floating Action Button -->
+<div class="fixed bottom-8 right-8 z-[100] md:hidden">
+<button class="bg-primary text-white w-16 h-16 rounded-full border-[3px] border-on-background shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">map</span>
+</button>
+</div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'translate(4px, 4px)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = '';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = '';
+            });
+        });
+
+        // Simple Parallax for Map Items
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            document.querySelectorAll('.group-hover\\:scale-110').forEach(el => {
+                // Just let CSS handle the hover, but could add scroll effects here
+            });
+        });
+    </script>
+</body></html>

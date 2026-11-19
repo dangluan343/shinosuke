@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHIN-CHAN! Moments Gallery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#4d4800",
+                    "surface-dim": "#e1d8d4",
+                    "surface-bright": "#fff8f5",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#1f1c00",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#004788",
+                    "background": "#fff8f5",
+                    "surface-container-highest": "#e9e1dc",
+                    "surface-container": "#f5ece7",
+                    "on-tertiary-container": "#454100",
+                    "on-primary": "#ffffff",
+                    "secondary": "#0b5eaf",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#d6ca00",
+                    "on-primary-fixed-variant": "#930007",
+                    "inverse-on-surface": "#f8efea",
+                    "on-primary-fixed": "#410001",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#b7000c",
+                    "tertiary-container": "#b9ae00",
+                    "inverse-surface": "#34302c",
+                    "inverse-primary": "#ffb4aa",
+                    "surface-variant": "#e9e1dc",
+                    "outline-variant": "#e9bcb6",
+                    "on-background": "#1e1b18",
+                    "secondary-container": "#6ba7fd",
+                    "surface-container-low": "#fbf2ed",
+                    "on-primary-container": "#fff7f6",
+                    "surface-tint": "#c0000d",
+                    "primary-fixed-dim": "#ffb4aa",
+                    "on-secondary-container": "#003b74",
+                    "on-secondary-fixed": "#001b3b",
+                    "primary-fixed": "#ffdad5",
+                    "tertiary": "#666000",
+                    "surface": "#fff8f5",
+                    "secondary-fixed-dim": "#a7c8ff",
+                    "on-surface-variant": "#5f3f3b",
+                    "tertiary-fixed": "#f4e700",
+                    "surface-container-high": "#efe6e2",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "section-gap": "80px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Space Grotesk"],
+                    "caption": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Bricolage Grotesque"],
+                    "headline-md": ["Bricolage Grotesque"],
+                    "display-lg": ["Bricolage Grotesque"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                    "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "800"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .neo-brutal-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        
+        .neo-brutal-hover:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+
+        .neo-brutal-active:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+        }
+
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 24px;
+        }
+        @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+
+        .comic-hatch {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-[3px] border-on-background bg-surface dark:bg-inverse-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg text-primary uppercase italic tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] select-none">SHIN-CHAN!</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Home</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Squad</a>
+<a class="text-secondary font-label-bold border-b-[3px] border-secondary pb-1 hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Giggles</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px]" href="#">Kasukabe</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-6 py-2 border-[3px] border-on-background font-label-bold uppercase neo-brutal-shadow neo-brutal-active transition-all">
+                ACTION MASK!
+            </button>
+</div>
+</nav>
+<main class="min-h-screen px-margin-mobile md:px-margin-desktop py-12">
+<!-- Hero Header -->
+<header class="mb-section-gap text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg mb-4 text-on-background">MOMENTS GALLERY</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    A vibrant collection of the silliest, cheekiest, and most iconic moments from the Kasukabe Defense Group. Explore the chaos!
+                </p>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-3 justify-center md:justify-end">
+<button class="bg-secondary-container text-on-secondary-container px-6 py-2 border-[3px] border-on-background rounded-full font-label-bold neo-brutal-shadow neo-brutal-active transition-all">All Chaos</button>
+<button class="bg-surface text-on-surface px-6 py-2 border-[3px] border-on-background rounded-full font-label-bold neo-brutal-shadow hover:bg-tertiary-fixed transition-all">Giggles</button>
+<button class="bg-surface text-on-surface px-6 py-2 border-[3px] border-on-background rounded-full font-label-bold neo-brutal-shadow hover:bg-primary-fixed transition-all">Trouble</button>
+<button class="bg-surface text-on-surface px-6 py-2 border-[3px] border-on-background rounded-full font-label-bold neo-brutal-shadow hover:bg-secondary-fixed transition-all">Action Mask</button>
+</div>
+</header>
+<!-- Masonry Gallery -->
+<div class="masonry-grid">
+<!-- Moment 1: Large Vertical -->
+<div class="masonry-item">
+<div class="bg-surface border-[3px] border-on-background neo-brutal-shadow neo-brutal-hover transition-all overflow-hidden group">
+<div class="aspect-[3/4] relative overflow-hidden border-b-[3px] border-on-background">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant, high-energy 90s anime style illustration of Shin-chan performing his iconic 'butt dance'. The background is a bright, solid yellow with thick black halftone dots. The colors are highly saturated, featuring bold reds and soft peaches for skin tones. The lighting is flat and bright, mimicking a classic cel-animated look with a thick 3px black ink outline around everything." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2c3Ne8Zaow7Xp0E5_J1VUFP6Bc_W9ZMnSDQ1hYlF3g2UH_Gkc0G0z8zcAoyjkJqyghbrveljm1R6YlwFPMObKUd0oV7Ju510_u27HGOC-6WPIsPbUJvU7LxlqwrP-aGbEcnsTwkBbur6TsyrdCgCnaUDmWwpsPua4mPWRlErFGFWbrtei9zHlplKoxXjasvz4OuVxFfzK1CLqWDFkYxoXDI9PfUHBAOtD0ltrVrWO08dCYqfoJddlLA"/>
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 border-[2px] border-on-background rounded-full font-label-bold text-caption uppercase">Giggles</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-2">THE CLASSIC WIGGLE</h3>
+<p class="font-body-md text-body-md text-on-surface-variant italic">"Buri Buri Buri!"</p>
+</div>
+</div>
+</div>
+<!-- Moment 2: Landscape -->
+<div class="masonry-item">
+<div class="bg-surface border-[3px] border-on-background neo-brutal-shadow neo-brutal-hover transition-all overflow-hidden group">
+<div class="aspect-[16/9] relative overflow-hidden border-b-[3px] border-on-background">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A dynamic action scene in a nostalgic 90s cartoon style. Action Mask is striking a heroic pose in front of a giant purple explosion. Shin-chan is visible in the corner, wearing a matching blue mask and cape, looking ecstatic. The palette uses deep blues, vibrant purples, and fiery oranges with heavy black outlines and comic-style hatch shading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHGGMfSf5LJNcz4C3uB3KnrYvqEr-H2XkOvBCNHdl1TWMpcqTwN159T1mzDh779wKVCm3JXKrE_Hj1BMTT44Sl0_cMS-9xzDzuBV6PfHsGFj5cf8_KoCzMPF-OShh1G7PqUEWeX_s6QbmBDmhdTOTFy-DDPuwPo_SO1UbKD35ouwjk9N_pruYxWurdN_RFj05HWs6Wuw_XHn5rtFuZGi9MePBJcVoFIota5OoUyssyDKw6ytDsJRvlPg"/>
+<div class="absolute top-4 left-4 bg-secondary-fixed text-on-secondary-fixed px-3 py-1 border-[2px] border-on-background rounded-full font-label-bold text-caption uppercase">Action Mask</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-2">HEROIC SPIRIT</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Training for the ultimate battle against evil (and broccoli).</p>
+</div>
+</div>
+</div>
+<!-- Moment 3: Square (Trouble) -->
+<div class="masonry-item">
+<div class="bg-primary-fixed border-[3px] border-on-background neo-brutal-shadow neo-brutal-hover transition-all overflow-hidden group">
+<div class="aspect-square relative overflow-hidden border-b-[3px] border-on-background">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A humorous 90s animation cel showing Misae (Shin-chan's mom) with a comically enlarged, throbbing anger vein on her forehead. In the foreground, Shin-chan is casually walking away, whistling, with a mischievous grin. The scene is bright and flat with vibrant greens from the living room background and a thick black ink contour. Neo-brutalism comic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNUJy0Qu0mcQzydpuycabQ1pr0r0MzXsHuQym_i1AQ1TXN3cvS7KukPt69-0AwWuYpouG8VnuKd8A9JQ4fQB9nEpVZzltKOWlHdCiHaCNENUqi8X29JX-aMojfsGkP79mXDyHlv0Lv5ws4qmM4GcPILtUiiJAx2wJsHkUesCXR9X0Fy_1uvkIS3B1S4w-h0QVtSiiOL3ECaQ-7nfqzG9rYi9HdY6kjXM29934aIHTVBzJjQDo163NQ1A"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 border-[2px] border-on-background rounded-full font-label-bold text-caption uppercase">Trouble</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-2">RUN FOR IT!</h3>
+<p class="font-body-md text-body-md text-on-primary-fixed-variant">Misae is NOT happy about the spilled chocobi today.</p>
+</div>
+</div>
+</div>
+<!-- Moment 4: Quote/Caption Card -->
+<div class="masonry-item">
+<div class="bg-tertiary-fixed-dim border-[3px] border-on-background p-8 neo-brutal-shadow comic-hatch relative overflow-hidden">
+<span class="material-symbols-outlined text-display-lg text-on-tertiary-fixed mb-4 opacity-50">format_quote</span>
+<p class="font-headline-md text-headline-md text-on-tertiary-fixed uppercase italic leading-tight mb-4">"Hey, hey, Misae! Why are your eyes so small today?"</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-[2px] border-on-background bg-white flex items-center justify-center font-label-bold">S</div>
+<span class="font-label-bold text-label-bold uppercase">Shin-chan, 1992</span>
+</div>
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-on-tertiary-fixed opacity-10 rotate-12"></div>
+</div>
+</div>
+<!-- Moment 5: Portrait -->
+<div class="masonry-item">
+<div class="bg-surface border-[3px] border-on-background neo-brutal-shadow neo-brutal-hover transition-all overflow-hidden group">
+<div class="aspect-[2/3] relative overflow-hidden border-b-[3px] border-on-background">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A detailed 90s anime illustration of Shiro, the small white dog, looking confused with his head tilted. He is sitting on a vibrant green lawn under a bright blue sky with fluffy white cartoon clouds. The style features high-contrast colors, clean cell-shading, and heavy black outlines that give it a physical, sticker-like quality. Soft daylight lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4WGuF53-407Aq9a9EEMjieGWbqeNaL_DDovkvKtN8Jvc0S_RdcKmrcKKo4z-8F-rJtm8-LmRG0z44h8yeZQlftc5IQ7NRUXrI6hWtzVFP5UW84n89cNhU_a5FDaDMDlqvxIBiR6UCUlI4DZnLV8l8tgAkE9ADIh4SzJfVlfedFCACxSwQksjSK2jqJLzx8XC0o6XSv5TkGgJWvF761g6X2uuY6WnR4OR5Jy3XJHAxiaaS_BIvX_U-EQ"/>
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 border-[2px] border-on-background rounded-full font-label-bold text-caption uppercase">Giggles</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-2">SHIRO'S WISDOM</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The only mature member of the Nohara family.</p>
+</div>
+</div>
+</div>
+<!-- Moment 6: Square (Squad) -->
+<div class="masonry-item">
+<div class="bg-secondary-fixed border-[3px] border-on-background neo-brutal-shadow neo-brutal-hover transition-all overflow-hidden group">
+<div class="aspect-square relative overflow-hidden border-b-[3px] border-on-background">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="The Kasukabe Defense Group standing together in a classic 'team' pose. Shin-chan, Kazama, Masao, Nene, and Bo-chan are all dressed in their school uniforms. The style is classic hand-drawn 90s cel animation with vibrant colors like bright blues, pinks, and yellows. The characters have thick black outlines and are set against a sunny school playground background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN1zcBjFtXFQ5raaJSJ5LguJ3VemYwA4bDjbRCoIUrmnWUl824O2JN-aIDhfBsFgP5kI2VQcJn7jeb2WuxCthYBS5u_sxGrxQspMN1iHMWO-sGCRIbYRClcOpvy47eELj1Hx49Y6ZA3LNfqOBepSXuQ13xGW9sYRNVLTVTOaWVwar2b6aUWiefxDUh2-vazj1F6RT6aJW0ZJ6ltN6tuqmSw3cJtZewY91rY-UwpjGkbleBKz1B26sQrg"/>
+<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 border-[2px] border-on-background rounded-full font-label-bold text-caption uppercase">Squad</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-2">SQUAD GOALS</h3>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant">Defending Kasukabe one prank at a time.</p>
+</div>
+</div>
+</div>
+<!-- Moment 7: Abstract Comic Panel -->
+<div class="masonry-item">
+<div class="bg-surface border-[3px] border-on-background neo-brutal-shadow neo-brutal-hover transition-all overflow-hidden group">
+<div class="aspect-video relative overflow-hidden border-b-[3px] border-on-background">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-contrast pop-art style close-up of Shin-chan's face with a comically wide mouth, about to eat a chocobi. The background is composed of blue and white diagonal stripes. The coloring is reminiscent of 90s comic books with Ben-Day dots for shading and heavy black ink lines. The lighting is theatrical and bold." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlvoRwWqHq6lJ6tFl8QMSOcml6L3oxOMlN9mQShBxKQO3a3UO_9TXdDksJB8kVtG17XTeG6Vly_oE1oqgdEss4mxx3Z4pMMxuTRVns0m28GkTdf55379R0J4BKn9Ms0Sq71kyk_Jt_EK45daTPE4DTJlbYSfGfx_M6yUgT57KEVVicgeEgXAqNWTwiWSkoGjiZ2t8PtK7o1xE4PVRjOQgAvR4DluxWIkbkkw-w5IlGoZqCZHzxjtjFNQ"/>
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 border-[2px] border-on-background rounded-full font-label-bold text-caption uppercase">Giggles</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-2">CHOCOBI MANIA</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The sugar rush is real, folks.</p>
+</div>
+</div>
+</div>
+<!-- Moment 8: Small Alert Card -->
+<div class="masonry-item">
+<div class="bg-error-container border-[3px] border-on-background p-6 neo-brutal-shadow flex flex-col gap-4">
+<div class="flex items-center gap-4 text-error">
+<span class="material-symbols-outlined font-bold">warning</span>
+<span class="font-label-bold text-label-bold uppercase">Chaos Alert!</span>
+</div>
+<p class="font-body-md text-body-md text-on-error-container">Shin-chan has entered the department store. Hide all fancy cookies immediately.</p>
+<div class="h-2 w-full bg-on-background/10 border border-on-background overflow-hidden">
+<div class="h-full bg-error w-3/4 comic-hatch"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More Section -->
+<div class="mt-section-gap flex flex-col items-center gap-6">
+<button class="group relative inline-flex items-center justify-center">
+<div class="absolute inset-0 bg-on-background translate-x-[4px] translate-y-[4px] transition-all group-active:translate-x-0 group-active:translate-y-0"></div>
+<div class="relative bg-primary text-on-primary px-12 py-4 border-[3px] border-on-background font-label-bold text-lg uppercase transition-all group-hover:-translate-x-[2px] group-hover:-translate-y-[2px] group-active:translate-x-0 group-active:translate-y-0">
+                    Gimme More!
+                </div>
+</button>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Showing 8 of 9,999 prank moments</p>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col items-center gap-unit text-center bg-tertiary-fixed dark:bg-tertiary border-t-[3px] border-on-background">
+<div class="font-headline-sm text-headline-sm text-on-tertiary-fixed uppercase italic mb-4">SHIN-CHAN!</div>
+<div class="flex flex-wrap justify-center gap-8 mb-8">
+<a class="text-on-tertiary-fixed-variant hover:text-primary font-label-bold transition-all hover:scale-105" href="#">Privacy Policy</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary font-label-bold transition-all hover:scale-105" href="#">Help Misae</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary font-label-bold transition-all hover:scale-105" href="#">Action Mask Fan Club</a>
+</div>
+<p class="font-body-md text-body-md text-on-tertiary-fixed max-w-lg mb-4 opacity-80">
+            © USUI YOSHITO / SHIN-EI ANIMATION - NO MISCHIEF INTENDED!
+        </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 border-[2px] border-on-background bg-white flex items-center justify-center neo-brutal-shadow hover:scale-110 cursor-pointer transition-transform">
+<span class="material-symbols-outlined text-primary">thumb_up</span>
+</div>
+<div class="w-10 h-10 border-[2px] border-on-background bg-white flex items-center justify-center neo-brutal-shadow hover:scale-110 cursor-pointer transition-transform">
+<span class="material-symbols-outlined text-secondary">share</span>
+</div>
+<div class="w-10 h-10 border-[2px] border-on-background bg-white flex items-center justify-center neo-brutal-shadow hover:scale-110 cursor-pointer transition-transform">
+<span class="material-symbols-outlined text-tertiary">mood</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple filter logic micro-interaction
+        const filterButtons = document.querySelectorAll('button[class*="rounded-full"]');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                    b.classList.add('bg-surface', 'text-on-surface');
+                });
+                btn.classList.remove('bg-surface', 'text-on-surface');
+                btn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+            });
+        });
+
+        // Add bounce to cards on hover via JS for extra polish
+        const cards = document.querySelectorAll('.masonry-item > div');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'rotate(' + (Math.random() * 2 - 1) + 'deg) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotate(0deg) scale(1)';
+            });
+        });
+    </script>
+</body></html>
