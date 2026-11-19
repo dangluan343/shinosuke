@@ -42,6 +42,228 @@ interface TextPopup {
   vy: number;
 }
 
+// ============================================================================
+// VECTOR DRAWING HELPERS FOR CRISP NEO-BRUTALIST SPRITES (Zero Blurriness!)
+// ============================================================================
+
+function drawVectorPepper(ctx: CanvasRenderingContext2D, size: number) {
+  const r = size * 0.55;
+  ctx.save();
+
+  // Hard shadow
+  ctx.fillStyle = "rgba(30, 27, 24, 0.4)";
+  ctx.beginPath();
+  ctx.ellipse(3, 4, r * 0.85, r * 0.85, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Bell Pepper Main Body (Vibrant Green)
+  ctx.fillStyle = "#29bf12";
+  ctx.strokeStyle = "#1e1b18";
+  ctx.lineWidth = 3.5;
+  ctx.lineJoin = "round";
+
+  ctx.beginPath();
+  ctx.moveTo(-r * 0.65, -r * 0.35);
+  ctx.bezierCurveTo(-r * 0.9, -r * 0.75, -r * 0.2, -r * 0.85, 0, -r * 0.55);
+  ctx.bezierCurveTo(r * 0.2, -r * 0.85, r * 0.9, -r * 0.75, r * 0.65, -r * 0.35);
+  ctx.bezierCurveTo(r * 0.95, r * 0.55, r * 0.45, r * 0.85, 0, r * 0.8);
+  ctx.bezierCurveTo(-r * 0.45, r * 0.85, -r * 0.95, r * 0.55, -r * 0.65, -r * 0.35);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Highlight shine (Lighter green)
+  ctx.fillStyle = "#a8f387";
+  ctx.beginPath();
+  ctx.ellipse(-r * 0.3, -r * 0.15, r * 0.22, r * 0.35, -0.3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Stem at top (Dark green with black outline)
+  ctx.fillStyle = "#1b5e20";
+  ctx.beginPath();
+  ctx.moveTo(-r * 0.15, -r * 0.55);
+  ctx.lineTo(-r * 0.05, -r * 0.95);
+  ctx.lineTo(r * 0.25, -r * 0.9);
+  ctx.lineTo(r * 0.15, -r * 0.55);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Angry Evil Face on Pepper
+  ctx.fillStyle = "#1e1b18";
+  ctx.strokeStyle = "#1e1b18";
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(-r * 0.45, -r * 0.05);
+  ctx.lineTo(-r * 0.15, 0.05);
+  ctx.moveTo(r * 0.45, -r * 0.05);
+  ctx.lineTo(r * 0.15, 0.05);
+  ctx.stroke();
+
+  // Eyes
+  ctx.beginPath();
+  ctx.arc(-r * 0.28, r * 0.18, 2.5, 0, Math.PI * 2);
+  ctx.arc(r * 0.28, r * 0.18, 2.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function drawVectorChocobiStar(ctx: CanvasRenderingContext2D, size: number) {
+  const r = size * 0.58;
+  const innerR = r * 0.46;
+  ctx.save();
+
+  // Hard shadow
+  ctx.fillStyle = "rgba(30, 27, 24, 0.4)";
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const outerAngle = (i * 2 * Math.PI) / 5 - Math.PI / 2;
+    const innerAngle = outerAngle + Math.PI / 5;
+    const sx = Math.cos(outerAngle) * r + 3;
+    const sy = Math.sin(outerAngle) * r + 4;
+    const ix = Math.cos(innerAngle) * innerR + 3;
+    const iy = Math.sin(innerAngle) * innerR + 4;
+    if (i === 0) ctx.moveTo(sx, sy);
+    else ctx.lineTo(sx, sy);
+    ctx.lineTo(ix, iy);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  // Star Body (Golden Yellow)
+  ctx.fillStyle = "#ffd93d";
+  ctx.strokeStyle = "#1e1b18";
+  ctx.lineWidth = 3.5;
+  ctx.lineJoin = "round";
+
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const outerAngle = (i * 2 * Math.PI) / 5 - Math.PI / 2;
+    const innerAngle = outerAngle + Math.PI / 5;
+    if (i === 0) {
+      ctx.moveTo(Math.cos(outerAngle) * r, Math.sin(outerAngle) * r);
+    } else {
+      ctx.lineTo(Math.cos(outerAngle) * r, Math.sin(outerAngle) * r);
+    }
+    ctx.lineTo(Math.cos(innerAngle) * innerR, Math.sin(innerAngle) * innerR);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Cute Happy Star Face
+  ctx.fillStyle = "#1e1b18";
+  ctx.beginPath();
+  ctx.arc(-r * 0.22, -r * 0.05, 2.8, 0, Math.PI * 2);
+  ctx.arc(r * 0.22, -r * 0.05, 2.8, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Smile
+  ctx.strokeStyle = "#1e1b18";
+  ctx.lineWidth = 2.2;
+  ctx.beginPath();
+  ctx.arc(0, r * 0.06, r * 0.16, 0, Math.PI);
+  ctx.stroke();
+
+  // Cute Pink Blush
+  ctx.fillStyle = "#ff6b8b";
+  ctx.beginPath();
+  ctx.arc(-r * 0.32, r * 0.12, 3, 0, Math.PI * 2);
+  ctx.arc(r * 0.32, r * 0.12, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function drawVectorMilkCarton(ctx: CanvasRenderingContext2D, size: number) {
+  const w = size * 0.72;
+  const h = size * 0.95;
+  ctx.save();
+
+  // Hard shadow
+  ctx.fillStyle = "rgba(30, 27, 24, 0.4)";
+  ctx.fillRect(-w / 2 + 3, -h / 2 + 10 + 4, w, h - 10);
+
+  ctx.strokeStyle = "#1e1b18";
+  ctx.lineWidth = 3.5;
+  ctx.lineJoin = "round";
+
+  // Body
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(-w / 2, -h / 2 + 10, w, h - 10);
+  ctx.strokeRect(-w / 2, -h / 2 + 10, w, h - 10);
+
+  // Gable top
+  ctx.beginPath();
+  ctx.moveTo(-w / 2, -h / 2 + 10);
+  ctx.lineTo(0, -h / 2);
+  ctx.lineTo(w / 2, -h / 2 + 10);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Blue stripe
+  ctx.fillStyle = "#0b5eaf";
+  ctx.fillRect(-w / 2, -h / 6, w, h * 0.36);
+  ctx.strokeRect(-w / 2, -h / 6, w, h * 0.36);
+
+  // Text "MILK"
+  ctx.fillStyle = "#ffffff";
+  ctx.font = '900 12px sans-serif';
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("MILK", 0, 0);
+
+  ctx.restore();
+}
+
+function drawVectorActionBadge(ctx: CanvasRenderingContext2D, size: number) {
+  const r = size * 0.58;
+  ctx.save();
+
+  // Hard shadow
+  ctx.fillStyle = "rgba(30, 27, 24, 0.4)";
+  ctx.beginPath();
+  ctx.arc(3, 4, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Outer ring (Heroic cyan/blue)
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, Math.PI * 2);
+  ctx.fillStyle = "#0b5eaf";
+  ctx.fill();
+  ctx.lineWidth = 3.5;
+  ctx.strokeStyle = "#1e1b18";
+  ctx.stroke();
+
+  // Inner ring (White)
+  ctx.beginPath();
+  ctx.arc(0, 0, r * 0.72, 0, Math.PI * 2);
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+
+  // Golden Lightning Bolt
+  ctx.fillStyle = "#ffd93d";
+  ctx.strokeStyle = "#1e1b18";
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = "miter";
+  ctx.beginPath();
+  ctx.moveTo(r * 0.1, -r * 0.55);
+  ctx.lineTo(-r * 0.38, 0);
+  ctx.lineTo(0, 0);
+  ctx.lineTo(-r * 0.1, r * 0.55);
+  ctx.lineTo(r * 0.38, -0.05);
+  ctx.lineTo(0, -0.05);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.restore();
+}
+
 export function PepperDodgerGame() {
   const [gameState, setGameState] = useState<"idle" | "playing" | "gameover">("idle");
   const [scoreDisplay, setScoreDisplay] = useState<number>(0);
@@ -214,6 +436,12 @@ export function PepperDodgerGame() {
     let lastTime = performance.now();
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // HiDPI / Retina Crisp Scaling
+    const dpr = typeof window !== "undefined" ? Math.max(1, window.devicePixelRatio || 1) : 1;
+    canvas.width = CANVAS_WIDTH * dpr;
+    canvas.height = CANVAS_HEIGHT * dpr;
+
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
@@ -267,12 +495,12 @@ export function PepperDodgerGame() {
         game.items.push({
           id: now + Math.random(),
           x: Math.random() * (CANVAS_WIDTH - 120) + 60,
-          y: -40,
+          y: -45,
           vy: baseFallSpeed + (Math.random() * 40 - 20),
           type: itemType,
           rotation: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 4,
-          size: itemType === "action_mask" ? 44 : 38,
+          rotSpeed: (Math.random() - 0.5) * 3,
+          size: itemType === "action_mask" ? 46 : 42,
         });
       }
 
@@ -369,8 +597,10 @@ export function PepperDodgerGame() {
         }
       }
 
-      // 2. RENDER STAGE (GPU Hardware Accelerated 60FPS)
+      // 2. RENDER STAGE (GPU Hardware Accelerated HiDPI 60FPS)
       ctx.save();
+      // Apply Retina / HiDPI Transform
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Screen Shake when hurt
       if (game.shakeTime > 0) {
@@ -390,7 +620,7 @@ export function PepperDodgerGame() {
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       // Halftone Comic Grid Pattern (pure Canvas)
-      ctx.fillStyle = game.isInvincible ? "rgba(255, 217, 61, 0.25)" : "rgba(11, 94, 175, 0.08)";
+      ctx.fillStyle = game.isInvincible ? "rgba(255, 217, 61, 0.25)" : "rgba(11, 94, 175, 0.12)";
       for (let gx = 15; gx < CANVAS_WIDTH; gx += 30) {
         for (let gy = 15; gy < CANVAS_HEIGHT; gy += 30) {
           ctx.beginPath();
@@ -415,25 +645,21 @@ export function PepperDodgerGame() {
         ctx.stroke();
       }
 
-      // Draw Falling Items
+      // Draw Falling Items with Crisp Vector Graphics (Zero Blurriness!)
       for (const item of game.items) {
         ctx.save();
         ctx.translate(item.x, item.y);
         ctx.rotate(item.rotation);
 
-        // Comic drop shadow
-        ctx.font = `${item.size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-
-        ctx.fillStyle = "rgba(30, 27, 24, 0.25)";
-        let emoji = "🫑";
-        if (item.type === "chocobi") emoji = "⭐";
-        else if (item.type === "milk") emoji = "🥛";
-        else if (item.type === "action_mask") emoji = "⚡";
-
-        ctx.fillText(emoji, 3, 3);
-        ctx.fillText(emoji, 0, 0);
+        if (item.type === "pepper") {
+          drawVectorPepper(ctx, item.size);
+        } else if (item.type === "chocobi") {
+          drawVectorChocobiStar(ctx, item.size);
+        } else if (item.type === "milk") {
+          drawVectorMilkCarton(ctx, item.size);
+        } else if (item.type === "action_mask") {
+          drawVectorActionBadge(ctx, item.size);
+        }
 
         ctx.restore();
       }
@@ -472,7 +698,7 @@ export function PepperDodgerGame() {
       // Player Shadow
       ctx.beginPath();
       ctx.ellipse(0, 32, 28, 8, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(30, 27, 24, 0.3)";
+      ctx.fillStyle = "rgba(30, 27, 24, 0.35)";
       ctx.fill();
 
       // Shin Circular Avatar Portrait
@@ -496,7 +722,7 @@ export function PepperDodgerGame() {
 
       // Hurt Red Overlay
       if (game.isHurt) {
-        ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
+        ctx.fillStyle = "rgba(255, 0, 0, 0.45)";
         ctx.fillRect(-r, -r, r * 2, r * 2);
       }
       ctx.restore();
@@ -528,7 +754,7 @@ export function PepperDodgerGame() {
 
       ctx.restore();
 
-      // Draw Floating Text Popups
+      // Draw Floating Text Popups (Opaque & High Contrast)
       for (const pop of game.popups) {
         ctx.save();
         ctx.globalAlpha = Math.max(0, pop.alpha);
@@ -536,17 +762,20 @@ export function PepperDodgerGame() {
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
 
-        const pWidth = ctx.measureText(pop.text).width + 14;
+        const pWidth = ctx.measureText(pop.text).width + 16;
+        // Hard drop shadow
         ctx.fillStyle = "#1e1b18";
-        ctx.fillRect(pop.x - pWidth / 2 + 3, pop.y - 12 + 3, pWidth, 24);
+        ctx.fillRect(pop.x - pWidth / 2 + 3, pop.y - 12 + 3, pWidth, 26);
+        // Solid Box Fill
         ctx.fillStyle = pop.color;
-        ctx.fillRect(pop.x - pWidth / 2, pop.y - 12, pWidth, 24);
+        ctx.fillRect(pop.x - pWidth / 2, pop.y - 12, pWidth, 26);
         ctx.strokeStyle = "#1e1b18";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(pop.x - pWidth / 2, pop.y - 12, pWidth, 24);
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(pop.x - pWidth / 2, pop.y - 12, pWidth, 26);
 
+        // Bold black text
         ctx.fillStyle = "#1e1b18";
-        ctx.fillText(pop.text, pop.x, pop.y);
+        ctx.fillText(pop.text, pop.x, pop.y + 1);
         ctx.restore();
       }
 
@@ -573,7 +802,7 @@ export function PepperDodgerGame() {
               Green Pepper Dodger
             </h2>
             <p className="font-caption text-xs text-on-surface-variant font-bold">
-              Bé Shin Né Ớt Chuông • 60 FPS Canvas Arcade Engine
+              Bé Shin Né Ớt Chuông • Vector Neo-Brutalist Engine (Siêu Nét 60FPS)
             </p>
           </div>
         </div>
@@ -593,7 +822,7 @@ export function PepperDodgerGame() {
       <div className="relative w-full aspect-[800/540] neo-brutalist-border overflow-hidden bg-[#eaf4fb]">
         {/* HUD Overlay inside Canvas */}
         <div className="absolute top-3 left-4 text-xs font-mono font-bold text-on-surface-variant/70 uppercase pointer-events-none select-none z-10">
-          Kasukabe Airspace • 60 FPS
+          Kasukabe Airspace • HiDPI Vector
         </div>
 
         {/* Lives & Invincible Indicator */}
@@ -621,8 +850,6 @@ export function PepperDodgerGame() {
         {/* The Hardware-Accelerated 60FPS Canvas */}
         <canvas
           ref={canvasRef}
-          width={CANVAS_WIDTH}
-          height={CANVAS_HEIGHT}
           onPointerMove={handlePointerMove}
           className="w-full h-full block cursor-ew-resize touch-none"
         />
