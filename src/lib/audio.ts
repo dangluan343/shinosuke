@@ -1,5 +1,7 @@
 "use client";
 
+import { getAssetUrl } from "./basePath";
+
 /**
  * Web Audio API Sound Synthesizer for Shinosuke Fan Hub
  * 100% synthetic, zero external file dependencies, ultra-fast 90s anime retro SFX & 8-bit Chiptune BGM.
@@ -1455,7 +1457,7 @@ class SoundManager {
     try {
       this.stopVoiceClip();
 
-      const audio = new Audio(`/audio/characters/${charId}-${lang}.mp3`);
+      const audio = new Audio(getAssetUrl(`/audio/characters/${charId}-${lang}.mp3`));
       this.currentVoiceAudio = audio;
 
       audio.onended = () => {

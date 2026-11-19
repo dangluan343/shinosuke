@@ -5,6 +5,7 @@ import Image from "next/image";
 import { soundFx } from "@/lib/audio";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { NeoBadge } from "@/components/ui/NeoBadge";
+import { getAssetUrl } from "@/lib/basePath";
 
 // Canvas Logical Dimensions
 const CANVAS_WIDTH = 800;
@@ -302,7 +303,7 @@ export function PepperDodgerGame() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const img = new window.Image();
-      img.src = "/images/squad-1-a-playful-and-mischievous-5-ye.jpg";
+      img.src = getAssetUrl("/images/characters/shinchan.jpg");
       img.onload = () => {
         shinImgRef.current = img;
       };
