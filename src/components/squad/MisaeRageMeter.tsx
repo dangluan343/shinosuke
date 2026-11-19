@@ -145,7 +145,7 @@ export function MisaeRageMeter({ onRageChange, onTickerUpdate }: MisaeRageMeterP
 
     if (soundEnabled) {
       soundFx.playThunderWhackImpactSFX();
-      soundFx.playCharacterBabble("misae");
+      soundFx.playVoiceClip("misae", "vi");
     }
 
     if (onTickerUpdate) {
@@ -165,7 +165,7 @@ export function MisaeRageMeter({ onRageChange, onTickerUpdate }: MisaeRageMeterP
 
     if (soundEnabled) {
       soundFx.playCalmChimeSFX();
-      soundFx.playCharacterBabble("shinchan");
+      soundFx.playVoiceClip("shinchan", "vi");
     }
 
     if (onTickerUpdate) {

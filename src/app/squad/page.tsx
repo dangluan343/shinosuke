@@ -176,47 +176,43 @@ const NOHARA_CLAN: ClanMember[] = [
 
 export default function SquadPage() {
   const [tickerText, setTickerText] = useState(
-    "Đang sẵn sàng! Bấm vào bất kỳ thẻ nhân vật nào dưới đây để kích hoạt giọng lồng tiếng."
+    "Đang sẵn sàng! Bấm nút 'Bấm nghe giọng' trên bất kỳ thẻ nhân vật nào dưới đây để nghe lồng tiếng thật."
   );
   const [speakingId, setSpeakingId] = useState<string | null>(null);
-  const [useTts, setUseTts] = useState<boolean>(false); // Default to FALSE: cute anime SFX, zero robotic TTS weirdness
+  const [voiceLang, setVoiceLang] = useState<"vi" | "ja">("vi");
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Play Character Voice (Anime Cartoon Babble + Signature SFX + Optional TTS)
+  // Play Character Voice (Real Character Audio Clip MP3)
   const triggerVoice = (
     id: string,
     name: string,
-    textVi: string,
-    rate: number,
-    pitch: number,
-    playSfx: () => void
+    quoteVi: string,
+    quoteJp: string
   ) => {
-    // Clear previous timer
+    // Clear previous timer & audio
     if (timerRef.current) clearTimeout(timerRef.current);
+    soundFx.stopVoiceClip();
 
     setSpeakingId(id);
-    setTickerText(`🎙️ Đang phát: ${name} — "${textVi}"`);
+    const currentLine = voiceLang === "vi" ? quoteVi : quoteJp;
+    setTickerText(`🎙️ Đang phát [${voiceLang === "vi" ? "Tiếng Việt" : "Tiếng Nhật"}]: ${name} — "${currentLine}"`);
 
-    // Play cute Anime Cartoon Babble & Synthesizer
-    soundFx.playCharacterBabble(id);
-
-    // Only speak via browser TTS if explicitly enabled by user
-    if (useTts) {
-      soundFx.speakVoice(textVi, rate, pitch, () => {
-        timerRef.current = setTimeout(() => {
-          setSpeakingId(null);
-          setTickerText("Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.");
-        }, 800);
-      });
-    } else {
+    // Play authentic MP3 voice line
+    soundFx.playVoiceClip(id, voiceLang, () => {
       timerRef.current = setTimeout(() => {
         setSpeakingId(null);
         setTickerText("Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.");
-      }, 2400);
-    }
+      }, 500);
+    });
+
+    // Safety fallback timer if audio stalls
+    timerRef.current = setTimeout(() => {
+      setSpeakingId((prev) => (prev === id ? null : prev));
+    }, 6000);
   };
 
   const handleStopAudio = () => {
+    soundFx.stopVoiceClip();
     soundFx.stopSpeech();
     if (timerRef.current) clearTimeout(timerRef.current);
     setSpeakingId(null);
@@ -226,29 +222,22 @@ export default function SquadPage() {
   const handleDuoBicker = () => {
     // 1. Shin provocative line
     const shin = DEFENSE_GROUP[0];
-    triggerVoice(shin.id, shin.name, shin.quoteVi, shin.rate, shin.pitch, shin.playSfx);
+    triggerVoice(shin.id, shin.name, shin.quoteVi, shin.quoteJp);
     setTickerText("🔥 Khẩu chiến: Shin-chan trêu chọc mẹ Misae!");
 
-    // 2. Misae counter attack after 2.3s
+    // 2. Misae counter attack after Shin finishes speaking
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       const misae = NOHARA_CLAN[0];
-      triggerVoice(misae.id, misae.name, misae.quoteVi, misae.rate, misae.pitch, misae.playSfx);
+      triggerVoice(misae.id, misae.name, misae.quoteVi, misae.quoteJp);
       setTickerText("💥 Khẩu chiến: Misae tung chiêu 'Nắm đấm xoay cuồng' phạt Shin!");
-    }, 2400);
+    }, 3200);
   };
 
   const handleRandomVoice = () => {
     const allChars: (CharacterVoice | ClanMember)[] = [...DEFENSE_GROUP, ...NOHARA_CLAN];
     const picked = allChars[Math.floor(Math.random() * allChars.length)];
-    triggerVoice(
-      picked.id,
-      picked.name,
-      picked.quoteVi,
-      picked.rate,
-      picked.pitch,
-      picked.playSfx
-    );
+    triggerVoice(picked.id, picked.name, picked.quoteVi, picked.quoteJp);
 
     // Scroll smoothly to target card
     if (typeof document !== "undefined") {
@@ -260,6 +249,7 @@ export default function SquadPage() {
   };
 
   const handleRollCall = () => {
+    soundFx.playVoiceClip("action_mask", voiceLang);
     soundFx.playActionBeam();
     setTickerText("⚡ ACTION BEAM! Đội Phòng Vệ Kasukabe tập hợp đầy đủ!");
   };
@@ -267,6 +257,7 @@ export default function SquadPage() {
   useEffect(() => {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
+      soundFx.stopVoiceClip();
       soundFx.stopSpeech();
     };
   }, []);
@@ -296,8 +287,8 @@ export default function SquadPage() {
         <SoundboardBar
           tickerText={tickerText}
           isPlaying={speakingId !== null}
-          useTts={useTts}
-          onToggleTts={() => setUseTts(!useTts)}
+          voiceLang={voiceLang}
+          onToggleLang={() => setVoiceLang((prev) => (prev === "vi" ? "ja" : "vi"))}
           onDuoBicker={handleDuoBicker}
           onRandomVoice={handleRandomVoice}
           onStopAudio={handleStopAudio}
@@ -325,12 +316,14 @@ export default function SquadPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
             {DEFENSE_GROUP.map((c) => {
               const isSpeaking = speakingId === c.id;
+              const mainText = voiceLang === "vi" ? c.quoteVi : c.quoteJp;
+              const subText = voiceLang === "vi" ? c.quoteJp : c.quoteVi;
               return (
                 <div
                   key={c.id}
                   id={`card-${c.id}`}
                   onClick={() =>
-                    triggerVoice(c.id, c.name, c.quoteVi, c.rate, c.pitch, c.playSfx)
+                    triggerVoice(c.id, c.name, c.quoteVi, c.quoteJp)
                   }
                   className={`character-card bg-surface neo-brutalist-border hard-shadow p-6 sm:p-8 flex flex-col gap-4 relative overflow-hidden group select-none ${
                     isSpeaking ? "speaking-card" : ""
@@ -351,10 +344,10 @@ export default function SquadPage() {
                       📢 {c.japaneseTitle || c.name}:
                     </div>
                     <p className="font-label-bold text-xs md:text-sm text-on-background leading-snug">
-                      "{c.quoteVi}"
+                      "{mainText}"
                     </p>
                     <span className="text-[10px] text-on-surface-variant font-mono">
-                      {c.quoteJp}
+                      {subText}
                     </span>
                   </div>
 
@@ -370,14 +363,14 @@ export default function SquadPage() {
 
                     {/* Equalizer Indicator overlay on bottom right */}
                     <div
-                      className={`absolute bottom-2 right-2 text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_#000] rounded transition-all ${
-                        isSpeaking ? "bg-error animate-pulse" : "bg-primary"
+                      className={`absolute bottom-2 right-2 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_#000] rounded transition-all cursor-pointer ${
+                        isSpeaking ? "bg-error animate-pulse" : "bg-primary hover:bg-red-700"
                       }`}
                     >
                       <span className="material-symbols-outlined text-sm">
                         {isSpeaking ? "graphic_eq" : "volume_up"}
                       </span>
-                      <span>{isSpeaking ? "Đang nói..." : "Bấm nghe"}</span>
+                      <span>{isSpeaking ? "Đang phát..." : "Bấm nghe giọng"}</span>
                     </div>
                   </div>
 
@@ -406,7 +399,7 @@ export default function SquadPage() {
                     </div>
 
                     <p className="italic font-body-md text-sm text-on-surface-variant line-clamp-2">
-                      "{c.quoteVi}"
+                      "{mainText}"
                     </p>
                   </div>
                 </div>
@@ -429,12 +422,14 @@ export default function SquadPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
             {NOHARA_CLAN.map((n) => {
               const isSpeaking = speakingId === n.id;
+              const mainText = voiceLang === "vi" ? n.quoteVi : n.quoteJp;
+              const subText = voiceLang === "vi" ? n.quoteJp : n.quoteVi;
               return (
                 <div
                   key={n.id}
                   id={`card-${n.id}`}
                   onClick={() =>
-                    triggerVoice(n.id, n.name, n.quoteVi, n.rate, n.pitch, n.playSfx)
+                    triggerVoice(n.id, n.name, n.quoteVi, n.quoteJp)
                   }
                   className={`character-card bg-surface neo-brutalist-border hard-shadow p-6 sm:p-8 flex flex-col gap-4 relative overflow-hidden group select-none ${
                     isSpeaking ? "speaking-card" : ""
@@ -446,10 +441,10 @@ export default function SquadPage() {
                       📢 {n.japaneseTitle || n.name}:
                     </div>
                     <p className="font-label-bold text-xs md:text-sm text-on-background leading-snug">
-                      "{n.quoteVi}"
+                      "{mainText}"
                     </p>
                     <span className="text-[10px] text-on-surface-variant font-mono">
-                      {n.quoteJp}
+                      {subText}
                     </span>
                   </div>
 
@@ -465,14 +460,14 @@ export default function SquadPage() {
 
                     {/* Audio status badge */}
                     <div
-                      className={`absolute bottom-2 right-2 text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_#000] rounded transition-all ${
-                        isSpeaking ? "bg-error animate-pulse" : "bg-primary"
+                      className={`absolute bottom-2 right-2 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_#000] rounded transition-all cursor-pointer ${
+                        isSpeaking ? "bg-error animate-pulse" : "bg-primary hover:bg-red-700"
                       }`}
                     >
                       <span className="material-symbols-outlined text-sm">
                         {isSpeaking ? "graphic_eq" : "volume_up"}
                       </span>
-                      <span>{isSpeaking ? "Đang nói..." : "Bấm nghe"}</span>
+                      <span>{isSpeaking ? "Đang phát..." : "Bấm nghe giọng"}</span>
                     </div>
                   </div>
 
@@ -486,7 +481,7 @@ export default function SquadPage() {
                   </div>
 
                   <p className="italic font-body-md text-sm text-on-surface-variant flex-grow line-clamp-2">
-                    "{n.quoteVi}"
+                    "{mainText}"
                   </p>
 
                   <div
