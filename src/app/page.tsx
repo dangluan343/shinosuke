@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { TopNavBar } from "@/components/layout/TopNavBar";
 import { Footer } from "@/components/layout/Footer";
 import { NeoButton } from "@/components/ui/NeoButton";
@@ -352,6 +353,36 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================== */}
+        {/* 2.5 ARCADE ZONE TEASER BANNER                                  */}
+        {/* ============================================================== */}
+        <section className="px-margin-mobile md:px-margin-desktop py-4 max-w-7xl mx-auto">
+          <div className="bg-tertiary-fixed neo-brutalist-border hard-shadow p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <div className="space-y-2 z-10 max-w-xl text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2">
+                <span className="text-3xl">🫑🚫</span>
+                <NeoBadge variant="primary" rotate={-2} className="text-xs">
+                  ARCADE MINIGAME
+                </NeoBadge>
+              </div>
+              <h3 className="font-display-md text-2xl sm:text-3xl uppercase text-primary leading-tight">
+                Shin Né Ớt Chuông • Ăn Chocobi Bất Tử!
+              </h3>
+              <p className="font-body-md text-sm text-on-tertiary-fixed-variant">
+                Mẹ Misae đang ném ớt chuông xanh từ trên trời xuống! Giúp Shin né ớt và đớp bánh Chocobi lập kỷ lục điểm cao ngay!
+              </p>
+            </div>
+
+            <div className="z-10 flex-shrink-0">
+              <Link href="/arcade" onClick={() => soundFx.playClickPop()}>
+                <NeoButton variant="primary" size="lg" className="animate-bounce">
+                  VÀO CHƠI ARCADE NGAY! 🕹️
+                </NeoButton>
+              </Link>
             </div>
           </div>
         </section>

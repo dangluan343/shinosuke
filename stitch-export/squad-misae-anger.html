@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHIN-CHAN! - Character Profiles &amp; Soundboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#4d4800",
+                    "surface-dim": "#e1d8d4",
+                    "surface-bright": "#fff8f5",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#1f1c00",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#004788",
+                    "background": "#fff8f5",
+                    "surface-container-highest": "#e9e1dc",
+                    "surface-container": "#f5ece7",
+                    "on-tertiary-container": "#454100",
+                    "on-primary": "#ffffff",
+                    "secondary": "#0b5eaf",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#d6ca00",
+                    "on-primary-fixed-variant": "#930007",
+                    "inverse-on-surface": "#f8efea",
+                    "on-primary-fixed": "#410001",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#b7000c",
+                    "tertiary-container": "#b9ae00",
+                    "inverse-surface": "#34302c",
+                    "inverse-primary": "#ffb4aa",
+                    "surface-variant": "#e9e1dc",
+                    "outline-variant": "#e9bcb6",
+                    "on-background": "#1e1b18",
+                    "secondary-container": "#6ba7fd",
+                    "surface-container-low": "#fbf2ed",
+                    "on-primary-container": "#fff7f6",
+                    "surface-tint": "#c0000d",
+                    "primary-fixed-dim": "#ffb4aa",
+                    "on-secondary-container": "#003b74",
+                    "on-secondary-fixed": "#001b3b",
+                    "primary-fixed": "#ffdad5",
+                    "tertiary": "#666000",
+                    "surface": "#fff8f5",
+                    "secondary-fixed-dim": "#a7c8ff",
+                    "on-surface-variant": "#5f3f3b",
+                    "tertiary-fixed": "#f4e700",
+                    "surface-container-high": "#efe6e2",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "section-gap": "80px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Space Grotesk"],
+                    "caption": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Bricolage Grotesque"],
+                    "headline-md": ["Bricolage Grotesque"],
+                    "display-lg": ["Bricolage Grotesque"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                    "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "800"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .comic-hatch {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0,0,0,0.1) 5px, rgba(0,0,0,0.1) 10px);
+        }
+        .hazard-stripe {
+            background-image: repeating-linear-gradient(-45deg, #ffd700, #ffd700 12px, #1e1b18 12px, #1e1b18 24px);
+        }
+        .danger-stripe {
+            background-image: repeating-linear-gradient(-45deg, #e60012, #e60012 12px, #1e1b18 12px, #1e1b18 24px);
+        }
+        .character-card {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+        .character-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1) !important;
+        }
+        .speaking-card {
+            transform: translate(-3px, -3px) scale(1.015) !important;
+            box-shadow: 6px 6px 0px 0px #b7000c, 10px 10px 0px 0px rgba(0,0,0,1) !important;
+            border-color: #b7000c !important;
+            animation: comicWiggle 0.45s ease-in-out infinite alternate;
+        }
+        @keyframes comicWiggle {
+            0% { transform: translate(-3px, -3px) rotate(-0.5deg); }
+            100% { transform: translate(-3px, -5px) rotate(0.8deg); }
+        }
+        @keyframes eqBounce {
+            0%, 100% { height: 4px; }
+            50% { height: 18px; }
+        }
+        .eq-bar-1 { animation: eqBounce 0.4s ease-in-out infinite; }
+        .eq-bar-2 { animation: eqBounce 0.6s ease-in-out 0.15s infinite; }
+        .eq-bar-3 { animation: eqBounce 0.35s ease-in-out 0.05s infinite; }
+        .eq-bar-4 { animation: eqBounce 0.5s ease-in-out 0.2s infinite; }
+
+        /* Screen Shake for Max Rage */
+        @keyframes screenShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            15% { transform: translate(-10px, 8px) rotate(-1.5deg); }
+            30% { transform: translate(12px, -9px) rotate(2deg); }
+            45% { transform: translate(-14px, -5px) rotate(-1deg); }
+            60% { transform: translate(9px, 12px) rotate(1.8deg); }
+            75% { transform: translate(-8px, -11px) rotate(-2deg); }
+            90% { transform: translate(6px, 7px) rotate(0.8deg); }
+        }
+        .shake-screen {
+            animation: screenShake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes gaugePulse {
+            0%, 100% { filter: drop-shadow(0 0 4px #ff0000); }
+            50% { filter: drop-shadow(0 0 16px #ff0000); }
+        }
+        .gauge-fire {
+            animation: gaugePulse 0.4s infinite alternate;
+        }
+
+        /* Comic Pop Speech Bubble */
+        .comic-bubble {
+            position: absolute;
+            z-index: 40;
+            background: #ffffff;
+            border: 3px solid #1e1b18;
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+            border-radius: 16px;
+            padding: 10px 14px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px) scale(0.85);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .comic-bubble.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+        .comic-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 28px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #1e1b18 transparent;
+            display: block;
+            width: 0;
+        }
+        .comic-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 30px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #ffffff transparent;
+            display: block;
+            width: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md overflow-x-hidden" id="app-body">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 border-b-[3px] border-on-background bg-surface dark:bg-inverse-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-[32px] md:text-display-lg text-primary uppercase italic tracking-tighter drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">SHIN-CHAN!</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px]" href="#">Home</a>
+<a class="text-secondary font-label-bold border-b-[3px] border-secondary pb-1 hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px]" href="#">Squad</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px]" href="#soundboard-section">Soundboard</a>
+<a class="text-on-surface-variant font-label-bold hover:text-error transition-colors hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] flex items-center gap-1" href="#misae-meter-section">
+<span class="material-symbols-outlined text-[16px] text-error">local_fire_department</span>
+<span>Nộ Khí Misae</span>
+</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px]" href="#">Kasukabe</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="bg-primary text-on-primary px-5 py-2 border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-label-bold uppercase hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all flex items-center gap-2" onclick="playActionMaskBeam()">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>ACTION BEAM!</span>
+</button>
+</div>
+</header>
+<main class="relative px-margin-mobile md:px-margin-desktop py-section-gap">
+<!-- Hero Section -->
+<div class="mb-8 text-center space-y-4">
+<div class="inline-flex items-center gap-2 bg-tertiary-fixed px-4 py-1.5 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-xs md:text-sm font-label-bold uppercase tracking-wider">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span>🔊 TƯƠNG TÁC ÂM THANH - BẤM VÀO NHÂN VẬT ĐỂ NGHE GIỌNG NÓI!</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase italic text-on-background drop-shadow-[2px_2px_0px_#b7000c]">Kasukabe Defense Group</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto">Protecting the world from boredom, one diaper at a time! Meet the legends of Futaba Kindergarten and listen to their iconic quotes.</p>
+</div>
+<!-- Interactive Soundboard Bar & Filter Controls -->
+<section class="mb-12 bg-surface-container border-[3px] border-on-background shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-4 md:p-6 rounded-xl" id="soundboard-section">
+<div class="flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-primary rounded-xl border-[3px] border-on-background flex items-center justify-center text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-3xl">volume_up</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-lg md:text-xl uppercase text-on-background tracking-tight">KASUKABE SOUNDBOARD VIBES</h3>
+<p class="text-xs md:text-sm font-caption text-on-surface-variant">Web Audio API lồng tiếng sống động • Không cần tải file âm thanh ngoài!</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2.5 items-center justify-center">
+<button class="bg-error text-on-error px-4 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all" onclick="playDuoBicker()">
+<span class="material-symbols-outlined text-sm">sports_kabaddi</span>
+<span>Shin &amp; Misae Khẩu Chiến</span>
+</button>
+<button class="bg-surface text-on-background px-4 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all" onclick="stopAllAudio()">
+<span class="material-symbols-outlined text-sm">stop_circle</span>
+<span>Dừng tiếng</span>
+</button>
+</div>
+</div>
+<!-- Soundboard ticker badge -->
+<div class="mt-4 bg-white border-[2px] border-on-background p-3 rounded-lg flex items-center justify-between text-xs md:text-sm font-label-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]" id="sound-ticker">
+<div class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-primary text-base">graphic_eq</span>
+<span class="truncate text-on-background" id="ticker-text">Đang sẵn sàng! Bấm vào bất kỳ thẻ nhân vật nào dưới đây để kích hoạt giọng lồng tiếng.</span>
+</div>
+<div class="hidden md:flex items-end gap-1 h-5 w-16 justify-end" id="global-visualizer">
+<span class="w-1.5 bg-primary rounded-full h-2 eq-bar-1"></span>
+<span class="w-1.5 bg-secondary rounded-full h-4 eq-bar-2"></span>
+<span class="w-1.5 bg-tertiary-container rounded-full h-3 eq-bar-3"></span>
+<span class="w-1.5 bg-error rounded-full h-5 eq-bar-4"></span>
+</div>
+</div>
+</section>
+<!-- Character Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Shin-chan -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-shinchan" onclick="triggerCharacterVoice('shinchan')">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-primary rotate-12 flex items-center justify-center border-[3px] border-on-background z-10">
+<span class="text-on-primary font-label-bold text-center leading-tight">THE BOSS</span>
+</div>
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-shinchan">
+<div class="text-[11px] font-bold text-primary uppercase">📢 Nohara Shinnosuke (5 tuổi):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Ora Shin-chan da zo! Chị gái xinh đẹp ơi có thích ăn ớt chuông không? Ho-ho-ho-i! He-he-he!"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">オラしんのすけだゾ〜！</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-on-background overflow-hidden relative group-hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A playful and mischievous 5-year-old boy with thick black eyebrows and short hair, wearing his iconic red shirt and yellow shorts. He is striking a funny, bouncy pose in a brightly colored animated Japanese suburban neighborhood. The style is classic 90s hand-drawn animation cel with bold outlines and vibrant primary colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn52cwgQ0ur2Z40p0lP3HeZVq5tw6Tse9NLaGHu944WgfDubI61BZAnCHGjPQSdOPoFGa3CGZdre1uBSDe_y0CfEcrCq-CX-JjmuT1_I4S0pd6erpDD__gfktErRvUb-hMa2sE63eaL-VlUJZxVplQmwTBjrTim8KsQbuBHONyHj8OrK9Fgtaf6FH-OIAY4L3gHyf29WFP1d5hX4sWaUVikPWhBeRWCN8-pZ57MXMk5-k7y-Hedch9hA"/>
+<div class="absolute bottom-2 right-2 bg-primary text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BẤM NGHE
+</div>
+<!-- Equalizer pill inside card -->
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-shinchan">
+<span class="w-1 bg-red-400 eq-bar-1"></span>
+<span class="w-1 bg-yellow-400 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">VOICE PLAYING</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase">Shin-chan</h2>
+<span class="text-xs bg-primary-fixed text-primary px-2 py-0.5 border border-primary font-bold">5 Tuổi</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-label-bold">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container border-[3px] border-on-background overflow-hidden relative">
+<div class="h-full bg-primary w-[98%] comic-hatch"></div>
+</div>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Hey, Action Mask! Wait for meeeee!"</p>
+<!-- Mini Soundboard Quote Box -->
+<div class="mt-2 bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-primary flex items-center justify-between">
+<span>🎙️ Lồng tiếng biểu cảm:</span>
+<span class="text-[10px] bg-yellow-300 text-black px-1.5 border border-black">Ho-ho-i!</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Ora Shin-chan da zo! Chị gái xinh đẹp ơi có thích ăn ớt chuông không?"</p>
+<div class="text-[10px] text-gray-500 italic">"オラしんのすけだゾ〜！ピーマン食べられる？"</div>
+</div>
+</div>
+</div>
+<!-- Kazama -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-kazama" onclick="triggerCharacterVoice('kazama')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-kazama">
+<div class="text-[11px] font-bold text-secondary uppercase">📢 Kazama Tooru (Thiếu gia học giả):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Shin-chan, đừng có thổi vào tai tớ nữa mà! Xấu hổ chết đi được! Tớ phải đi học thêm tiếng Anh rồi!"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">しんのすけ！耳に息を吹きかけるなよ！</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-on-background overflow-hidden relative bg-secondary-fixed group-hover:border-secondary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A refined, well-dressed 5-year-old boy with neatly styled dark blue hair, wearing a light blue polo shirt and smart shorts. He looks slightly annoyed but determined. The background is a clean, prestigious kindergarten setting. Bold neo-brutalist outlines and high-saturation cartoon colors define the scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrGWQQsBbYAYdjt5lRlVu2LWkXAmEPpZADBNpySC6sz_NKWdPGrHNqPxyXkVn8X-CIoyfhtCECl2jrL8UcpJr_NnEGoghMQPQIG_e4wSmvnUH4qh9FgUKqxTdAvxja4-V24XifG2EP59LgPDNk8flRQDLj8zMq3ZUNGPlhGBqpO6Ah_wngTRPSRrZh181y1pu3vamL28Gh3Jk27-HICsIDFrQadiHULMrmgWntRtkBSl7aNw8_hjPSHw"/>
+<div class="absolute bottom-2 right-2 bg-secondary text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BẤM NGHE
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-kazama">
+<span class="w-1 bg-blue-400 eq-bar-1"></span>
+<span class="w-1 bg-cyan-300 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">VOICE PLAYING</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-secondary uppercase">Kazama-kun</h2>
+<span class="text-xs bg-secondary-fixed text-secondary px-2 py-0.5 border border-secondary font-bold">Lớp Hướng Dương</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-label-bold">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container border-[3px] border-on-background overflow-hidden relative">
+<div class="h-full bg-secondary w-[15%] comic-hatch"></div>
+</div>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"I am a refined gentleman from a high-class family!"</p>
+<!-- Mini Soundboard Quote Box -->
+<div class="mt-2 bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-secondary flex items-center justify-between">
+<span>🎙️ Lồng tiếng bối rối:</span>
+<span class="text-[10px] bg-secondary-fixed text-secondary px-1.5 border border-secondary">Moe-P!</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Shin-chan đừng thổi vào tai nữa! Xấu hổ chết đi được!"</p>
+<div class="text-[10px] text-gray-500 italic">"やめろよ、しんのすけ！耳をフーフーするな！"</div>
+</div>
+</div>
+</div>
+<!-- Nene -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-nene" onclick="triggerCharacterVoice('nene')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-nene">
+<div class="text-[11px] font-bold text-error uppercase">📢 Sakurada Nene (Bà trùm tương lai):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Chơi trò Gia Đình Thực Tế nào mọi người! Đưa con thỏ bông đây mau! *BOP! BOP! BOP!*"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">リアルおままごとやるわよ！ウサギ殴るわよ！</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-on-background overflow-hidden relative bg-error-container group-hover:border-error transition-colors">
+<img class="w-full h-full object-cover" data-alt="A young girl with pink pigtails and a bright pink dress holding a plush bunny toy with a determined look on her face. The style is classic anime with thick black strokes and vibrant flat colors. She is standing in a playful suburban park with hard shadows and high contrast lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBruk2r8unyhkOH-zxKWdJgOTh0DooN-5fzydo1zGZFPQmS9odYxvkl2vcrnYLAjqa-ftOqX7Va6vpeJ5ggm_68HwEZQQVBnFfYkAcAkMj_JnRR3ZEpFsGBhFwrJZJdxh_AN5JFiJIiAywhPwWBTiXL_H8eQRk6UXwtss5T0-IWRgW8PwkU6w8X9V8D3yh0iMi_GF-l5j1rTEwUJk54NC3M6u4UIKA7lVUeq5GdexmiB9Ifc-G10vbVxA"/>
+<div class="absolute bottom-2 right-2 bg-error text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BẤM NGHE
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-nene">
+<span class="w-1 bg-pink-400 eq-bar-1"></span>
+<span class="w-1 bg-red-400 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">VOICE PLAYING</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-error uppercase">Nene-chan</h2>
+<span class="text-xs bg-error-container text-error px-2 py-0.5 border border-error font-bold">Thỏ Bông Nổi Giận</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-label-bold">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container border-[3px] border-on-background overflow-hidden relative">
+<div class="h-full bg-error w-[75%] comic-hatch"></div>
+</div>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Time to play Real House! I'm the mother, you're the salaryman!"</p>
+<!-- Mini Soundboard Quote Box -->
+<div class="mt-2 bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-error flex items-center justify-between">
+<span>🎙️ Đấm thỏ bông *Bop*:</span>
+<span class="text-[10px] bg-red-200 text-error px-1.5 border border-error">Real House</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Chơi trò Gia Đình Thực Tế nào! Đưa thỏ bông đây! *Bop bop!*"</p>
+<div class="text-[10px] text-gray-500 italic">"リアルおままごと、始めるわよ！"</div>
+</div>
+</div>
+</div>
+<!-- Masao -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-masao" onclick="triggerCharacterVoice('masao')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-masao">
+<div class="text-[11px] font-bold text-on-surface-variant uppercase">📢 Sato Masao (Cậu bé cơm nắm Onigiri):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Oa oa oa! Sao lúc nào người chịu trận cũng là tớ chứ... Shin-chan đừng kéo tụt quần tớ mà! *hức hức*"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">うわ〜ん！ボクばっかりこんな目に〜！</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-on-background overflow-hidden relative bg-surface-container-highest group-hover:border-on-surface-variant transition-colors">
+<img class="w-full h-full object-cover" data-alt="A timid little boy with a round, shaved head resembling an onigiri (rice ball). He is wearing a simple green kindergarten uniform and looks nervously at the viewer. Bright, high-saturation yellow and green background. The image has a heavy cel-shaded comic style with thick ink outlines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLYZsEvmVzXvDbs01NFzJRop5xO1jl_g9E-O-PXqL-dVk2TETT9dQz47bSCobPE21IB9S3OzXMcTO9oEDakh7qGa7jVfG6L1rOhnlw_ZECh_iqdrAzBKqPTC9lR1xdiqbKpjtQvCNfPhVrPGLnd7URIg8AB2Imbbb6f20HOhP6T3kNDH7TogBItnwnyJP384nG0468qjFOmBWxAGj69gzFmn2zplF2A9-WcRza_ElIZ1xbtCl3V1TEEQ"/>
+<div class="absolute bottom-2 right-2 bg-neutral-800 text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BẤM NGHE
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-masao">
+<span class="w-1 bg-green-400 eq-bar-1"></span>
+<span class="w-1 bg-emerald-200 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">VOICE PLAYING</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface-variant uppercase">Masao-kun</h2>
+<span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 border border-green-800 font-bold">Onigiri Đầu Tròn</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-label-bold">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container border-[3px] border-on-background overflow-hidden relative">
+<div class="h-full bg-on-surface-variant w-[10%] comic-hatch"></div>
+</div>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Why does this always happen to me? *cries*"</p>
+<!-- Mini Soundboard Quote Box -->
+<div class="mt-2 bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-on-surface-variant flex items-center justify-between">
+<span>🎙️ Giọng mếu máo khóc:</span>
+<span class="text-[10px] bg-gray-200 text-black px-1.5 border border-black">Hức hức</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Sao lúc nào cũng là tớ chịu trận... Shin-chan đừng kéo quần tớ!"</p>
+<div class="text-[10px] text-gray-500 italic">"しんちゃん、ズボン引っ張らないでよぉ〜"</div>
+</div>
+</div>
+</div>
+<!-- Bo-chan -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-bochan" onclick="triggerCharacterVoice('bochan')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-bochan">
+<div class="text-[11px] font-bold text-tertiary uppercase">📢 Bo-chan (Triết gia đá cuội):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Bo... vừa tìm thấy một hòn đá có hình dáng giống cô Yoshinaga... *hít nước mũi*... Bo."</p>
+<span class="text-[10px] text-on-surface-variant font-mono">ボー… 珍しい石見つけた… ボー。</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-on-background overflow-hidden relative bg-tertiary-fixed group-hover:border-tertiary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A calm, stoic little boy with a signature drop of mucus from his nose. He is wearing a yellow shirt and is surrounded by interesting rocks. The lighting is warm and bright, emphasizing a cheerful yet weird vibe. Professional character design with thick outlines and a 90s aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYa4K50ah0XIYWtoUIo9IUsW4gHJBGv8GP4NDkVKLGjicwLscOvm753iTT_95rpBABHmiAfjRGuv38X434zSkUNCUlB5KHw4cS168h1lbPDeKfu1ocLd2gFR8-Hxhdr5CzoJ0zqjDPnXaU6z4Aa4OcPjOOBkoTmLcWgvJlNAcgSFUnA0aBaFPNhLZ1-t3nOJII1etP1qxYfrDYqYsgRpouCbB_C9lrRxmrWVtC5MihHe1e3k9JUSyusQ"/>
+<div class="absolute bottom-2 right-2 bg-tertiary-container text-black text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BẤM NGHE
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-bochan">
+<span class="w-1 bg-yellow-500 eq-bar-1"></span>
+<span class="w-1 bg-amber-300 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">VOICE PLAYING</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-tertiary uppercase">Bo-chan</h2>
+<span class="text-xs bg-yellow-200 text-yellow-900 px-2 py-0.5 border border-yellow-900 font-bold">Thần Đá Kasukabe</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-label-bold">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container border-[3px] border-on-background overflow-hidden relative">
+<div class="h-full bg-tertiary w-[30%] comic-hatch"></div>
+</div>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Bo... found a nice rock... Bo."</p>
+<!-- Mini Soundboard Quote Box -->
+<div class="mt-2 bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-tertiary flex items-center justify-between">
+<span>🎙️ Giọng bí ẩn &amp; sụt sịt:</span>
+<span class="text-[10px] bg-yellow-300 text-black px-1.5 border border-black">Bo...</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Bo... tìm thấy một hòn đá giống hệt cô giáo... Bo."</p>
+<div class="text-[10px] text-gray-500 italic">"ボー… いい石、あったよ… ボー。"</div>
+</div>
+</div>
+</div>
+<!-- Shiro -->
+<div class="character-card bg-primary-fixed-dim border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-shiro" onclick="triggerCharacterVoice('shiro')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-shiro">
+<div class="text-[11px] font-bold text-primary uppercase">📢 Bạch Tuyết Shiro (Bé cún bông gòn thông minh):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Gâu! Gâu gâu! (Shin-chan lại quên cho tớ ăn cơm rồi! Mau mang hạt ra đây!) *cuộn tròn kẹo bông*"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">ワンワン！わたあめになれるよ！</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-on-background overflow-hidden relative bg-white group-hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A fluffy, cloud-like white dog curled up into a perfect ball. He looks like a piece of cotton candy with simple black dots for eyes. He is sitting on a vibrant green lawn under a bright blue sky. High contrast, thick outlines, and a bouncy cartoon style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj67wkH2gIOrpyKzQ8904eDiDwqlA0UY0RCRDF1tYRNEHkCXGit6Kvf6ukI_75PobDv7o_JIY9qJluF4jF2C2qqJfLGDoDU9i0Du88T2JeGs3d3q__xRxwGzRcfAeyqEJbNxVEoq8iOfBXo9H0_mIEVIVmWe5s2AbjLwDaAlPhyuEOFCB9qAGcnd_rLGEkZVonmJlEzg0PwWqkKAOVmzoWcAGUmXAkD2bHbLFI1APkZ7DqKqO1kjnaIQ"/>
+<div class="absolute bottom-2 right-2 bg-primary text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BẤM NGHE
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-shiro">
+<span class="w-1 bg-red-400 eq-bar-1"></span>
+<span class="w-1 bg-sky-300 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">VOICE PLAYING</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase">Shiro</h2>
+<span class="text-xs bg-white text-primary px-2 py-0.5 border border-primary font-bold">Kẹo Bông Gòn</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-label-bold">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container border-[3px] border-on-background overflow-hidden relative">
+<div class="h-full bg-primary w-[5%] comic-hatch"></div>
+</div>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Woof! (The only responsible one here)"</p>
+<!-- Mini Soundboard Quote Box -->
+<div class="mt-2 bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-primary flex items-center justify-between">
+<span>🎙️ Tiếng sủa lảnh lót:</span>
+<span class="text-[10px] bg-red-100 text-primary px-1.5 border border-primary">Gâu gâu!</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Gâu! Gâu gâu! (Shin-chan mau đổ hạt vào bát cho tớ!)"</p>
+<div class="text-[10px] text-gray-500 italic">"ワン！ワンワン！（ご飯まだ〜？）"</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- MINIGAME INTERACTIVE: MÁY ĐO NỘ KHÍ MẸ MISAE 3000 -->
+<!-- ======================================================== -->
+<section class="mt-section-gap mb-12 scroll-mt-24" id="misae-meter-section">
+<div class="w-full bg-surface-container border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-2xl overflow-hidden relative">
+<!-- Top Hazard Banner -->
+<div class="hazard-stripe h-6 w-full border-b-4 border-black"></div>
+<div class="p-4 md:p-8 space-y-6">
+<!-- Header row of the machine -->
+<div class="flex flex-col lg:flex-row items-center justify-between gap-4 border-b-4 border-black pb-5">
+<div class="flex items-center gap-3 text-center lg:text-left">
+<div class="w-14 h-14 bg-error text-white border-4 border-black rounded-xl flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] animate-bounce">
+<span class="material-symbols-outlined text-3xl font-black">local_fire_department</span>
+</div>
+<div>
+<div class="inline-flex items-center gap-1.5 bg-yellow-300 border-2 border-black px-2 py-0.5 rounded text-[11px] font-label-bold uppercase">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+<span>Futaba Kindergarten Lab • Version 3000</span>
+</div>
+<h2 class="font-display-lg text-2xl md:text-4xl uppercase italic tracking-tight text-primary drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+              MÁY ĐO NỘ KHÍ MẸ MISAE
+            </h2>
+<p class="font-caption text-xs md:text-sm text-on-surface-variant">Thử thách lòng can đảm của Shin: Bạn có dám chọc giận Misae chạm ngưỡng 100%?</p>
+</div>
+</div>
+<!-- Sound toggle & Reset pill -->
+<div class="flex items-center gap-2">
+<button class="bg-white border-3 border-black px-3 py-1.5 rounded-lg font-label-bold text-xs uppercase flex items-center gap-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-200 transition-all active:translate-x-1 active:translate-y-1" id="meter-sfx-toggle" onclick="toggleMeterSound()">
+<span class="material-symbols-outlined text-sm" id="sfx-icon">volume_up</span>
+<span id="sfx-text">Âm thanh: BẬT</span>
+</button>
+<button class="bg-surface-container-high border-3 border-black px-3 py-1.5 rounded-lg font-label-bold text-xs uppercase flex items-center gap-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-white transition-all active:translate-x-1 active:translate-y-1" onclick="resetRageMeter()">
+<span class="material-symbols-outlined text-sm">refresh</span>
+<span>Đặt lại 0%</span>
+</button>
+</div>
+</div>
+<!-- Core Meter Display Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Visual Gauge Column (7 cols) -->
+<div class="lg:col-span-7 bg-white border-4 border-black p-5 rounded-xl shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-4 relative overflow-hidden" id="meter-gauge-panel">
+<!-- Background warning flash when high rage -->
+<div class="absolute inset-0 bg-red-600/10 pointer-events-none opacity-0 transition-opacity" id="rage-screen-flash"></div>
+<!-- Gauge Top Bar -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-xl animate-pulse">warning</span>
+<span class="font-label-bold text-xs uppercase tracking-wider text-error">NỒI CƠM ÁP SUẤT KASUKABE</span>
+</div>
+<div class="bg-black text-yellow-300 font-mono font-bold text-sm md:text-base px-3 py-1 rounded border-2 border-black tracking-widest flex items-center gap-2" id="percentage-badge">
+<span>NỘ KHÍ:</span>
+<span class="text-xl md:text-2xl text-red-500" id="rage-percent-num">0%</span>
+</div>
+</div>
+<!-- Big Visual Progress Bar with Neo-Brutalist Markings -->
+<div class="space-y-1.5">
+<div class="h-10 md:h-12 w-full bg-surface-container-highest border-4 border-black rounded-lg p-1 relative overflow-hidden shadow-inner flex items-center">
+<div class="h-full bg-gradient-to-r from-emerald-500 via-amber-400 via-orange-500 to-red-600 border-2 border-black rounded transition-all duration-300 relative flex items-center justify-end px-2" id="rage-progress-fill" style="width: 5%;">
+<span class="text-[10px] font-mono font-black text-black bg-white/90 px-1 border border-black rounded whitespace-nowrap shadow-sm" id="rage-fill-indicator">0%</span>
+</div>
+</div>
+<!-- Gauge ticks -->
+<div class="flex justify-between text-[10px] md:text-xs font-mono font-bold text-neutral-600 px-1">
+<span>0% Bình Yên</span>
+<span>25% Nổi Gân</span>
+<span>50% Bốc Khói</span>
+<span>75% Cuồng Nộ</span>
+<span class="text-red-600 font-black">100% QUỶ DỮ!</span>
+</div>
+</div>
+<!-- Current Stage Status Badge & Live Anime Expression -->
+<div class="bg-surface-container-low border-3 border-black p-4 rounded-xl space-y-2 relative transition-all" id="rage-level-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-2xl" id="level-icon">🧘‍♀️</span>
+<div>
+<div class="text-[10px] font-label-bold uppercase text-gray-500">CẤP ĐỘ GIẬN DỮ HIỆN TẠI:</div>
+<h4 class="font-headline-sm text-base md:text-lg uppercase text-black font-extrabold" id="level-title">CẤP 1: MẸ DỊU DÀNG &amp; NHÂN TỪ</h4>
+</div>
+</div>
+<span class="text-[11px] font-label-bold bg-green-200 border-2 border-black px-2 py-0.5 rounded shadow-[1px_1px_0px_#000]" id="level-badge">AN TOÀN</span>
+</div>
+<p class="font-body-md text-xs md:text-sm text-on-surface leading-snug italic" id="level-desc">
+              "Shin-chan ngoan nào, mau rửa tay xà phòng rồi vào ăn bữa tối mẹ vừa nấu xong nhé con trai yêu quý!"
+            </p>
+<div class="text-[11px] font-mono text-gray-500 flex items-center justify-between border-t border-dashed border-gray-400 pt-1.5">
+<span id="level-quote-jp">しんちゃん、手洗ってご飯食べなさい〜</span>
+<span class="font-bold text-red-600" id="level-punishment">Trạng thái: An toàn cho mông Shin</span>
+</div>
+</div>
+<!-- Mini Stats Strip -->
+<div class="grid grid-cols-3 gap-2 text-center text-[11px] font-label-bold pt-1">
+<div class="bg-white border-2 border-black p-1.5 rounded shadow-[2px_2px_0px_#000]">
+<div class="text-gray-500 text-[9px]">LẦN CHỌC GIẬN</div>
+<div class="text-base text-primary font-black" id="count-poked">0</div>
+</div>
+<div class="bg-white border-2 border-black p-1.5 rounded shadow-[2px_2px_0px_#000]">
+<div class="text-gray-500 text-[9px]">SỐ CỤC ỔI TRÊN ĐẦU</div>
+<div class="text-base text-error font-black" id="count-bumps">0 🥊</div>
+</div>
+<div class="bg-white border-2 border-black p-1.5 rounded shadow-[2px_2px_0px_#000]">
+<div class="text-gray-500 text-[9px]">DANH HIỆU</div>
+<div class="text-[10px] text-secondary font-black truncate" id="shin-title">Bé Ngoan Kasukabe</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons Column (5 cols) -->
+<div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+<!-- Mischief Actions Header -->
+<div class="bg-tertiary-fixed border-3 border-black p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">sports_esports</span>
+<h3 class="font-label-bold text-sm uppercase tracking-tight text-on-surface">
+                HÀNH ĐỘNG CỦA SHIN-CHAN (CHỌC NỔ NỒI CƠM):
+              </h3>
+</div>
+<p class="text-[11px] text-gray-700 mt-1">Bấm các nút nghịch ngợm bên dưới để tích lũy nộ khí của Mẹ Misae!</p>
+</div>
+<!-- Buttons list -->
+<div class="flex flex-col gap-2.5">
+<!-- Action 1 -->
+<button class="w-full text-left bg-white hover:bg-yellow-50 border-3 border-black p-2.5 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[3px] active:translate-y-[3px] transition-all flex items-center justify-between group" onclick="addMisaeRage(20, 'peppers', 'Ớt chuông kinh dị! Mẹ bắt ăn bằng được!')">
+<div class="flex items-center gap-2">
+<span class="text-xl group-hover:scale-125 transition-transform">🫑</span>
+<div>
+<div class="font-label-bold text-xs md:text-sm text-black group-hover:text-primary">Không chịu ăn ớt chuông!</div>
+<div class="text-[10px] text-gray-500">"Ora ghét ớt chuông nhất trần đời!"</div>
+</div>
+</div>
+<span class="bg-red-100 text-error border-2 border-error px-2 py-0.5 rounded font-mono font-bold text-xs">+20%</span>
+</button>
+<!-- Action 2 -->
+<button class="w-full text-left bg-white hover:bg-yellow-50 border-3 border-black p-2.5 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[3px] active:translate-y-[3px] transition-all flex items-center justify-between group" onclick="addMisaeRage(25, 'butt', 'Khoe mông lắc lắc buring buring trước mặt cô hàng xóm!')">
+<div class="flex items-center gap-2">
+<span class="text-xl group-hover:scale-125 transition-transform">🍑</span>
+<div>
+<div class="font-label-bold text-xs md:text-sm text-black group-hover:text-primary">Khoe mông lắc lắc trước mặt khách!</div>
+<div class="text-[10px] text-gray-500">Buring buring! Điệu nhảy mông nổi tiếng</div>
+</div>
+</div>
+<span class="bg-red-100 text-error border-2 border-error px-2 py-0.5 rounded font-mono font-bold text-xs">+25%</span>
+</button>
+<!-- Action 3 -->
+<button class="w-full text-left bg-white hover:bg-yellow-50 border-3 border-black p-2.5 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[3px] active:translate-y-[3px] transition-all flex items-center justify-between group" onclick="addMisaeRage(30, 'lipstick', 'Hộp son Chanel đắt tiền của mẹ biến thành bút chì sáp!')">
+<div class="flex items-center gap-2">
+<span class="text-xl group-hover:scale-125 transition-transform">💄</span>
+<div>
+<div class="font-label-bold text-xs md:text-sm text-black group-hover:text-primary">Lấy son đắt tiền vẽ mặt Shiro!</div>
+<div class="text-[10px] text-gray-500">Shiro biến thành chú cún lông mày đỏ</div>
+</div>
+</div>
+<span class="bg-red-100 text-error border-2 border-error px-2 py-0.5 rounded font-mono font-bold text-xs">+30%</span>
+</button>
+<!-- Action 4 -->
+<button class="w-full text-left bg-white hover:bg-yellow-50 border-3 border-black p-2.5 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[3px] active:translate-y-[3px] transition-all flex items-center justify-between group" onclick="addMisaeRage(15, 'toys', 'Đồ chơi Action Mask nằm la liệt sàn nhà!')">
+<div class="flex items-center gap-2">
+<span class="text-xl group-hover:scale-125 transition-transform">🤖</span>
+<div>
+<div class="font-label-bold text-xs md:text-sm text-black group-hover:text-primary">Quên dọn đồ chơi xém mẹ vấp ngã!</div>
+<div class="text-[10px] text-gray-500">Misae giẫm trúng chân gấu quái vật</div>
+</div>
+</div>
+<span class="bg-red-100 text-error border-2 border-error px-2 py-0.5 rounded font-mono font-bold text-xs">+15%</span>
+</button>
+<!-- Action 5 - DANGER NUKE -->
+<button class="w-full text-left bg-primary-fixed hover:bg-red-200 border-3 border-primary p-2.5 rounded-xl shadow-[3px_3px_0px_0px_#930007] hover:shadow-[1px_1px_0px_0px_#930007] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[3px] active:translate-y-[3px] transition-all flex items-center justify-between group" onclick="addMisaeRage(40, 'fatjoke', 'CÂM MIỆNG LẠI THẰNG BÉ KIA! MẸ ĐANG ĂN KIÊNG MÀ!')">
+<div class="flex items-center gap-2">
+<span class="text-xl group-hover:scale-125 transition-transform">💣</span>
+<div>
+<div class="font-label-bold text-xs md:text-sm text-primary font-black flex items-center gap-1">
+<span>Nói hớ: "Mẹ béo tròn như heo nái!"</span>
+<span class="bg-red-600 text-white text-[9px] px-1 rounded uppercase">Chí mạng</span>
+</div>
+<div class="text-[10px] text-red-900 font-bold">Chạm trúng nỗi đau giảm cân thất bại!</div>
+</div>
+</div>
+<span class="bg-red-600 text-white border-2 border-black px-2 py-0.5 rounded font-mono font-black text-xs">+40% 🔥</span>
+</button>
+</div>
+<!-- Calm down & Kiss-up buttons -->
+<div class="pt-2 border-t-2 border-dashed border-black flex gap-2">
+<button class="flex-1 bg-secondary-fixed hover:bg-secondary text-on-secondary-fixed hover:text-white border-3 border-black p-2 rounded-lg font-label-bold text-xs uppercase flex items-center justify-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all" onclick="calmMisaeRage(30)">
+<span class="material-symbols-outlined text-base">sentiment_very_satisfied</span>
+<span>Khen Mẹ Đẹp Như Hoa Hậu (-30%)</span>
+</button>
+<button class="bg-white hover:bg-gray-100 border-3 border-black p-2 rounded-lg font-label-bold text-xs uppercase flex items-center justify-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all" onclick="resetRageMeter()">
+<span class="material-symbols-outlined text-base">cleaning_services</span>
+<span>Hứa Ngoan</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Max Rage Alert Overlay Modal (Tia sét, nắm đấm giáng xuống Shin) -->
+<div class="hidden border-4 border-black bg-yellow-400 p-5 rounded-2xl shadow-[8px_8px_0px_0px_#000] relative danger-stripe overflow-hidden" id="max-rage-modal">
+<div class="bg-white border-4 border-black p-5 rounded-xl space-y-3 relative z-10">
+<div class="flex items-center justify-between border-b-2 border-black pb-2">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-3xl font-black animate-spin">electric_bolt</span>
+<h3 class="font-display-lg text-xl md:text-2xl uppercase italic text-error">
+                🚨 BÁO ĐỘNG ĐỎ KASUKABE: NỘ KHÍ VƯỢT MỨC 100%!
+              </h3>
+</div>
+<button class="bg-black text-white px-3 py-1 font-bold text-xs rounded border border-black hover:bg-neutral-800" onclick="closeMaxRageModal()">
+              ĐÓNG ✕
+            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+<div class="md:col-span-2 space-y-2">
+<p class="font-headline-sm text-sm md:text-base text-red-600 uppercase font-black">
+                🥊 CHIÊU THỨC KHAI HỎA: "NẮM ĐẤM XOAY CUỒNG NGHIỀN THÁI DƯƠNG!"
+              </p>
+<p class="font-body-md text-xs md:text-sm text-gray-800">
+                Shin-chan đã thành công chọc giận mẹ Misae tới đỉnh điểm! Cả khu phố Futaba rung chuyển dữ dội. Shin đã lĩnh trọn ba cục ổi to tướng trên đầu!
+              </p>
+<div class="inline-block bg-yellow-200 border-2 border-black px-3 py-1 rounded font-label-bold text-xs text-black">
+                🏆 Danh hiệu mới mở khóa: <strong class="text-primary font-black" id="unlocked-title">"VUA LÌ ĐÒN KASUKABE"</strong>
+</div>
+</div>
+<div class="text-center p-3 bg-red-100 border-2 border-black rounded-xl">
+<div class="text-4xl animate-bounce">⚡🥊⚡</div>
+<div class="font-mono text-[11px] font-bold text-red-800 mt-1">SÁT THƯƠNG: OVER 9000</div>
+<button class="mt-2 w-full bg-error text-white font-label-bold text-xs py-1.5 border-2 border-black uppercase shadow-[2px_2px_0px_#000] hover:bg-red-700" onclick="resetRageMeter()">
+                Băng bó đầu Shin &amp; Chơi lại
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Nohara Family Section -->
+<div class="mt-section-gap mb-unit text-center">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase italic text-secondary drop-shadow-[2px_2px_0px_#001b3b]">The Nohara Clan</h2>
+<p class="text-sm font-label-bold uppercase text-on-surface-variant mt-1 tracking-wider">Gia Đình Huyền Thoại - Nhấp để nghe khẩu chiến nảy lửa</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Misae -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-misae" onclick="triggerCharacterVoice('misae')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-misae">
+<div class="text-[11px] font-bold text-primary uppercase">🔥 Nohara Misae (Mẹ hiền nổi giận):</div>
+<p class="font-label-bold text-xs md:text-sm text-red-600 leading-snug">"SHIN-CHAN! Lại không dọn đồ chơi hả?! Có tin mẹ cho ăn 'NẮM ĐẤM QUAY CUỒNG' không hả thằng bé này?!"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">しんのすけぇぇーっ！グリグリ攻撃よ！</span>
+</div>
+<div class="w-full h-48 border-[3px] border-on-background overflow-hidden relative bg-secondary-fixed-dim group-hover:border-secondary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A tall Japanese woman with wavy brown hair, wearing a pink shirt and white pants, looking slightly frustrated as she chases a small boy. The scene is full of domestic energy, set in a vibrant kitchen. Thick ink borders and bright, punchy colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiV-lYnkGXx_CeUbvKiD2q0ko35XS47B--mhDufPTWSG6aKFvUXmlc4HQwm6fW8TMfhYDpEtOPCoM9XAumma68qjIUiro7dZwy2RQjddc4gFg4NuhpjlcdDMUOEV2SBzQkZxFcZVXiAbmVoyHH7e3Mod6RPY8IF7AWCotTg9oAYwiz4STStAJxnsEh9r4GVA83NuFDxIEUs0oGWXZjGtW-TjNoUkFJ9CSTIvoPpt-tuJV6WwiCCpWwGw"/>
+<div class="absolute bottom-2 right-2 bg-primary text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> HÉT NỔI GIẬN
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-misae">
+<span class="w-1 bg-red-500 eq-bar-1"></span>
+<span class="w-1 bg-orange-400 eq-bar-2"></span>
+<span class="w-1 bg-yellow-300 eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">RAGING</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-secondary uppercase">Misae</h3>
+<span class="text-xs bg-red-100 text-primary border border-primary px-2 py-0.5 font-bold">29 Tuổi (Tâm hồn 20)</span>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Shin-chan! Stop showing your butt to the neighbors!"</p>
+<div class="bg-secondary-fixed p-3 border-[3px] border-on-background font-label-bold text-center text-xs md:text-sm">
+  Mischief Manager Level: 100 • Nắm Đấm Cốc Đầu 🥊
+</div>
+<!-- Mini Soundboard Quote Box -->
+<div class="bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-primary flex items-center justify-between">
+<span>🎙️ Cốc đầu sấm sét:</span>
+<span class="text-[10px] bg-red-600 text-white px-1.5 font-bold">BOING-WHACK!</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"SHIN-CHAN! Lại không dọn đồ chơi hả?! Ăn đấm quay cuồng này!"</p>
+<div class="text-[10px] text-gray-500 italic">"お片付けしないとグリグリしちゃうわよ！"</div>
+</div>
+</div>
+<!-- Hiroshi -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-hiroshi" onclick="triggerCharacterVoice('hiroshi')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-hiroshi">
+<div class="text-[11px] font-bold text-tertiary uppercase">🍺 Nohara Hiroshi (Trụ cột gia đình mẫn cán):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Haizz... Mùi tất chân 32 năm tiền nhà này sẽ cứu rỗi thế giới! Cạn ly bia thôi, mai lại đi cày!"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">はぁ〜、足の臭いとローン32年がオレの勲章だな…！</span>
+</div>
+<div class="w-full h-48 border-[3px] border-on-background overflow-hidden relative bg-tertiary-container group-hover:border-tertiary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A tired salaryman with stubble on his chin, wearing a white shirt and green tie, sighing deeply while holding a beer after work. He looks kind and hardworking. The art style is bold 90s animation cel with physical depth and hard shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCklwgvdSRgoMtdfTzRxotO0JxAErQVMPz1GXWbCQipsI6WlTH7-1LrdF_w-Bfo1AXF1Y8HV1Dg7IgmA7Zl1xL-SOlsvmtzppLqofIPxf260RNjn9aLtC318ynhaFgCPesAscApr9-a_v5KE-rpfSlzhZL5XWA3ubzCuHRMcNrSaWohLJmd9FYSesU4e61IDqmT5a5QnGinEtZbg3rU3Z6r1MHkqw1N0dPBrFezY1ODiVsS9imfNgNdLQ"/>
+<div class="absolute bottom-2 right-2 bg-tertiary-container text-black text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> THỞ DÀI &amp; BIA
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-hiroshi">
+<span class="w-1 bg-amber-400 eq-bar-1"></span>
+<span class="w-1 bg-yellow-200 eq-bar-2"></span>
+<span class="w-1 bg-white eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">TIRED SALARYMAN</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-tertiary uppercase">Hiroshi</h3>
+<span class="text-xs bg-yellow-100 text-yellow-900 border border-yellow-800 px-2 py-0.5 font-bold">35 Tuổi • Trưởng Phòng</span>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"My socks... they're more powerful than any weapon."</p>
+<div class="bg-tertiary-fixed p-3 border-[3px] border-on-background font-label-bold text-center text-xs md:text-sm">
+  Smelly Feet Level: OVER 9000 • Nợ nhà 32 năm
+</div>
+<!-- Mini Soundboard Quote Box -->
+<div class="bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-tertiary flex items-center justify-between">
+<span>🎙️ Thở dài sau giờ làm:</span>
+<span class="text-[10px] bg-yellow-400 text-black px-1.5 border border-black">Bia sủi bọt 🍺</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Haizz... Mùi tất chân 32 năm tiền nhà này sẽ cứu thế giới!"</p>
+<div class="text-[10px] text-gray-500 italic">"ビールがうまい！明日もがんばるぞ…"</div>
+</div>
+</div>
+<!-- Himawari -->
+<div class="character-card bg-surface border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col gap-4 relative overflow-hidden group" id="card-himawari" onclick="triggerCharacterVoice('himawari')">
+<!-- Floating Comic Speech Bubble -->
+<div class="comic-bubble top-6 left-6 right-6" id="bubble-himawari">
+<div class="text-[11px] font-bold text-primary uppercase">💎 Nohara Himawari (Công chúa mê kim cương):</div>
+<p class="font-label-bold text-xs md:text-sm text-on-background leading-snug">"Ta-da! Kira-kira! A-bubu! Anh chàng đẹp trai kia ơi, cho em viên kim cương sáng lấp lánh đó nha!"</p>
+<span class="text-[10px] text-on-surface-variant font-mono">たいやー！キラキラ〜！イケメンだいすき！</span>
+</div>
+<div class="w-full h-48 border-[3px] border-on-background overflow-hidden relative bg-primary-fixed group-hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A cute baby girl with curly orange hair and large, sparkling eyes focused on a piece of shiny jewelry. She is crawling across a yellow mat. The lighting is cheerful and bright. The aesthetic is hand-drawn animation with thick lines and vibrant colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCODbOtmo6F6X7esKDdwtdir1YQoU3N-fGwtLnMwYF_7jhXb17Lifg2SYjmA5-rDWMk9cu8agfMx0_RIJLx11YHVCkc-yhaZxcPcngA5MD4K4AVh0FJbPGu8NauZDmejfQM6hbbc-Uvioda64DCgHYfp4xk-t3_T0oYJ4r7jpaErr1bb7vezwyN9e1RQt3_-NyxxBrI6FY4GTrelfKEy0mUjkcupUd1fdWgofp-fytE9xqV_ohkTQZwgQ"/>
+<div class="absolute bottom-2 right-2 bg-primary text-white text-[11px] font-label-bold px-2 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[14px]">volume_up</span> BI BÔ KIM CƯƠNG
+</div>
+<div class="hidden absolute top-2 left-2 bg-black/85 text-white px-2 py-1 rounded border border-white items-center gap-1" id="eq-himawari">
+<span class="w-1 bg-pink-400 eq-bar-1"></span>
+<span class="w-1 bg-yellow-200 eq-bar-2"></span>
+<span class="w-1 bg-cyan-200 eq-bar-3"></span>
+<span class="text-[10px] font-mono ml-1">KIRA KIRA</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary uppercase">Himawari</h3>
+<span class="text-xs bg-pink-100 text-pink-700 border border-pink-700 px-2 py-0.5 font-bold">0 Tuổi • Thích Trai Đẹp</span>
+</div>
+<p class="italic font-body-md text-body-md text-on-surface-variant">"Da-da! *points at shiny diamonds*"</p>
+<div class="bg-primary-fixed p-3 border-[3px] border-on-background font-label-bold text-center text-xs md:text-sm">
+  Shiny Radar: ACTIVATED • Mê đá quý số 1
+</div>
+<!-- Mini Soundboard Quote Box -->
+<div class="bg-surface-container-low p-2.5 border-[2px] border-on-background text-xs space-y-1">
+<div class="font-label-bold text-primary flex items-center justify-between">
+<span>🎙️ Bi bô cười khúc khích:</span>
+<span class="text-[10px] bg-pink-300 text-black px-1.5 border border-black">Kira-kira ✨</span>
+</div>
+<p class="text-on-surface text-[12px] leading-tight">"Ta-da! Kira-kira! (Kim cương lấp lánh và trai đẹp đâu rồi!*)"</p>
+<div class="text-[10px] text-gray-500 italic">"たいや〜！キラキラ光るの〜！"</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-margin-mobile right-margin-mobile md:bottom-margin-desktop md:right-margin-desktop w-16 h-16 bg-tertiary text-on-tertiary border-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-full flex items-center justify-center hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all active:scale-95 group z-50" onclick="playRandomVoice()" title="Phát câu thoại ngẫu nhiên!">
+<span class="material-symbols-outlined text-[32px] group-hover:rotate-45 transition-transform">campaign</span>
+</button>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col items-center gap-unit text-center bg-tertiary-fixed dark:bg-tertiary border-t-[3px] border-on-background">
+<span class="font-headline-sm text-headline-sm text-on-tertiary-fixed uppercase italic tracking-tighter">SHIN-CHAN!</span>
+<div class="flex gap-4 flex-wrap justify-center my-4">
+<a class="text-on-tertiary-fixed-variant hover:text-primary font-label-bold transition-transform hover:scale-105 active:scale-95" href="#">Privacy Policy</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary font-label-bold transition-transform hover:scale-105 active:scale-95" href="#">Help Misae</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary font-label-bold transition-transform hover:scale-105 active:scale-95" href="#">Action Mask Fan Club</a>
+</div>
+<p class="font-body-md text-body-md text-on-tertiary-fixed max-w-md opacity-80">© USUI YOSHITO / SHIN-EI ANIMATION - NO MISCHIEF INTENDED!</p>
+</footer>
+<!-- Web Audio API Soundboard & Voice Synthesizer Engine + Minigame Logic -->
+<script>
+    let audioCtx = null;
+    let meterSoundEnabled = true;
+
+    function getAudioContext() {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        return audioCtx;
+    }
+
+    function toggleMeterSound() {
+        meterSoundEnabled = !meterSoundEnabled;
+        const icon = document.getElementById('sfx-icon');
+        const text = document.getElementById('sfx-text');
+        if (icon && text) {
+            icon.textContent = meterSoundEnabled ? 'volume_up' : 'volume_off';
+            text.textContent = meterSoundEnabled ? 'Âm thanh: BẬT' : 'Âm thanh: TẮT';
+        }
+    }
+
+    // Minigame Synthesizers via Web Audio API
+    function playBoingSpringSFX() {
+        if (!meterSoundEnabled) return;
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(800, now + 0.18);
+        osc.frequency.exponentialRampToValueAtTime(400, now + 0.35);
+
+        g.gain.setValueAtTime(0.25, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.36);
+    }
+
+    function playAlarmWarningSFX() {
+        if (!meterSoundEnabled) return;
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        for (let i = 0; i < 2; i++) {
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = 'sawtooth';
+            const t = now + (i * 0.14);
+            osc.frequency.setValueAtTime(800, t);
+            osc.frequency.linearRampToValueAtTime(1200, t + 0.08);
+            g.gain.setValueAtTime(0.2, t);
+            g.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+            osc.connect(g);
+            g.connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + 0.11);
+        }
+    }
+
+    function playCalmChimeSFX() {
+        if (!meterSoundEnabled) return;
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = 'triangle';
+            const t = now + (idx * 0.08);
+            osc.frequency.setValueAtTime(freq, t);
+            g.gain.setValueAtTime(0.18, t);
+            g.gain.exponentialRampToValueAtTime(0.005, t + 0.3);
+            osc.connect(g);
+            g.connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + 0.32);
+        });
+    }
+
+    function playThunderWhackImpactSFX() {
+        if (!meterSoundEnabled) return;
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        // Big Whack
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.exponentialRampToValueAtTime(30, now + 0.45);
+        g.gain.setValueAtTime(0.5, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.46);
+
+        // Thunder rumbling noise
+        const bufferSize = ctx.sampleRate * 0.5;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+        const noiseFilter = ctx.createBiquadFilter();
+        noiseFilter.type = 'lowpass';
+        noiseFilter.frequency.setValueAtTime(350, now);
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.setValueAtTime(0.35, now);
+        noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+
+        noise.connect(noiseFilter);
+        noiseFilter.connect(noiseGain);
+        noiseGain.connect(ctx.destination);
+        noise.start(now);
+        noise.stop(now + 0.5);
+    }
+
+    // ========================================================
+    // MISAE RAGE-O-METER GAME STATE ENGINE
+    // ========================================================
+    const rageStages = [
+        {
+            max: 20,
+            title: "CẤP 1: MẸ DỊU DÀNG & NHÂN TỪ",
+            badge: "AN TOÀN",
+            badgeClass: "bg-green-200 text-green-900 border-black",
+            icon: "🧘‍♀️",
+            desc: '"Shin-chan ngoan nào, mau rửa tay xà phòng rồi vào ăn bữa tối mẹ vừa nấu xong nhé con trai yêu quý!"',
+            quoteJp: "しんちゃん、手洗ってご飯食べなさい〜",
+            punishment: "Trạng thái: An toàn cho mông Shin",
+            colorClass: "from-emerald-500 to-green-500",
+            voice: "Shin-chan ngoan nào, mẹ nấu bữa tối xong rồi đó!"
+        },
+        {
+            max: 45,
+            title: "CẤP 2: BẮT ĐẦU NỔI GÂN XANH",
+            badge: "CẢNH BÁO",
+            badgeClass: "bg-yellow-200 text-yellow-900 border-black",
+            icon: "💢",
+            desc: '"Thằng bé này lại vứt cặp sách lung tung nữa rồi! Mau dọn ngay cho mẹ, đừng để mẹ phải nói lần thứ hai đấy nhé!"',
+            quoteJp: "もう〜！ランドセル投げっぱなしにしないで！",
+            punishment: "Cảnh báo: Bắt đầu sưng trán",
+            colorClass: "from-yellow-400 to-amber-500",
+            voice: "Này Shinnosuke! Mau cất đồ đạc ngay cho mẹ!"
+        },
+        {
+            max: 70,
+            title: "CẤP 3: GẦM RA LỬA & BỐC KHÓI ĐẦU",
+            badge: "NGUY HIỂM",
+            badgeClass: "bg-orange-300 text-orange-900 border-black",
+            icon: "🌋",
+            desc: '"Không ăn ớt chuông mà lại đòi xem chị gái mặc áo tắm hả?! Shin-chan, mẹ đếm từ 1 đến 3, mau ngồi nghiêm chỉnh lại ngay!"',
+            quoteJp: "ピーマン残して水着のお姉さん見たいとか何言ってんの！",
+            punishment: "Hình phạt: Chuẩn bị cốc đầu cảnh cáo!",
+            colorClass: "from-orange-500 to-red-500",
+            voice: "Mẹ đếm từ một đến ba! Mau ăn hết đĩa ớt chuông cho mẹ!"
+        },
+        {
+            max: 90,
+            title: "CẤP 4: NẮM ĐẤM XOAY CUỒNG KHAI HỎA",
+            badge: "CỰC KỲ KHẨN CẤP",
+            badgeClass: "bg-red-400 text-white border-black animate-pulse",
+            icon: "🥊🔥",
+            desc: '"NẮM ĐẤM XOAY CUỒNG NGHIỀN THÁI DƯƠNG (Guri Guri Attack)! Hôm nay con không được ăn bánh gấu Chocobi nữa!"',
+            quoteJp: "グリグリグリ〜ッ！チョコビはお預けよ！！",
+            punishment: "Hậu quả: Nghiền thái dương đau điếng!",
+            colorClass: "from-red-600 to-red-700",
+            voice: "Ăn đấm xoay cuồng này! Hôm nay đừng hòng ăn bánh Chocobi!"
+        },
+        {
+            max: 100,
+            title: "CẤP 5: QUỶ DỮ TỨC GIẬN - KASUKABE CHẤN ĐỘNG!",
+            badge: "MAX NỘ OVER 9000%",
+            badgeClass: "bg-red-600 text-white border-black animate-ping",
+            icon: "👹⚡",
+            desc: '"SHINNOSUKEÊÊÊÊÊ! HÔM NAY CẢ BỐ VÀ CON ĐỀU PHẢI RA NGOÀI SÂN NGỦ HẾT CHO TÔI! KHÔNG THỂ THA THỨ ĐƯỢC NỮA RỒI!!!"',
+            quoteJp: "しんのすけぇぇぇーっ！絶対に許さないわよーっ！！",
+            punishment: "Tận thế: Sưng ba cục ổi, nhà bay nóc!",
+            colorClass: "from-red-700 to-black",
+            voice: "Shinnosuke! Hôm nay mẹ sẽ cho con biết tay!"
+        }
+    ];
+
+    let currentRage = 0;
+    let pokeCount = 0;
+    let bumpsCount = 0;
+
+    function updateRageUI() {
+        const fill = document.getElementById('rage-progress-fill');
+        const indicator = document.getElementById('rage-fill-indicator');
+        const percentNum = document.getElementById('rage-percent-num');
+        const countPokedEl = document.getElementById('count-poked');
+        const countBumpsEl = document.getElementById('count-bumps');
+        const flash = document.getElementById('rage-screen-flash');
+        const titleBadge = document.getElementById('shin-title');
+
+        if (fill) {
+            fill.style.width = Math.min(100, Math.max(5, currentRage)) + '%';
+        }
+        if (indicator) {
+            indicator.textContent = currentRage + '%';
+        }
+        if (percentNum) {
+            percentNum.textContent = currentRage + '%';
+            if (currentRage >= 90) {
+                percentNum.classList.add('text-red-600', 'animate-pulse');
+            } else {
+                percentNum.classList.remove('animate-pulse');
+            }
+        }
+        if (countPokedEl) countPokedEl.textContent = pokeCount;
+        if (countBumpsEl) countBumpsEl.textContent = bumpsCount + ' 🥊';
+
+        // Update Title according to performance
+        if (titleBadge) {
+            if (bumpsCount >= 6) {
+                titleBadge.textContent = "Vua Lì Đòn Kasukabe";
+            } else if (bumpsCount >= 3) {
+                titleBadge.textContent = "Thánh Chọc Điên Mẹ";
+            } else if (pokeCount >= 5) {
+                titleBadge.textContent = "Chuyên Gia Quậy Phá";
+            } else {
+                titleBadge.textContent = "Bé Ngoan Kasukabe";
+            }
+        }
+
+        // Determine Stage
+        let currentStage = rageStages[0];
+        for (let stage of rageStages) {
+            if (currentRage <= stage.max) {
+                currentStage = stage;
+                break;
+            }
+        }
+        if (currentRage >= 95) currentStage = rageStages[4];
+
+        const levelTitle = document.getElementById('level-title');
+        const levelBadge = document.getElementById('level-badge');
+        const levelIcon = document.getElementById('level-icon');
+        const levelDesc = document.getElementById('level-desc');
+        const levelQuoteJp = document.getElementById('level-quote-jp');
+        const levelPunish = document.getElementById('level-punishment');
+
+        if (levelTitle) levelTitle.textContent = currentStage.title;
+        if (levelIcon) levelIcon.textContent = currentStage.icon;
+        if (levelDesc) levelDesc.textContent = currentStage.desc;
+        if (levelQuoteJp) levelQuoteJp.textContent = currentStage.quoteJp;
+        if (levelPunish) levelPunish.textContent = currentStage.punishment;
+        if (levelBadge) {
+            levelBadge.className = `text-[11px] font-label-bold border-2 px-2 py-0.5 rounded shadow-[1px_1px_0px_#000] ${currentStage.badgeClass}`;
+            levelBadge.textContent = currentStage.badge;
+        }
+
+        // High rage visual flash effect
+        if (flash) {
+            if (currentRage >= 75) {
+                flash.style.opacity = (currentRage / 100).toString();
+            } else {
+                flash.style.opacity = '0';
+            }
+        }
+    }
+
+    function addMisaeRage(amount, reasonType, messageText) {
+        pokeCount++;
+        playBoingSpringSFX();
+
+        currentRage = Math.min(100, currentRage + amount);
+        updateRageUI();
+        updateTicker(`🔥 Shin hành động: ${messageText} (Nộ khí tăng +${amount}%)`);
+
+        if (currentRage >= 100) {
+            triggerMaxRageEvent();
+        } else if (currentRage >= 70) {
+            playAlarmWarningSFX();
+        }
+    }
+
+    function calmMisaeRage(amount) {
+        if (currentRage === 0) {
+            updateTicker("Mẹ Misae đang hoàn toàn vui vẻ, không cần nịnh thêm!");
+            return;
+        }
+        currentRage = Math.max(0, currentRage - amount);
+        playCalmChimeSFX();
+        updateRageUI();
+        updateTicker(`💖 Shin nịnh: "Mẹ Misae hôm nay trông trẻ đẹp như thiếu nữ 18!" (Nộ khí giảm -${amount}%)`);
+        speakVoice("Mẹ ơi mẹ xinh đẹp nhất quả đất, cho con ăn bánh chocobi nha!", 1.25, 1.4);
+    }
+
+    function resetRageMeter() {
+        currentRage = 0;
+        updateRageUI();
+        closeMaxRageModal();
+        playCalmChimeSFX();
+        updateTicker("Đã làm hòa! Nộ khí Mẹ Misae trở về 0%. Shin hứa ngoan (nhưng sẽ tái phạm sớm thôi)!");
+    }
+
+    function triggerMaxRageEvent() {
+        bumpsCount++;
+        updateRageUI();
+
+        // Screen Shake Animation on body
+        const appBody = document.getElementById('app-body');
+        if (appBody) {
+            appBody.classList.remove('shake-screen');
+            void appBody.offsetWidth; // trigger reflow
+            appBody.classList.add('shake-screen');
+        }
+
+        // Sound effect: Thunder whack & rage yell
+        playThunderWhackImpactSFX();
+        speakVoice("SHINNOSUKE! ĂN NẮM ĐẤM QUAY CUỒNG NÀY!", 1.3, 1.4);
+
+        // Show Modal
+        const modal = document.getElementById('max-rage-modal');
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+
+        // Highlight Misae character card too
+        const misaeCard = document.getElementById('card-misae');
+        if (misaeCard) {
+            misaeCard.classList.add('speaking-card');
+            setTimeout(() => misaeCard.classList.remove('speaking-card'), 4000);
+        }
+
+        updateTicker("💥 BÁO ĐỘNG ĐỎ: Nộ khí Misae chạm ngưỡng 100%! Chiêu thức 'Guri Guri' đã giáng xuống đầu Shin!");
+    }
+
+    function closeMaxRageModal() {
+        const modal = document.getElementById('max-rage-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+    }
+
+    // Audio SFX Synthesizers via Web Audio API for Cards
+    function playShinchanSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.exponentialRampToValueAtTime(750, now + 0.15);
+        osc.frequency.exponentialRampToValueAtTime(380, now + 0.3);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.5);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.65);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.65);
+
+        for (let i = 0; i < 3; i++) {
+            const chuckle = ctx.createOscillator();
+            const g = ctx.createGain();
+            chuckle.type = 'sine';
+            const t = now + 0.7 + (i * 0.12);
+            chuckle.frequency.setValueAtTime(520 + (i * 40), t);
+            chuckle.frequency.exponentialRampToValueAtTime(260, t + 0.08);
+            g.gain.setValueAtTime(0.25, t);
+            g.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
+            chuckle.connect(g);
+            g.connect(ctx.destination);
+            chuckle.start(t);
+            chuckle.stop(t + 0.09);
+        }
+    }
+
+    function playMisaeRageSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(45, now + 0.35);
+
+        const boing = ctx.createOscillator();
+        const boingGain = ctx.createGain();
+        boing.type = 'sine';
+        boing.frequency.setValueAtTime(240, now + 0.1);
+        boing.frequency.exponentialRampToValueAtTime(700, now + 0.4);
+
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+
+        boingGain.gain.setValueAtTime(0.3, now + 0.1);
+        boingGain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        boing.connect(boingGain);
+        boingGain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.4);
+        boing.start(now + 0.1);
+        boing.stop(now + 0.45);
+    }
+
+    function playHiroshiSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.exponentialRampToValueAtTime(110, now + 0.7);
+
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.linearRampToValueAtTime(0.01, now + 0.7);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.75);
+
+        for (let i = 0; i < 4; i++) {
+            const pop = ctx.createOscillator();
+            const popGain = ctx.createGain();
+            pop.type = 'triangle';
+            const pt = now + 0.4 + (i * 0.08);
+            pop.frequency.setValueAtTime(900 + (Math.random() * 400), pt);
+            popGain.gain.setValueAtTime(0.12, pt);
+            popGain.gain.exponentialRampToValueAtTime(0.001, pt + 0.05);
+            pop.connect(popGain);
+            popGain.connect(ctx.destination);
+            pop.start(pt);
+            pop.stop(pt + 0.06);
+        }
+    }
+
+    function playKazamaSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        for (let i = 0; i < 4; i++) {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.type = 'sine';
+            const t = now + (i * 0.1);
+            o.frequency.setValueAtTime(440, t);
+            o.frequency.exponentialRampToValueAtTime(620, t + 0.06);
+            g.gain.setValueAtTime(0.18, t);
+            g.gain.exponentialRampToValueAtTime(0.01, t + 0.07);
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.start(t);
+            o.stop(t + 0.08);
+        }
+    }
+
+    function playNeneSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        [0, 0.15, 0.3].forEach((offset, idx) => {
+            const punch = ctx.createOscillator();
+            const g = ctx.createGain();
+            punch.type = 'square';
+            const t = now + offset;
+            punch.frequency.setValueAtTime(160 + idx * 20, t);
+            punch.frequency.exponentialRampToValueAtTime(60, t + 0.09);
+            g.gain.setValueAtTime(0.28, t);
+            g.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+            punch.connect(g);
+            g.connect(ctx.destination);
+            punch.start(t);
+            punch.stop(t + 0.11);
+        });
+    }
+
+    function playMasaoSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(360, now);
+        osc.frequency.linearRampToValueAtTime(420, now + 0.15);
+        osc.frequency.linearRampToValueAtTime(330, now + 0.3);
+        osc.frequency.linearRampToValueAtTime(390, now + 0.45);
+        osc.frequency.linearRampToValueAtTime(280, now + 0.7);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.72);
+    }
+
+    function playBochanSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const stone = ctx.createOscillator();
+        const stoneGain = ctx.createGain();
+        stone.type = 'sine';
+        stone.frequency.setValueAtTime(110, now);
+        stoneGain.gain.setValueAtTime(0.25, now);
+        stoneGain.gain.linearRampToValueAtTime(0.01, now + 0.6);
+        stone.connect(stoneGain);
+        stoneGain.connect(ctx.destination);
+        stone.start(now);
+        stone.stop(now + 0.65);
+
+        const sniff = ctx.createOscillator();
+        const sniffG = ctx.createGain();
+        sniff.type = 'triangle';
+        sniff.frequency.setValueAtTime(200, now + 0.2);
+        sniff.frequency.exponentialRampToValueAtTime(650, now + 0.45);
+        sniffG.gain.setValueAtTime(0.15, now + 0.2);
+        sniffG.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+        sniff.connect(sniffG);
+        sniffG.connect(ctx.destination);
+        sniff.start(now + 0.2);
+        sniff.stop(now + 0.47);
+    }
+
+    function playShiroSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        [0, 0.22].forEach(delay => {
+            const bark = ctx.createOscillator();
+            const g = ctx.createGain();
+            bark.type = 'sawtooth';
+            const t = now + delay;
+            bark.frequency.setValueAtTime(680, t);
+            bark.frequency.exponentialRampToValueAtTime(320, t + 0.12);
+            g.gain.setValueAtTime(0.25, t);
+            g.gain.exponentialRampToValueAtTime(0.01, t + 0.12);
+            bark.connect(g);
+            g.connect(ctx.destination);
+            bark.start(t);
+            bark.stop(t + 0.14);
+        });
+    }
+
+    function playHimawariSFX() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const freqs = [784, 988, 1175, 1568, 2093];
+        freqs.forEach((f, i) => {
+            const ch = ctx.createOscillator();
+            const g = ctx.createGain();
+            ch.type = 'sine';
+            const t = now + (i * 0.08);
+            ch.frequency.setValueAtTime(f, t);
+            g.gain.setValueAtTime(0.18, t);
+            g.gain.exponentialRampToValueAtTime(0.005, t + 0.25);
+            ch.connect(g);
+            g.connect(ctx.destination);
+            ch.start(t);
+            ch.stop(t + 0.26);
+        });
+    }
+
+    function playActionMaskBeam() {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(200, now);
+        osc.frequency.exponentialRampToValueAtTime(1400, now + 0.4);
+        osc.frequency.setValueAtTime(1400, now + 0.4);
+        osc.frequency.exponentialRampToValueAtTime(300, now + 0.85);
+
+        g.gain.setValueAtTime(0.3, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.85);
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.9);
+
+        updateTicker("⚡ ACTION BEAM! WHA-HA-HA! Công lý luôn chiến thắng!");
+        speakVoice("Action Beam! Oa ha ha ha! Công lý luôn chiến thắng!", 1.2, 1.4);
+    }
+
+    // Voice lines data repository
+    const characterData = {
+        shinchan: {
+            name: "Shin-chan",
+            text: "Ora Shin-chan da zo! Chị gái xinh đẹp ơi có thích ăn ớt chuông không? Ho-ho-ho-i!",
+            rate: 1.25,
+            pitch: 1.5,
+            sfx: playShinchanSFX,
+            bubbleId: "bubble-shinchan",
+            cardId: "card-shinchan",
+            eqId: "eq-shinchan"
+        },
+        misae: {
+            name: "Misae",
+            text: "SHIN-CHAN! Lại không dọn đồ chơi hả?! Có tin mẹ cho ăn nắm đấm quay cuồng không?!",
+            rate: 1.2,
+            pitch: 1.35,
+            sfx: playMisaeRageSFX,
+            bubbleId: "bubble-misae",
+            cardId: "card-misae",
+            eqId: "eq-misae"
+        },
+        hiroshi: {
+            name: "Hiroshi",
+            text: "Haizz... Mùi tất chân 32 năm tiền nhà này sẽ cứu rỗi thế giới! Cạn ly bia thôi!",
+            rate: 0.9,
+            pitch: 0.75,
+            sfx: playHiroshiSFX,
+            bubbleId: "bubble-hiroshi",
+            cardId: "card-hiroshi",
+            eqId: "eq-hiroshi"
+        },
+        kazama: {
+            name: "Kazama-kun",
+            text: "Shin-chan, đừng có thổi vào tai tớ nữa mà! Xấu hổ chết đi được! Tớ phải đi học thêm!",
+            rate: 1.15,
+            pitch: 1.3,
+            sfx: playKazamaSFX,
+            bubbleId: "bubble-kazama",
+            cardId: "card-kazama",
+            eqId: "eq-kazama"
+        },
+        nene: {
+            name: "Nene-chan",
+            text: "Chơi trò Gia Đình Thực Tế nào! Đưa thỏ bông đây mau! Bóp bóp!",
+            rate: 1.2,
+            pitch: 1.45,
+            sfx: playNeneSFX,
+            bubbleId: "bubble-nene",
+            cardId: "card-nene",
+            eqId: "eq-nene"
+        },
+        masao: {
+            name: "Masao-kun",
+            text: "Sao lúc nào người chịu trận cũng là tớ chứ... Shin-chan đừng kéo quần tớ hu hu!",
+            rate: 1.05,
+            pitch: 1.2,
+            sfx: playMasaoSFX,
+            bubbleId: "bubble-masao",
+            cardId: "card-masao",
+            eqId: "eq-masao"
+        },
+        bochan: {
+            name: "Bo-chan",
+            text: "Bo... vừa tìm thấy một hòn đá có hình dáng giống cô Yoshinaga... Bo.",
+            rate: 0.85,
+            pitch: 0.85,
+            sfx: playBochanSFX,
+            bubbleId: "bubble-bochan",
+            cardId: "card-bochan",
+            eqId: "eq-bochan"
+        },
+        shiro: {
+            name: "Shiro",
+            text: "Gâu! Gâu gâu! Shin-chan lại quên cho tớ ăn cơm rồi! Gâu gâu!",
+            rate: 1.3,
+            pitch: 1.6,
+            sfx: playShiroSFX,
+            bubbleId: "bubble-shiro",
+            cardId: "card-shiro",
+            eqId: "eq-shiro"
+        },
+        himawari: {
+            name: "Himawari",
+            text: "Ta-da! Kira-kira! Trai đẹp và kim cương sáng lấp lánh đâu rồi!",
+            rate: 1.4,
+            pitch: 1.7,
+            sfx: playHimawariSFX,
+            bubbleId: "bubble-himawari",
+            cardId: "card-himawari",
+            eqId: "eq-himawari"
+        }
+    };
+
+    let activeTimeout = null;
+
+    function triggerCharacterVoice(key) {
+        const char = characterData[key];
+        if (!char) return;
+
+        stopAllVisuals();
+
+        if (typeof char.sfx === 'function') {
+            char.sfx();
+        }
+
+        speakVoice(char.text, char.rate, char.pitch);
+
+        const card = document.getElementById(char.cardId);
+        const bubble = document.getElementById(char.bubbleId);
+        const eq = document.getElementById(char.eqId);
+        const globalViz = document.getElementById('global-visualizer');
+
+        if (card) card.classList.add('speaking-card');
+        if (bubble) bubble.classList.add('active');
+        if (eq) {
+            eq.classList.remove('hidden');
+            eq.classList.add('flex');
+        }
+        if (globalViz) globalViz.classList.remove('hidden');
+
+        updateTicker(`🎙️ Đang phát: ${char.name} — "${char.text}"`);
+
+        clearTimeout(activeTimeout);
+        activeTimeout = setTimeout(() => {
+            stopAllVisuals();
+            updateTicker("Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.");
+        }, 4500);
+    }
+
+    function speakVoice(text, rate = 1.0, pitch = 1.0) {
+        if (!window.speechSynthesis) return;
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = rate;
+        utterance.pitch = pitch;
+
+        const voices = window.speechSynthesis.getVoices();
+        const viVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VN'));
+        const jaVoice = voices.find(v => v.lang.includes('ja') || v.lang.includes('JP'));
+
+        if (viVoice) {
+            utterance.voice = viVoice;
+        } else if (jaVoice) {
+            utterance.voice = jaVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function stopAllVisuals() {
+        document.querySelectorAll('.character-card').forEach(c => c.classList.remove('speaking-card'));
+        document.querySelectorAll('.comic-bubble').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('[id^="eq-"]').forEach(eq => {
+            eq.classList.add('hidden');
+            eq.classList.remove('flex');
+        });
+        const globalViz = document.getElementById('global-visualizer');
+        if (globalViz) globalViz.classList.add('hidden');
+    }
+
+    function stopAllAudio() {
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+        stopAllVisuals();
+        updateTicker("Đã dừng âm thanh.");
+    }
+
+    function updateTicker(text) {
+        const ticker = document.getElementById('ticker-text');
+        if (ticker) ticker.innerText = text;
+    }
+
+    function playDuoBicker() {
+        triggerCharacterVoice('shinchan');
+        updateTicker("🔥 Khẩu chiến: Shin-chan trêu chọc mẹ Misae!");
+        setTimeout(() => {
+            triggerCharacterVoice('misae');
+            updateTicker("💥 Khẩu chiến: Misae tung chiêu 'Nắm đấm quay cuồng' phạt Shin!");
+        }, 2200);
+    }
+
+    function playRandomVoice() {
+        const keys = Object.keys(characterData);
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        triggerCharacterVoice(randomKey);
+        
+        const card = document.getElementById(characterData[randomKey].cardId);
+        if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    if (window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = () => {
+            window.speechSynthesis.getVoices();
+        };
+    }
+
+    // Initialize Minigame state on start
+    window.addEventListener('DOMContentLoaded', () => {
+        updateRageUI();
+    });
+</script>
+</body></html>
