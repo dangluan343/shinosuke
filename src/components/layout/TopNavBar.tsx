@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { label: "Squad", href: "/squad" },
   { label: "Giggles", href: "/gallery" },
   { label: "Kasukabe", href: "/kasukabe" },
+  { label: "Arcade 🕹️", href: "/arcade" },
 ];
 
 const DEV_LINKS = [

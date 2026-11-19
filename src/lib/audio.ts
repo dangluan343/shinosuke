@@ -181,6 +181,88 @@ class SoundManager {
     osc.start(now);
     osc.stop(now + 0.05);
   }
+
+  /**
+   * Hit Pepper Ouch! Harsh cartoon splat when hit by bell pepper
+   */
+  public playHitPepper() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(160, now);
+    osc.frequency.exponentialRampToValueAtTime(50, now + 0.25);
+
+    gain.gain.setValueAtTime(0.4, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.25);
+  }
+
+  /**
+   * Power Up! Ascending energetic arcade scale
+   */
+  public playPowerUp() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const notes = [261.63, 329.63, 392.0, 523.25, 659.25, 783.99]; // C4, E4, G4, C5, E5, G5
+    notes.forEach((freq, idx) => {
+      const now = ctx.currentTime + idx * 0.05;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, now);
+
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.15);
+    });
+  }
+
+  /**
+   * Retro Game Over sad fanfare
+   */
+  public playGameOver() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const notes = [440, 415.3, 392, 349.23]; // A4, Ab4, G4, F4
+    notes.forEach((freq, idx) => {
+      const now = ctx.currentTime + idx * 0.18;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(freq, now);
+
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.22);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.22);
+    });
+  }
 }
 
 export const soundFx = new SoundManager();
