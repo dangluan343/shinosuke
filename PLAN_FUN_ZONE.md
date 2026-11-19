@@ -9,7 +9,7 @@ Nhánh Git: `feature/interactive-fun-zone`
 ## 📋 Tiến độ tổng quan
 
 - [x] **Giai đoạn 1**: Minigame "Shin Né Ớt Chuông Ăn Chocobi" (Green Pepper Dodger Arcade) *(Hoàn thành)*
-- [ ] **Giai đoạn 2**: Minigame "Oẳn Tù Tì Ăn Gian với Shin" (Jankenpon Battle)
+- [x] **Giai đoạn 2**: Minigame "Oẳn Tù Tì Ăn Gian với Shin" (Jankenpon Battle) *(Hoàn thành)*
 - [ ] **Giai đoạn 3**: Bàn phím âm thanh "Kasukabe Meme Soundboard" & 8-bit Lo-Fi BGM
 - [ ] **Giai đoạn 4**: Hộp Bói Quẻ Cà Khịa "Chocobi Daily Fortune Cookie" & Xuất thẻ Polaroid
 - [ ] **Giai đoạn 5**: Thiết kế Hub Trang `/arcade`, Tích hợp Menu Navigation & Kiểm thử Tổng thể
@@ -52,9 +52,13 @@ Nhánh Git: `feature/interactive-fun-zone`
      - **Thua:** Mẹ Misae xuất hiện cốc đầu "CỐC!" nổi cục u to tướng kèm âm thanh nảy tưng tưng.
      - **Hòa:** Cả 2 cùng ngoáy mũi nhìn nhau.
   4. Hệ số Win Streak (chuỗi thắng liên tiếp) và danh hiệu ("Vua Oẳn Tù Tì Kasukabe").
-* **Kết quả Outcome cần đạt**:
-  - Giao diện đối kháng đậm chất Neo-Brutalism.
-  - Animation mượt mà và âm thanh phản hồi tức thì cho từng kết quả.
+* **Kết quả Outcome đã đạt được**:
+  - [x] Đã tạo xong component game `src/components/arcade/JankenponGame.tsx` giao diện đối kháng Neo-Brutalism.
+  - [x] Tích hợp logic AI Shin-chan ăn gian (30% cơ hội lật chiêu ở giây 99 kèm thoại bựa và còi báo động).
+  - [x] Hệ thống lời thoại ngẫu nhiên sinh động (15+ câu thoại lầy lội theo diễn biến thắng/thua/hòa/ăn gian).
+  - [x] Thống kê chuỗi thắng (Win Streak), kỷ lục Best Streak, danh hiệu Kasukabe ("Tân Binh" -> "Huyền Thoại Bất Bại").
+  - [x] Tích hợp mượt mà vào Tab 2 của trang `/arcade`.
+  - [x] Kiểm tra TypeScript pass 100% không lỗi.
 
 ---
 

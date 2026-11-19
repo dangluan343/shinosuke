@@ -5,6 +5,7 @@ import { TopNavBar } from "@/components/layout/TopNavBar";
 import { Footer } from "@/components/layout/Footer";
 import { NeoBadge } from "@/components/ui/NeoBadge";
 import { PepperDodgerGame } from "@/components/arcade/PepperDodgerGame";
+import { JankenponGame } from "@/components/arcade/JankenponGame";
 
 export default function ArcadePage() {
   const [activeTab, setActiveTab] = useState<"dodger" | "janken" | "soundboard" | "fortune">("dodger");
@@ -90,21 +91,10 @@ export default function ArcadePage() {
           </section>
         )}
 
-        {/* Tab 2: Jankenpon (Preview placeholder for Phase 2) */}
+        {/* Tab 2: Jankenpon Battle Game */}
         {activeTab === "janken" && (
-          <section className="bg-surface neo-brutalist-border hard-shadow p-8 max-w-2xl mx-auto text-center space-y-4 animate-in fade-in duration-300">
-            <div className="text-5xl animate-bounce">✌️✊✋</div>
-            <h2 className="font-display-md text-2xl text-secondary uppercase">
-              Oẳn Tù Tì Ăn Gian với Shin
-            </h2>
-            <p className="font-body-md text-sm text-on-surface-variant max-w-md mx-auto">
-              Đấu trí với cu cậu Shin tinh ranh! Cẩn thận kẻo bị Shin đổi ngón tay vào phút thứ 89 nhé.
-            </p>
-            <div className="pt-2">
-              <span className="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-xs neo-brutalist-border uppercase">
-                🚀 Sắp kích hoạt ở Giai đoạn 2!
-              </span>
-            </div>
+          <section className="space-y-6 animate-in fade-in duration-300">
+            <JankenponGame />
           </section>
         )}
 
