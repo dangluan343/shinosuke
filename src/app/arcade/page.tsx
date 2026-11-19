@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import { NeoBadge } from "@/components/ui/NeoBadge";
 import { PepperDodgerGame } from "@/components/arcade/PepperDodgerGame";
 import { JankenponGame } from "@/components/arcade/JankenponGame";
+import { MemeSoundboard } from "@/components/arcade/MemeSoundboard";
+import { ChocobiFortune } from "@/components/arcade/ChocobiFortune";
 
 export default function ArcadePage() {
   const [activeTab, setActiveTab] = useState<"dodger" | "janken" | "soundboard" | "fortune">("dodger");
@@ -98,39 +100,17 @@ export default function ArcadePage() {
           </section>
         )}
 
-        {/* Tab 3: Soundboard (Preview placeholder for Phase 3) */}
+        {/* Tab 3: Kasukabe Meme Soundboard */}
         {activeTab === "soundboard" && (
-          <section className="bg-surface neo-brutalist-border hard-shadow p-8 max-w-2xl mx-auto text-center space-y-4 animate-in fade-in duration-300">
-            <div className="text-5xl animate-pulse">📢🔊🍑</div>
-            <h2 className="font-display-md text-2xl text-tertiary uppercase">
-              Kasukabe Meme Soundboard
-            </h2>
-            <p className="font-body-md text-sm text-on-surface-variant max-w-md mx-auto">
-              Bảng bấm âm thanh huyền thoại: Buri Buri Dance, Action Beam, mẹ Misae gầm rú và nhạc nền 8-bit lofi.
-            </p>
-            <div className="pt-2">
-              <span className="inline-block px-3 py-1 bg-secondary-fixed text-on-secondary-fixed font-label-bold text-xs neo-brutalist-border uppercase">
-                🚀 Sắp kích hoạt ở Giai đoạn 3!
-              </span>
-            </div>
+          <section className="space-y-6 animate-in fade-in duration-300">
+            <MemeSoundboard />
           </section>
         )}
 
-        {/* Tab 4: Fortune Cookie (Preview placeholder for Phase 4) */}
+        {/* Tab 4: Chocobi Fortune Cookie */}
         {activeTab === "fortune" && (
-          <section className="bg-surface neo-brutalist-border hard-shadow p-8 max-w-2xl mx-auto text-center space-y-4 animate-in fade-in duration-300">
-            <div className="text-5xl animate-spin">🥠✨</div>
-            <h2 className="font-display-md text-2xl text-primary uppercase">
-              Quẻ Bói Cà Khịa Chocobi
-            </h2>
-            <p className="font-body-md text-sm text-on-surface-variant max-w-md mx-auto">
-              Rút quẻ bói may mắn hôm nay từ hộp bánh Chocobi và nhận lời khuyên bá đạo từ cu Shin.
-            </p>
-            <div className="pt-2">
-              <span className="inline-block px-3 py-1 bg-primary text-white font-label-bold text-xs neo-brutalist-border uppercase">
-                🚀 Sắp kích hoạt ở Giai đoạn 4!
-              </span>
-            </div>
+          <section className="space-y-6 animate-in fade-in duration-300">
+            <ChocobiFortune />
           </section>
         )}
       </main>

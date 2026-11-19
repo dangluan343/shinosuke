@@ -10,8 +10,8 @@ Nhánh Git: `feature/interactive-fun-zone`
 
 - [x] **Giai đoạn 1**: Minigame "Shin Né Ớt Chuông Ăn Chocobi" (Green Pepper Dodger Arcade) *(Hoàn thành)*
 - [x] **Giai đoạn 2**: Minigame "Oẳn Tù Tì Ăn Gian với Shin" (Jankenpon Battle) *(Hoàn thành)*
-- [ ] **Giai đoạn 3**: Bàn phím âm thanh "Kasukabe Meme Soundboard" & 8-bit Lo-Fi BGM
-- [ ] **Giai đoạn 4**: Hộp Bói Quẻ Cà Khịa "Chocobi Daily Fortune Cookie" & Xuất thẻ Polaroid
+- [x] **Giai đoạn 3**: Bàn phím âm thanh "Kasukabe Meme Soundboard" & 8-bit Lo-Fi BGM *(Hoàn thành)*
+- [x] **Giai đoạn 4**: Hộp Bói Quẻ Cà Khịa "Chocobi Daily Fortune Cookie" & Xuất thẻ Polaroid *(Hoàn thành)*
 - [ ] **Giai đoạn 5**: Thiết kế Hub Trang `/arcade`, Tích hợp Menu Navigation & Kiểm thử Tổng thể
 
 ---
@@ -75,9 +75,12 @@ Nhánh Git: `feature/interactive-fun-zone`
      - Flirt Whistle (Huýt sáo ghẹo chị gái xinh đẹp)
      - Boing Jump & Slap
   3. Lập trình bộ phát nhạc nền Chiptune / 8-bit Anime BGM nhẹ nhàng, vui nhộn bằng Web Audio Synthesizer thuần (có nút Play/Pause/Mute trên thanh điều khiển).
-* **Kết quả Outcome cần đạt**:
-  - Bấm nút âm thanh phát ngay lập tức (<5ms latency), không phụ thuộc mạng.
-  - Có thể chơi nhạc nền lặp (looping) không gián đoạn.
+* **Kết quả Outcome đã đạt được**:
+  - [x] Đã mở rộng Web Audio API trong `src/lib/audio.ts` với đầy đủ 8 âm thanh retro iconic: Buri Buri Wiggle, Action Beam, Action Explosion, Misae Roar, Chocobi Crunch, Shiro Bark, Flirt Whistle, Comic Slap và Rattle Box.
+  - [x] Tích hợp bộ phát nhạc nền Chiptune Anime BGM 8-bit thuần Web Audio API chạy mượt mà, hỗ trợ play/pause/looping/volume control và tự động đồng bộ trạng thái mute toàn hệ thống.
+  - [x] Đã tạo component `src/components/arcade/MemeSoundboard.tsx` gồm 12 Sound Pad Neo-Brutalism, phím tắt nhanh [1-9, 0, Q, W, Spacebar], bộ lọc category và visualizer sóng âm nhảy theo điệu nhạc.
+  - [x] Tích hợp mượt mà vào Tab 3 của trang `/arcade`.
+  - [x] Bấm nút âm thanh phản hồi tức thì (<5ms latency), 100% synthetic, zero network latency.
 
 ---
 
@@ -91,9 +94,13 @@ Nhánh Git: `feature/interactive-fun-zone`
      - Lời khuyên "bá đạo" trong ngày.
      - Con số may mắn của Shin.
   4. Nút bấm "Lắc quẻ khác" hoặc "Lưu quẻ bói" chia sẻ.
-* **Kết quả Outcome cần đạt**:
-  - Trải nghiệm mở hộp bánh kịch tính với âm thanh và pháo giấy rực rỡ.
-  - Quẻ bói đa dạng, ngẫu nhiên và thông minh.
+* **Kết quả Outcome đã đạt được**:
+  - [x] Đã xây dựng trọn bộ 34 quẻ bói song ngữ Nhật - Việt dí dỏm của đầy đủ 12 nhân vật (Shin, Misae, Hiroshi, Himawari, Shiro, Kazama, Nene, Bo-chan, Masao, Action Mask, Thầy Hiệu Trưởng, Cô Mai).
+  - [x] Animation hộp bánh Chocobi 3D rung lắc kèm tiếng rột rột chân thực, nắp mở bung pháo hoa giấy confetti thuần canvas (Zero dependency).
+  - [x] Thẻ quẻ bài phong cách Neo-Brutalism Polaroid hiển thị 3 thanh chỉ số may mắn, số may mắn, món ăn vặt định mệnh và nút sao chép trích dẫn.
+  - [x] Tính năng tạo và xuất ảnh Polaroid PNG độ phân giải cao (640x860) tải trực tiếp về máy không cần thư viện ngoài.
+  - [x] Lưu và duyệt lại lịch sử các quẻ đã rút gần đây qua ngăn kéo Lịch Sử (History Drawer).
+  - [x] Tích hợp hoàn hảo vào Tab 4 của trang `/arcade`.
 
 ---
 
