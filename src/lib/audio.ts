@@ -825,6 +825,432 @@ class SoundManager {
       this.currentBgmStep = (this.currentBgmStep + 1) % 32;
     }
   }
+
+  // ========================================================
+  // KASUKABE SQUAD & MISAE RAGE METER WEB AUDIO SYNTHESIZERS
+  // ========================================================
+
+  public playBoingSpringSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(220, now);
+    osc.frequency.exponentialRampToValueAtTime(800, now + 0.18);
+    osc.frequency.exponentialRampToValueAtTime(400, now + 0.35);
+
+    g.gain.setValueAtTime(0.25, now);
+    g.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+
+    osc.connect(g);
+    g.connect(dest);
+    osc.start(now);
+    osc.stop(now + 0.36);
+  }
+
+  public playAlarmWarningSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    for (let i = 0; i < 2; i++) {
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = "sawtooth";
+      const t = now + i * 0.14;
+      osc.frequency.setValueAtTime(800, t);
+      osc.frequency.linearRampToValueAtTime(1200, t + 0.08);
+      g.gain.setValueAtTime(0.2, t);
+      g.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+      osc.connect(g);
+      g.connect(dest);
+      osc.start(t);
+      osc.stop(t + 0.11);
+    }
+  }
+
+  public playCalmChimeSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = "triangle";
+      const t = now + idx * 0.08;
+      osc.frequency.setValueAtTime(freq, t);
+      g.gain.setValueAtTime(0.18, t);
+      g.gain.exponentialRampToValueAtTime(0.005, t + 0.3);
+      osc.connect(g);
+      g.connect(dest);
+      osc.start(t);
+      osc.stop(t + 0.32);
+    });
+  }
+
+  public playThunderWhackImpactSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    // Big Whack
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(180, now);
+    osc.frequency.exponentialRampToValueAtTime(30, now + 0.45);
+    g.gain.setValueAtTime(0.5, now);
+    g.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+    osc.connect(g);
+    g.connect(dest);
+    osc.start(now);
+    osc.stop(now + 0.46);
+
+    // Thunder rumbling noise
+    const noise = this.createNoiseBuffer(0.5);
+    if (noise) {
+      const noiseSource = ctx.createBufferSource();
+      noiseSource.buffer = noise;
+      const noiseFilter = ctx.createBiquadFilter();
+      noiseFilter.type = "lowpass";
+      noiseFilter.frequency.setValueAtTime(350, now);
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.35, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+
+      noiseSource.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(dest);
+      noiseSource.start(now);
+      noiseSource.stop(now + 0.5);
+    }
+  }
+
+  public playShinchanSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(320, now);
+    osc.frequency.exponentialRampToValueAtTime(750, now + 0.15);
+    osc.frequency.exponentialRampToValueAtTime(380, now + 0.3);
+    osc.frequency.exponentialRampToValueAtTime(880, now + 0.5);
+
+    gain.gain.setValueAtTime(0.3, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.65);
+
+    osc.connect(gain);
+    gain.connect(dest);
+    osc.start(now);
+    osc.stop(now + 0.65);
+
+    for (let i = 0; i < 3; i++) {
+      const chuckle = ctx.createOscillator();
+      const g = ctx.createGain();
+      chuckle.type = "sine";
+      const t = now + 0.7 + i * 0.12;
+      chuckle.frequency.setValueAtTime(520 + i * 40, t);
+      chuckle.frequency.exponentialRampToValueAtTime(260, t + 0.08);
+      g.gain.setValueAtTime(0.25, t);
+      g.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
+      chuckle.connect(g);
+      g.connect(dest);
+      chuckle.start(t);
+      chuckle.stop(t + 0.09);
+    }
+  }
+
+  public playMisaeRageSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(140, now);
+    osc.frequency.exponentialRampToValueAtTime(45, now + 0.35);
+
+    const boing = ctx.createOscillator();
+    const boingGain = ctx.createGain();
+    boing.type = "sine";
+    boing.frequency.setValueAtTime(240, now + 0.1);
+    boing.frequency.exponentialRampToValueAtTime(700, now + 0.4);
+
+    gain.gain.setValueAtTime(0.4, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+
+    boingGain.gain.setValueAtTime(0.3, now + 0.1);
+    boingGain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+
+    osc.connect(gain);
+    gain.connect(dest);
+    boing.connect(boingGain);
+    boingGain.connect(dest);
+
+    osc.start(now);
+    osc.stop(now + 0.4);
+    boing.start(now + 0.1);
+    boing.stop(now + 0.45);
+  }
+
+  public playHiroshiSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(320, now);
+    osc.frequency.exponentialRampToValueAtTime(110, now + 0.7);
+
+    gain.gain.setValueAtTime(0.2, now);
+    gain.gain.linearRampToValueAtTime(0.01, now + 0.7);
+
+    osc.connect(gain);
+    gain.connect(dest);
+    osc.start(now);
+    osc.stop(now + 0.75);
+
+    for (let i = 0; i < 4; i++) {
+      const pop = ctx.createOscillator();
+      const popGain = ctx.createGain();
+      pop.type = "triangle";
+      const pt = now + 0.4 + i * 0.08;
+      pop.frequency.setValueAtTime(900 + Math.random() * 400, pt);
+      popGain.gain.setValueAtTime(0.12, pt);
+      popGain.gain.exponentialRampToValueAtTime(0.001, pt + 0.05);
+      pop.connect(popGain);
+      popGain.connect(dest);
+      pop.start(pt);
+      pop.stop(pt + 0.06);
+    }
+  }
+
+  public playKazamaSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    for (let i = 0; i < 4; i++) {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = "sine";
+      const t = now + i * 0.1;
+      o.frequency.setValueAtTime(440, t);
+      o.frequency.exponentialRampToValueAtTime(620, t + 0.06);
+      g.gain.setValueAtTime(0.18, t);
+      g.gain.exponentialRampToValueAtTime(0.01, t + 0.07);
+      o.connect(g);
+      g.connect(dest);
+      o.start(t);
+      o.stop(t + 0.08);
+    }
+  }
+
+  public playNeneSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    [0, 0.15, 0.3].forEach((offset, idx) => {
+      const punch = ctx.createOscillator();
+      const g = ctx.createGain();
+      punch.type = "square";
+      const t = now + offset;
+      punch.frequency.setValueAtTime(160 + idx * 20, t);
+      punch.frequency.exponentialRampToValueAtTime(60, t + 0.09);
+      g.gain.setValueAtTime(0.28, t);
+      g.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+      punch.connect(g);
+      g.connect(dest);
+      punch.start(t);
+      punch.stop(t + 0.11);
+    });
+  }
+
+  public playMasaoSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(360, now);
+    osc.frequency.linearRampToValueAtTime(420, now + 0.15);
+    osc.frequency.linearRampToValueAtTime(330, now + 0.3);
+    osc.frequency.linearRampToValueAtTime(390, now + 0.45);
+    osc.frequency.linearRampToValueAtTime(280, now + 0.7);
+
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+
+    osc.connect(gain);
+    gain.connect(dest);
+    osc.start(now);
+    osc.stop(now + 0.72);
+  }
+
+  public playBochanSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const stone = ctx.createOscillator();
+    const stoneGain = ctx.createGain();
+    stone.type = "sine";
+    stone.frequency.setValueAtTime(110, now);
+    stoneGain.gain.setValueAtTime(0.25, now);
+    stoneGain.gain.linearRampToValueAtTime(0.01, now + 0.6);
+    stone.connect(stoneGain);
+    stoneGain.connect(dest);
+    stone.start(now);
+    stone.stop(now + 0.65);
+
+    const sniff = ctx.createOscillator();
+    const sniffG = ctx.createGain();
+    sniff.type = "triangle";
+    sniff.frequency.setValueAtTime(200, now + 0.2);
+    sniff.frequency.exponentialRampToValueAtTime(650, now + 0.45);
+    sniffG.gain.setValueAtTime(0.15, now + 0.2);
+    sniffG.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+    sniff.connect(sniffG);
+    sniffG.connect(dest);
+    sniff.start(now + 0.2);
+    sniff.stop(now + 0.47);
+  }
+
+  public playShiroSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    [0, 0.22].forEach((delay) => {
+      const bark = ctx.createOscillator();
+      const g = ctx.createGain();
+      bark.type = "sawtooth";
+      const t = now + delay;
+      bark.frequency.setValueAtTime(680, t);
+      bark.frequency.exponentialRampToValueAtTime(320, t + 0.12);
+      g.gain.setValueAtTime(0.25, t);
+      g.gain.exponentialRampToValueAtTime(0.01, t + 0.12);
+      bark.connect(g);
+      g.connect(dest);
+      bark.start(t);
+      bark.stop(t + 0.14);
+    });
+  }
+
+  public playHimawariSFX() {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    const freqs = [784, 988, 1175, 1568, 2093];
+    freqs.forEach((f, i) => {
+      const ch = ctx.createOscillator();
+      const g = ctx.createGain();
+      ch.type = "sine";
+      const t = now + i * 0.08;
+      ch.frequency.setValueAtTime(f, t);
+      g.gain.setValueAtTime(0.18, t);
+      g.gain.exponentialRampToValueAtTime(0.005, t + 0.25);
+      ch.connect(g);
+      g.connect(dest);
+      ch.start(t);
+      ch.stop(t + 0.26);
+    });
+  }
+
+  // ==========================================
+  // WEB SPEECH SYNTHESIS HELPER
+  // ==========================================
+
+  public speakVoice(text: string, rate: number = 1.0, pitch: number = 1.0, onEnd?: () => void) {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      if (onEnd) onEnd();
+      return;
+    }
+    if (this.muted) {
+      if (onEnd) onEnd();
+      return;
+    }
+
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = rate;
+      utterance.pitch = pitch;
+
+      const voices = window.speechSynthesis.getVoices();
+      const viVoice = voices.find(
+        (v) => v.lang.toLowerCase().includes("vi") || v.lang.toLowerCase().includes("vn")
+      );
+      const jaVoice = voices.find(
+        (v) => v.lang.toLowerCase().includes("ja") || v.lang.toLowerCase().includes("jp")
+      );
+
+      if (viVoice) {
+        utterance.voice = viVoice;
+      } else if (jaVoice) {
+        utterance.voice = jaVoice;
+      }
+
+      if (onEnd) {
+        utterance.onend = () => onEnd();
+        utterance.onerror = () => onEnd();
+      }
+
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      if (onEnd) onEnd();
+    }
+  }
+
+  public stopSpeech() {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch {
+        // ignore
+      }
+    }
+  }
 }
 
 export const soundFx = new SoundManager();
