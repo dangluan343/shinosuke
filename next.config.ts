@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const isGithubActions = process.env.GITHUB_ACTIONS === "true";
-const basePath = isGithubActions ? "/shinosuke" : "";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (isGithubActions ? "/shinosuke" : "");
 
 const nextConfig: NextConfig = {
   output: "export",

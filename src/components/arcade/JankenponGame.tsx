@@ -5,6 +5,7 @@ import Image from "next/image";
 import { soundFx } from "@/lib/audio";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { NeoBadge } from "@/components/ui/NeoBadge";
+import { getAssetUrl } from "@/lib/basePath";
 
 type Move = "rock" | "scissors" | "paper";
 
@@ -326,7 +327,7 @@ export function JankenponGame() {
             {/* Shin Portrait */}
             <div className="w-20 h-20 rounded-full neo-brutalist-border overflow-hidden relative shadow-sm flex-shrink-0 bg-primary">
               <Image
-                src="/images/squad-1-a-playful-and-mischievous-5-ye.jpg"
+                src={getAssetUrl("/images/characters/shinchan.jpg")}
                 alt="Shin-chan Opponent"
                 fill
                 className={`object-cover ${
@@ -396,7 +397,7 @@ export function JankenponGame() {
         <div className="bg-white neo-brutalist-border hard-shadow p-4 relative flex items-start gap-3">
           <div className="w-10 h-10 rounded-full bg-primary neo-brutalist-border overflow-hidden flex-shrink-0 relative">
             <Image
-              src="/images/squad-1-a-playful-and-mischievous-5-ye.jpg"
+              src={getAssetUrl("/images/characters/shinchan.jpg")}
               alt="Shin speech"
               fill
               className="object-cover"
