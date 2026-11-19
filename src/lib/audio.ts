@@ -1198,7 +1198,191 @@ class SoundManager {
   }
 
   // ==========================================
-  // WEB SPEECH SYNTHESIS HELPER
+  // ANIME CARTOON CHARACTER BABBLE SYNTHESIZER
+  // Zero robot TTS weirdness - 100% cute Animalese / retro anime voice chatter!
+  // ==========================================
+
+  public playCharacterBabble(char: string) {
+    if (this.muted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    const dest = this.getDestination() || ctx.destination;
+    const now = ctx.currentTime;
+
+    switch (char) {
+      case "shinchan": {
+        // Shin: Playful, bouncy cartoon syllables + chuckles
+        const freqs = [380, 520, 440, 620, 500];
+        freqs.forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = "sawtooth";
+          const t = now + idx * 0.09;
+          osc.frequency.setValueAtTime(f, t);
+          osc.frequency.exponentialRampToValueAtTime(f * 1.2, t + 0.05);
+          osc.frequency.exponentialRampToValueAtTime(f * 0.8, t + 0.08);
+
+          g.gain.setValueAtTime(0.22, t);
+          g.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
+
+          osc.connect(g);
+          g.connect(dest);
+          osc.start(t);
+          osc.stop(t + 0.085);
+        });
+        // Plus cute chuckles
+        setTimeout(() => this.playShinchanSFX(), 450);
+        break;
+      }
+      case "misae": {
+        // Misae: Angry fast staccato scolding
+        const freqs = [220, 260, 310, 280, 340, 180];
+        freqs.forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = "triangle";
+          const t = now + idx * 0.08;
+          osc.frequency.setValueAtTime(f, t);
+          osc.frequency.exponentialRampToValueAtTime(f * 0.85, t + 0.07);
+
+          g.gain.setValueAtTime(0.3, t);
+          g.gain.exponentialRampToValueAtTime(0.01, t + 0.07);
+
+          osc.connect(g);
+          g.connect(dest);
+          osc.start(t);
+          osc.stop(t + 0.075);
+        });
+        setTimeout(() => this.playMisaeRageSFX(), 450);
+        break;
+      }
+      case "kazama": {
+        // Kazama: Rapid nerdy squeaks
+        const freqs = [520, 580, 640, 590, 700];
+        freqs.forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = "sine";
+          const t = now + idx * 0.07;
+          osc.frequency.setValueAtTime(f, t);
+          g.gain.setValueAtTime(0.18, t);
+          g.gain.exponentialRampToValueAtTime(0.01, t + 0.06);
+          osc.connect(g);
+          g.connect(dest);
+          osc.start(t);
+          osc.stop(t + 0.065);
+        });
+        break;
+      }
+      case "nene": {
+        // Nene: Sharp assertive syllables + rabbit punch thuds
+        const freqs = [400, 480, 360, 520];
+        freqs.forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = "square";
+          const t = now + idx * 0.09;
+          osc.frequency.setValueAtTime(f, t);
+          g.gain.setValueAtTime(0.18, t);
+          g.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
+          osc.connect(g);
+          g.connect(dest);
+          osc.start(t);
+          osc.stop(t + 0.085);
+        });
+        setTimeout(() => this.playNeneSFX(), 360);
+        break;
+      }
+      case "masao": {
+        // Masao: Trembling whimpering vibrato
+        const osc = ctx.createOscillator();
+        const lfo = ctx.createOscillator();
+        const lfoGain = ctx.createGain();
+        const g = ctx.createGain();
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(340, now);
+        osc.frequency.linearRampToValueAtTime(280, now + 0.5);
+
+        lfo.type = "sine";
+        lfo.frequency.setValueAtTime(10, now);
+        lfoGain.gain.setValueAtTime(25, now);
+
+        lfo.connect(lfoGain);
+        lfoGain.connect(osc.frequency);
+
+        g.gain.setValueAtTime(0.2, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+
+        osc.connect(g);
+        g.connect(dest);
+        lfo.start(now);
+        osc.start(now);
+        lfo.stop(now + 0.5);
+        osc.stop(now + 0.5);
+        break;
+      }
+      case "bochan": {
+        // Bo-chan: Slow deep resonant drone
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(130, now);
+        osc.frequency.linearRampToValueAtTime(120, now + 0.6);
+        g.gain.setValueAtTime(0.3, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+        osc.connect(g);
+        g.connect(dest);
+        osc.start(now);
+        osc.stop(now + 0.62);
+        setTimeout(() => this.playBochanSFX(), 300);
+        break;
+      }
+      case "shiro": {
+        this.playShiroSFX();
+        break;
+      }
+      case "hiroshi": {
+        // Hiroshi: Low exhausted sigh
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(95, now + 0.55);
+        g.gain.setValueAtTime(0.22, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.55);
+        osc.connect(g);
+        g.connect(dest);
+        osc.start(now);
+        osc.stop(now + 0.56);
+        setTimeout(() => this.playHiroshiSFX(), 350);
+        break;
+      }
+      case "himawari": {
+        // Himawari: Sweet cheerful chiming baby babble
+        const notes = [880, 1175, 1318, 1760];
+        notes.forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = "triangle";
+          const t = now + idx * 0.08;
+          osc.frequency.setValueAtTime(f, t);
+          g.gain.setValueAtTime(0.18, t);
+          g.gain.exponentialRampToValueAtTime(0.005, t + 0.2);
+          osc.connect(g);
+          g.connect(dest);
+          osc.start(t);
+          osc.stop(t + 0.21);
+        });
+        break;
+      }
+      default: {
+        this.playTroubleBoing();
+      }
+    }
+  }
+
+  // ==========================================
+  // WEB SPEECH SYNTHESIS HELPER (OPTIONAL ROBOT TTS)
   // ==========================================
 
   public speakVoice(text: string, rate: number = 1.0, pitch: number = 1.0, onEnd?: () => void) {

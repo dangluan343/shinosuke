@@ -179,9 +179,10 @@ export default function SquadPage() {
     "Đang sẵn sàng! Bấm vào bất kỳ thẻ nhân vật nào dưới đây để kích hoạt giọng lồng tiếng."
   );
   const [speakingId, setSpeakingId] = useState<string | null>(null);
+  const [useTts, setUseTts] = useState<boolean>(false); // Default to FALSE: cute anime SFX, zero robotic TTS weirdness
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Play Character Voice (both Synthesizer SFX + Speech Synthesis)
+  // Play Character Voice (Anime Cartoon Babble + Signature SFX + Optional TTS)
   const triggerVoice = (
     id: string,
     name: string,
@@ -196,22 +197,23 @@ export default function SquadPage() {
     setSpeakingId(id);
     setTickerText(`🎙️ Đang phát: ${name} — "${textVi}"`);
 
-    // Play Web Audio API synthetic SFX
-    playSfx();
+    // Play cute Anime Cartoon Babble & Synthesizer
+    soundFx.playCharacterBabble(id);
 
-    // Play Web Speech Synthesis
-    soundFx.speakVoice(textVi, rate, pitch, () => {
-      // Keep highlighted a moment
+    // Only speak via browser TTS if explicitly enabled by user
+    if (useTts) {
+      soundFx.speakVoice(textVi, rate, pitch, () => {
+        timerRef.current = setTimeout(() => {
+          setSpeakingId(null);
+          setTickerText("Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.");
+        }, 800);
+      });
+    } else {
       timerRef.current = setTimeout(() => {
         setSpeakingId(null);
         setTickerText("Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.");
-      }, 800);
-    });
-
-    // Fallback timer if speech ends or not supported
-    timerRef.current = setTimeout(() => {
-      setSpeakingId((prev) => (prev === id ? null : prev));
-    }, 4500);
+      }, 2400);
+    }
   };
 
   const handleStopAudio = () => {
@@ -294,6 +296,8 @@ export default function SquadPage() {
         <SoundboardBar
           tickerText={tickerText}
           isPlaying={speakingId !== null}
+          useTts={useTts}
+          onToggleTts={() => setUseTts(!useTts)}
           onDuoBicker={handleDuoBicker}
           onRandomVoice={handleRandomVoice}
           onStopAudio={handleStopAudio}

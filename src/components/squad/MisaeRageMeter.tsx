@@ -145,7 +145,7 @@ export function MisaeRageMeter({ onRageChange, onTickerUpdate }: MisaeRageMeterP
 
     if (soundEnabled) {
       soundFx.playThunderWhackImpactSFX();
-      soundFx.speakVoice("SHINNOSUKE! ĂN NẮM ĐẤM QUAY CUỒNG NÀY!", 1.3, 1.4);
+      soundFx.playCharacterBabble("misae");
     }
 
     if (onTickerUpdate) {
@@ -165,7 +165,7 @@ export function MisaeRageMeter({ onRageChange, onTickerUpdate }: MisaeRageMeterP
 
     if (soundEnabled) {
       soundFx.playCalmChimeSFX();
-      soundFx.speakVoice("Mẹ ơi mẹ xinh đẹp nhất quả đất, cho con ăn bánh chocobi nha!", 1.25, 1.4);
+      soundFx.playCharacterBabble("shinchan");
     }
 
     if (onTickerUpdate) {

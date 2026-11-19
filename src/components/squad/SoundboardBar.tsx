@@ -5,6 +5,8 @@ import React from "react";
 interface SoundboardBarProps {
   tickerText: string;
   isPlaying: boolean;
+  useTts: boolean;
+  onToggleTts: () => void;
   onDuoBicker: () => void;
   onRandomVoice: () => void;
   onStopAudio: () => void;
@@ -13,6 +15,8 @@ interface SoundboardBarProps {
 export function SoundboardBar({
   tickerText,
   isPlaying,
+  useTts,
+  onToggleTts,
   onDuoBicker,
   onRandomVoice,
   onStopAudio,
@@ -29,11 +33,24 @@ export function SoundboardBar({
             <span className="material-symbols-outlined text-3xl">volume_up</span>
           </div>
           <div>
-            <h3 className="font-headline-sm text-lg md:text-xl uppercase text-on-background tracking-tight">
-              KASUKABE SOUNDBOARD VIBES
-            </h3>
+            <div className="flex items-center gap-2">
+              <h3 className="font-headline-sm text-lg md:text-xl uppercase text-on-background tracking-tight">
+                KASUKABE SOUNDBOARD VIBES
+              </h3>
+              <button
+                onClick={onToggleTts}
+                className={`text-[10px] font-label-bold px-2 py-0.5 border-2 border-black rounded shadow-[1px_1px_0px_#000] cursor-pointer transition-all ${
+                  useTts
+                    ? "bg-purple-200 text-purple-950"
+                    : "bg-emerald-200 text-emerald-950 hover:bg-emerald-300"
+                }`}
+                title="Bấm để chuyển đổi giữa Anime Voice SFX và Giọng đọc Robot"
+              >
+                {useTts ? "🤖 Robot TTS: BẬT" : "🎵 Anime SFX: CHUẨN"}
+              </button>
+            </div>
             <p className="text-xs md:text-sm font-caption text-on-surface-variant">
-              Web Audio API lồng tiếng sống động • Không cần tải file âm thanh ngoài!
+              Web Audio API lồng tiếng hoạt hình sinh động • 100% âm thanh anime không robot!
             </p>
           </div>
         </div>
@@ -42,7 +59,7 @@ export function SoundboardBar({
         <div className="flex flex-wrap gap-2.5 items-center justify-center w-full md:w-auto">
           <button
             onClick={onDuoBicker}
-            className="bg-error text-on-error px-4 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all"
+            className="bg-error text-on-error px-4 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all cursor-pointer"
           >
             <span className="material-symbols-outlined text-sm">sports_kabaddi</span>
             <span>Shin &amp; Misae Khẩu Chiến</span>
@@ -50,7 +67,7 @@ export function SoundboardBar({
 
           <button
             onClick={onRandomVoice}
-            className="bg-tertiary text-on-tertiary px-3.5 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all"
+            className="bg-tertiary text-on-tertiary px-3.5 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all cursor-pointer"
           >
             <span className="material-symbols-outlined text-sm">casino</span>
             <span>Giọng ngẫu nhiên</span>
@@ -58,7 +75,7 @@ export function SoundboardBar({
 
           <button
             onClick={onStopAudio}
-            className="bg-surface text-on-background px-4 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all"
+            className="bg-surface text-on-background px-4 py-2 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 transition-all cursor-pointer"
           >
             <span className="material-symbols-outlined text-sm">stop_circle</span>
             <span>Dừng tiếng</span>
