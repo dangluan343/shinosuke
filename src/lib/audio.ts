@@ -17,6 +17,7 @@ class SoundManager {
   private currentBgmStep: number = 0;
   private nextStepTime: number = 0;
   private bgmListeners: Array<(isPlaying: boolean) => void> = [];
+  private currentVoiceAudio: HTMLAudioElement | null = null;
 
   constructor() {
     if (typeof window !== "undefined") {
@@ -1433,6 +1434,57 @@ class SoundManager {
       } catch {
         // ignore
       }
+    }
+  }
+
+  // ==========================================
+  // REAL CHARACTER AUDIO VOICE CLIPS
+  // Pure audio files (MP3), zero robot TTS weirdness!
+  // ==========================================
+
+  public playVoiceClip(charId: string, lang: "vi" | "ja" = "vi", onEnd?: () => void) {
+    if (typeof window === "undefined") {
+      if (onEnd) onEnd();
+      return;
+    }
+    if (this.muted) {
+      if (onEnd) onEnd();
+      return;
+    }
+
+    try {
+      this.stopVoiceClip();
+
+      const audio = new Audio(`/audio/characters/${charId}-${lang}.mp3`);
+      this.currentVoiceAudio = audio;
+
+      audio.onended = () => {
+        this.currentVoiceAudio = null;
+        if (onEnd) onEnd();
+      };
+
+      audio.onerror = () => {
+        this.currentVoiceAudio = null;
+        if (onEnd) onEnd();
+      };
+
+      audio.play().catch(() => {
+        if (onEnd) onEnd();
+      });
+    } catch {
+      if (onEnd) onEnd();
+    }
+  }
+
+  public stopVoiceClip() {
+    if (this.currentVoiceAudio) {
+      try {
+        this.currentVoiceAudio.pause();
+        this.currentVoiceAudio.currentTime = 0;
+      } catch {
+        // ignore
+      }
+      this.currentVoiceAudio = null;
     }
   }
 }

@@ -5,8 +5,8 @@ import React from "react";
 interface SoundboardBarProps {
   tickerText: string;
   isPlaying: boolean;
-  useTts: boolean;
-  onToggleTts: () => void;
+  voiceLang: "vi" | "ja";
+  onToggleLang: () => void;
   onDuoBicker: () => void;
   onRandomVoice: () => void;
   onStopAudio: () => void;
@@ -15,8 +15,8 @@ interface SoundboardBarProps {
 export function SoundboardBar({
   tickerText,
   isPlaying,
-  useTts,
-  onToggleTts,
+  voiceLang,
+  onToggleLang,
   onDuoBicker,
   onRandomVoice,
   onStopAudio,
@@ -33,24 +33,23 @@ export function SoundboardBar({
             <span className="material-symbols-outlined text-3xl">volume_up</span>
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <h3 className="font-headline-sm text-lg md:text-xl uppercase text-on-background tracking-tight">
                 KASUKABE SOUNDBOARD VIBES
               </h3>
               <button
-                onClick={onToggleTts}
-                className={`text-[10px] font-label-bold px-2 py-0.5 border-2 border-black rounded shadow-[1px_1px_0px_#000] cursor-pointer transition-all ${
-                  useTts
-                    ? "bg-purple-200 text-purple-950"
-                    : "bg-emerald-200 text-emerald-950 hover:bg-emerald-300"
-                }`}
-                title="Bấm để chuyển đổi giữa Anime Voice SFX và Giọng đọc Robot"
+                onClick={onToggleLang}
+                className="text-xs font-label-bold px-2.5 py-1 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] cursor-pointer transition-all bg-yellow-300 hover:bg-yellow-400 active:translate-x-0.5 active:translate-y-0.5 flex items-center gap-1.5"
+                title="Bấm để chuyển đổi ngôn ngữ lồng tiếng"
               >
-                {useTts ? "🤖 Robot TTS: BẬT" : "🎵 Anime SFX: CHUẨN"}
+                <span>{voiceLang === "vi" ? "🇻🇳 Giọng: Tiếng Việt" : "🇯🇵 Giọng: Tiếng Nhật"}</span>
+                <span className="text-[10px] bg-black text-white px-1.5 py-0.5 rounded font-mono font-bold">
+                  ĐỔI
+                </span>
               </button>
             </div>
             <p className="text-xs md:text-sm font-caption text-on-surface-variant">
-              Web Audio API lồng tiếng hoạt hình sinh động • 100% âm thanh anime không robot!
+              Audio voice lines chân thực từ Crayon Shin-chan • Bấm "Bấm nghe" trên từng thẻ nhân vật!
             </p>
           </div>
         </div>
