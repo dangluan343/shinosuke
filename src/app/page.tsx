@@ -9,6 +9,8 @@ import { NeoButton } from "@/components/ui/NeoButton";
 import { NeoBadge } from "@/components/ui/NeoBadge";
 import { ASSETS } from "@/constants/assets";
 import { soundFx } from "@/lib/audio";
+import RigA from "@/components/rig/RigA";
+import RigB from "@/components/rig/RigB";
 
 interface StarParticle {
   id: number;
@@ -31,7 +33,7 @@ export default function HomePage() {
 
   // Shin-chan Butt Dance Easter Egg
   const [buttDanceActive, setButtDanceActive] = useState(false);
-  const [isSuperSpeed, setIsSuperSpeed] = useState(false);
+  const [activeRig, setActiveRig] = useState<"a" | "b">("a");
 
   useEffect(() => {
     // Generate 6 atmospheric stars
@@ -428,21 +430,26 @@ export default function HomePage() {
         </section>
       </main>
 
-      {/* Easter Egg Modal: Real Butt Dance Anime Artwork */}
+      {/* Easter Egg Modal: Interactive Character Rig SVG replacing GIF */}
       {buttDanceActive && (
         <div
           className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 select-none animate-in fade-in duration-200"
           onClick={() => setButtDanceActive(false)}
         >
           <div
-            className="bg-tertiary-fixed neo-brutalist-border p-6 sm:p-8 shadow-[12px_12px_0px_0px_#1e1b18] max-w-lg w-full text-center space-y-5 rotate-[-2deg]"
+            className="bg-tertiary-fixed neo-brutalist-border p-5 sm:p-7 shadow-[12px_12px_0px_0px_#1e1b18] max-w-xl w-full text-center space-y-4 rotate-[-1deg]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex justify-between items-center">
-              <NeoBadge variant="primary" rotate={-2}>
-                Buri Buri Zaaemon Approved
-              </NeoBadge>
+            <div className="flex justify-between items-center border-b-2 border-black pb-3">
+              <div className="flex items-center gap-2">
+                <NeoBadge variant="primary" rotate={-2}>
+                  Buri Buri Zaaemon Approved
+                </NeoBadge>
+                <span className="hidden sm:inline-block text-[11px] font-mono font-bold bg-white border border-black px-2 py-0.5 rounded shadow-[1px_1px_0px_#000]">
+                  SVG Character Rig
+                </span>
+              </div>
               <button
                 onClick={() => setButtDanceActive(false)}
                 className="w-9 h-9 bg-white neo-brutalist-border hard-shadow flex items-center justify-center font-label-bold text-base cursor-pointer hover:bg-error hover:text-white transition-colors"
@@ -451,51 +458,59 @@ export default function HomePage() {
               </button>
             </div>
 
-            <h3 className="font-display-lg text-3xl sm:text-4xl uppercase text-primary leading-none">
-              BURI-BURI BUTT DANCE! 🍑
-            </h3>
-
-            {/* The Actual Butt Dance GIF with Wiggle Animation */}
-            <div className="relative w-full aspect-[4/3] neo-brutalist-border overflow-hidden bg-black shadow-inner flex items-center justify-center">
-              <Image
-                src={ASSETS.gallery[0].src}
-                alt={ASSETS.gallery[0].alt}
-                fill
-                unoptimized
-                className={`object-contain ${
-                  isSuperSpeed ? "animate-butt-wiggle-fast" : "animate-butt-wiggle"
-                }`}
-              />
+            <div className="space-y-1">
+              <h3 className="font-display-lg text-2xl sm:text-3xl uppercase text-primary leading-none">
+                BURI-BURI BUTT DANCE! 🍑
+              </h3>
+              <p className="font-body-md text-xs sm:text-sm text-neutral-800 italic">
+                {activeRig === "a"
+                  ? "Di chuột lên Shin để nghiêng người, rê lên quần để đỏ mặt, bấm để chọc!"
+                  : "Shin tự chạy qua lại, rê chuột trước mặt để đuổi quay lại, bấm để cười!"}
+              </p>
             </div>
 
-            <p className="font-body-md text-sm text-on-tertiary-fixed-variant italic">
-              &ldquo;Lắc lắc lắc~ Buri Buri~ Mẹ Misae ơi xem con lắc mông này!&rdquo;
-            </p>
+            {/* The Actual Butt Dance Interactive Rig Stage (Replacing GIF!) */}
+            <div className="relative w-full h-[300px] sm:h-[340px] neo-brutalist-border overflow-hidden bg-[#EAE8FD] shadow-inner flex items-center justify-center p-2 rounded-lg">
+              {activeRig === "a" ? (
+                <RigA className="h-full w-auto max-w-full" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center overflow-hidden">
+                  <RigB roam className="h-[250px] sm:h-[290px] w-auto" />
+                </div>
+              )}
+            </div>
 
-            {/* Interactive Speed & Sound Buttons */}
-            <div className="flex flex-wrap justify-center gap-3 pt-2">
+            {/* Controls Bar: Switch Rigs, SFX, Link to Rig Lab, Close */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
               <button
                 onClick={() => {
                   soundFx.playTroubleBoing();
-                  setIsSuperSpeed(!isSuperSpeed);
+                  setActiveRig(activeRig === "a" ? "b" : "a");
                 }}
-                className="px-4 py-2.5 bg-primary text-on-primary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold text-xs uppercase cursor-pointer"
+                className="px-3.5 py-2 bg-secondary text-on-secondary neo-brutalist-border hard-shadow hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 font-label-bold text-xs uppercase flex items-center gap-1.5 cursor-pointer transition-all"
               >
-                {isSuperSpeed ? "🐢 Lắc Bình Thường" : "🚀 Lắc Siêu Tốc (Super Speed)!"}
+                <span>{activeRig === "a" ? "🔄 Đổi Kiểu: Chổng Mông Đi (Rig B)" : "🔄 Đổi Kiểu: Lắc Hông (Rig A)"}</span>
               </button>
 
               <button
-                onClick={() => soundFx.playTroubleBoing()}
-                className="px-4 py-2.5 bg-secondary text-on-secondary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold text-xs uppercase cursor-pointer"
+                onClick={() => soundFx.playBuriBuriWiggle()}
+                className="px-3.5 py-2 bg-primary text-on-primary neo-brutalist-border hard-shadow hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 font-label-bold text-xs uppercase flex items-center gap-1 cursor-pointer transition-all"
               >
-                🔊 Thêm Tiếng Boing!
+                <span>🔊 Buri-Buri SFX</span>
               </button>
+
+              <Link
+                href="/rig-lab"
+                className="px-3.5 py-2 bg-yellow-300 text-black neo-brutalist-border hard-shadow hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 font-label-bold text-xs uppercase flex items-center gap-1 cursor-pointer transition-all"
+              >
+                <span>🔬 Rig Lab</span>
+              </Link>
 
               <button
                 onClick={() => setButtDanceActive(false)}
-                className="px-4 py-2.5 bg-white text-on-background neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active font-label-bold text-xs uppercase cursor-pointer"
+                className="px-3.5 py-2 bg-white text-on-background neo-brutalist-border hard-shadow hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 font-label-bold text-xs uppercase cursor-pointer transition-all"
               >
-                Xong rồi (Đóng)
+                Đóng (✕)
               </button>
             </div>
           </div>
