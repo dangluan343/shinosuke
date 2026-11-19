@@ -19,6 +19,7 @@ const DEV_LINKS = [
   { label: "Tokens", href: "/tokens" },
   { label: "Assets", href: "/assets" },
   { label: "UI Kit", href: "/uikit" },
+  { label: "Rig Lab", href: "/rig-lab" },
 ];
 
 export const TopNavBar: React.FC = () => {
