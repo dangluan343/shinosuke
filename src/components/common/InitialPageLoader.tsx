@@ -7,7 +7,7 @@ export function InitialPageLoader() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Chỉ kích hoạt một lần khi trang bắt đầu tải
+    // Kích hoạt khi trang bắt đầu tải
     setShow(true);
   }, []);
 
@@ -16,9 +16,8 @@ export function InitialPageLoader() {
   return (
     <BuriBuriLoader
       fullScreen={true}
-      autoDismissMs={1600}
+      autoDismissMs={3800}
       onDismiss={() => setShow(false)}
-      text="Buri Buri! Đang nạp bánh Chocobi..."
     />
   );
 }
