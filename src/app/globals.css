@@ -227,43 +227,107 @@
   opacity: 0.08;
 }
 
-/* Action Kamen Flying Cinematic Animation (Stitch Polished) */
+/* Action Kamen Flying Cinematic Animation (Polished Anime Cutscene) */
 @keyframes beamScreenShake {
   0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-6px, 5px) rotate(-0.5deg); }
-  20% { transform: translate(8px, -6px) rotate(0.7deg); }
-  35% { transform: translate(-8px, 6px) rotate(-0.8deg); }
-  50% { transform: translate(7px, -5px) rotate(0.6deg); }
-  65% { transform: translate(-5px, 4px); }
-  80% { transform: translate(4px, -3px); }
+  10% { transform: translate(-5px, 4px) rotate(-0.4deg); }
+  20% { transform: translate(6px, -5px) rotate(0.5deg); }
+  35% { transform: translate(-6px, 5px) rotate(-0.5deg); }
+  50% { transform: translate(5px, -4px) rotate(0.4deg); }
+  65% { transform: translate(-4px, 3px); }
+  80% { transform: translate(3px, -2px); }
 }
 
 .beam-shake {
   animation: beamScreenShake 0.8s ease-in-out both;
 }
 
-@keyframes kamenFlyAcross {
+/* Action Kamen Hero Entrance & Firing Stance */
+@keyframes heroActionStance {
   0% {
-    transform: translate(-140%, 40%) rotate(18deg) scale(0.7);
+    transform: translate(-100%, 20px) scale(0.8);
     opacity: 0;
   }
-  15% {
+  16% {
+    transform: translate(0, 0) scale(1.05);
     opacity: 1;
   }
-  45% {
-    transform: translate(32vw, -15px) rotate(-4deg) scale(1.15);
+  25% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
   }
-  60% {
-    transform: translate(48vw, 10px) rotate(4deg) scale(1.12);
+  80% {
+    transform: translate(0, 0) scale(1.02);
+    opacity: 1;
   }
   100% {
-    transform: translate(140vw, -25%) rotate(-12deg) scale(0.85);
-    opacity: 1;
+    transform: translate(140vw, -40px) scale(0.85);
+    opacity: 0;
   }
 }
 
-.kamen-flying {
-  animation: kamenFlyAcross 2.3s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+.hero-action-enter {
+  animation: heroActionStance 2.4s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+/* Action Beam Mega Blast Sweeping Forward */
+@keyframes actionBeamBlast {
+  0% {
+    width: 0%;
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  16% {
+    width: 0%;
+    opacity: 0;
+    transform: scaleY(0.3);
+  }
+  26% {
+    width: 45%;
+    opacity: 1;
+    transform: scaleY(1.3);
+  }
+  42% {
+    width: 100%;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  80% {
+    width: 100%;
+    opacity: 1;
+    transform: scaleY(1.1);
+  }
+  90% {
+    width: 100%;
+    opacity: 0.6;
+    transform: scaleY(0.3);
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+.action-beam-blast {
+  animation: actionBeamBlast 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: left center;
+}
+
+/* Energy Charging Orb at Hands */
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(0.85);
+    filter: drop-shadow(0 0 15px #ffff00);
+  }
+  50% {
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 35px #ffffff);
+  }
+}
+
+.orb-pulse-anim {
+  animation: orbPulse 0.35s infinite alternate ease-in-out;
 }
 
 @keyframes capeFlutter {
@@ -276,63 +340,31 @@
   transform-origin: top left;
 }
 
-@keyframes beamSweep {
-  0% {
-    width: 0%;
-    opacity: 0;
-    transform: scaleY(0.2);
-  }
-  20% {
-    width: 55%;
-    opacity: 1;
-    transform: scaleY(1.4);
-  }
-  50% {
-    width: 100%;
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  85% {
-    width: 100%;
-    opacity: 0.95;
-    transform: scaleY(1.2);
-  }
-  100% {
-    width: 100%;
-    opacity: 0;
-    transform: scaleY(0.1);
-  }
-}
-
-.laser-sweep-anim {
-  animation: beamSweep 1.9s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
-}
-
 @keyframes comicTextPop {
   0% {
-    transform: scale(0.2) rotate(-16deg);
+    transform: scale(0.4) rotate(-5deg);
     opacity: 0;
   }
-  25% {
-    transform: scale(1.15) rotate(4deg);
+  20% {
+    transform: scale(1.06) rotate(1.5deg);
     opacity: 1;
   }
-  35% {
-    transform: scale(1) rotate(-2deg);
+  32% {
+    transform: scale(1) rotate(-1deg);
     opacity: 1;
   }
-  80% {
-    transform: scale(1.05) rotate(1deg);
+  82% {
+    transform: scale(1.02) rotate(1deg);
     opacity: 1;
   }
   100% {
-    transform: scale(1.3) rotate(8deg);
+    transform: scale(1.1) rotate(3deg);
     opacity: 0;
   }
 }
 
 .comic-banner-pop {
-  animation: comicTextPop 2.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: comicTextPop 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @keyframes shockwaveExpand {
