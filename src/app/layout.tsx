@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { InitialPageLoader } from "@/components/common/InitialPageLoader";
 
 export const viewport: Viewport = {
   themeColor: "#e60012",
@@ -71,6 +72,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container min-h-screen">
+        <InitialPageLoader />
         {children}
       </body>
     </html>
