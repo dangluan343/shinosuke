@@ -4,41 +4,29 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { TopNavBar } from "@/components/layout/TopNavBar";
 import { Footer } from "@/components/layout/Footer";
-import { NeoBadge } from "@/components/ui/NeoBadge";
 import { ASSETS } from "@/constants/assets";
 import { soundFx } from "@/lib/audio";
 import { MisaeRageMeter } from "@/components/squad/MisaeRageMeter";
 import { SoundboardBar } from "@/components/squad/SoundboardBar";
+import { ActionBeamOverlay } from "@/components/squad/ActionBeamOverlay";
 
 interface CharacterVoice {
   id: string;
   name: string;
   japaneseTitle?: string;
   colorName: string;
-  badge?: string;
+  cardBadge?: string;
+  cardBadgeClass?: string;
+  bossRibbon?: string;
   image: string;
+  bgFrame: string;
+  hoverBorder: string;
+  btnBg: string;
   mischief: number;
   mischiefColor: string;
   quoteVi: string;
   quoteJp: string;
-  rate: number;
-  pitch: number;
-  playSfx: () => void;
-}
-
-interface ClanMember {
-  id: string;
-  name: string;
-  japaneseTitle?: string;
-  colorName: string;
-  image: string;
-  quoteVi: string;
-  quoteJp: string;
-  badgeText: string;
-  badgeBg: string;
-  rate: number;
-  pitch: number;
-  playSfx: () => void;
+  tagline: string;
 }
 
 const DEFENSE_GROUP: CharacterVoice[] = [
@@ -47,165 +35,202 @@ const DEFENSE_GROUP: CharacterVoice[] = [
     name: "Shin-chan",
     japaneseTitle: "Nohara Shinnosuke (5 tuổi)",
     colorName: "text-primary",
-    badge: "THE BOSS",
+    cardBadge: "5 Tuổi",
+    cardBadgeClass: "bg-red-100 text-primary border-primary",
+    bossRibbon: "THE BOSS",
     image: ASSETS.characters.shinChan.src,
+    bgFrame: "bg-amber-100",
+    hoverBorder: "group-hover:border-primary",
+    btnBg: "bg-primary",
     mischief: 98,
     mischiefColor: "bg-primary",
-    quoteVi: "Ora Shin-chan da zo! Chị gái xinh đẹp ơi có thích ăn ớt chuông không? Ho-ho-ho-i!",
+    quoteVi: "Ora Shin-chan da zo! Chị gái xinh đẹp ơi có thích ăn ớt chuông không? Ho-ho-ho-i! He-he-he!",
     quoteJp: "オラしんのすけだゾ〜！ピーマンは嫌いだゾ〜！",
-    rate: 1.25,
-    pitch: 1.5,
-    playSfx: () => soundFx.playShinchanSFX(),
+    tagline: '"Hey, Action Mask! Wait for meeeee!"',
   },
   {
     id: "kazama",
     name: "Kazama-kun",
-    japaneseTitle: "Toru Kazama",
+    japaneseTitle: "Kazama Tooru (Thiếu gia học giả)",
     colorName: "text-secondary",
+    cardBadge: "Lớp Hướng Dương",
+    cardBadgeClass: "bg-blue-100 text-secondary border-secondary",
     image: ASSETS.characters.kazama.src,
+    bgFrame: "bg-blue-100",
+    hoverBorder: "group-hover:border-secondary",
+    btnBg: "bg-secondary",
     mischief: 15,
     mischiefColor: "bg-secondary",
     quoteVi: "Shin-chan, đừng có thổi vào tai tớ nữa mà! Xấu hổ chết đi được! Tớ phải đi học thêm tiếng Anh rồi!",
     quoteJp: "しんのすけ！耳に息を吹きかけるなよ〜！",
-    rate: 1.15,
-    pitch: 1.3,
-    playSfx: () => soundFx.playKazamaSFX(),
+    tagline: '"I am a refined gentleman from a high-class family!"',
   },
   {
     id: "nene",
     name: "Nene-chan",
-    japaneseTitle: "Sakurada Nene",
-    colorName: "text-error",
+    japaneseTitle: "Nene-chan (Công chúa dấm đài)",
+    colorName: "text-pink-600",
+    cardBadge: "Thỏ Bông Nổi Giận",
+    cardBadgeClass: "bg-pink-100 text-pink-700 border-pink-500",
     image: ASSETS.characters.nene.src,
+    bgFrame: "bg-pink-100",
+    hoverBorder: "group-hover:border-pink-500",
+    btnBg: "bg-pink-600",
     mischief: 75,
-    mischiefColor: "bg-error",
-    quoteVi: "Chơi trò Gia Đình Thực Tế nào! Đưa thỏ bông đây mau! Bóp bóp xả giận!",
+    mischiefColor: "bg-pink-600",
+    quoteVi: "Chơi trò Gia Đình Thực Tế nào! Đưa thỏ bông đây! Bop bop!",
     quoteJp: "リアルおままごとやるわよ！ウサギさん持ってきなさい！",
-    rate: 1.2,
-    pitch: 1.45,
-    playSfx: () => soundFx.playNeneSFX(),
+    tagline: '"Time to play Real House! You\'re the salaryman!"',
   },
   {
     id: "masao",
     name: "Masao-kun",
-    japaneseTitle: "Sato Masao (Củ hành tây)",
-    colorName: "text-on-surface-variant",
+    japaneseTitle: "Masao-kun (Củ hành tây)",
+    colorName: "text-emerald-800",
+    cardBadge: "Onigiri Tròn Vo",
+    cardBadgeClass: "bg-emerald-100 text-emerald-800 border-emerald-600",
     image: ASSETS.characters.masao.src,
-    mischief: 10,
-    mischiefColor: "bg-on-surface-variant",
-    quoteVi: "Sao lúc nào người chịu trận cũng là tớ chứ... Shin-chan đừng kéo quần tớ hu hu!",
+    bgFrame: "bg-emerald-100",
+    hoverBorder: "group-hover:border-emerald-600",
+    btnBg: "bg-emerald-700",
+    mischief: 20,
+    mischiefColor: "bg-emerald-600",
+    quoteVi: "Oa oa oa! Shin-chan đừng kéo tụt quần tớ nữa! Tớ sợ lắm!",
     quoteJp: "どうしてボクばっかり…ズボン引っ張らないで〜！",
-    rate: 1.05,
-    pitch: 1.2,
-    playSfx: () => soundFx.playMasaoSFX(),
+    tagline: '"Why does this always happen to me? *cries*"',
   },
   {
     id: "bochan",
     name: "Bo-chan",
-    japaneseTitle: "Bo-chan",
-    colorName: "text-tertiary",
+    japaneseTitle: "Bo-chan (Thần đá)",
+    colorName: "text-amber-800",
+    cardBadge: "Thần Đá Kasukabe",
+    cardBadgeClass: "bg-amber-100 text-amber-800 border-amber-600",
     image: ASSETS.characters.boChan.src,
-    mischief: 30,
-    mischiefColor: "bg-tertiary",
-    quoteVi: "Bo... vừa tìm thấy một hòn đá có hình dáng giống cô Yoshinaga... Bo.",
+    bgFrame: "bg-amber-100",
+    hoverBorder: "group-hover:border-amber-600",
+    btnBg: "bg-amber-600",
+    mischief: 10,
+    mischiefColor: "bg-amber-600",
+    quoteVi: "Bo... tớ tìm thấy một hòn đá hình mũi tên kỳ diệu... Bo...",
     quoteJp: "ボーちゃん…よしなが先生に似た石見つけた…ボー。",
-    rate: 0.85,
-    pitch: 0.85,
-    playSfx: () => soundFx.playBochanSFX(),
+    tagline: '"Bo... found a nice rock... Bo."',
   },
   {
     id: "shiro",
     name: "Shiro",
-    japaneseTitle: "Bạch Tuyết thông minh",
-    colorName: "text-primary",
+    japaneseTitle: "Bạch Tuyết (Shiro)",
+    colorName: "text-blue-700",
+    cardBadge: "Kẹo Bông Gòn",
+    cardBadgeClass: "bg-cyan-100 text-blue-800 border-blue-600",
     image: ASSETS.characters.shiro.src,
+    bgFrame: "bg-cyan-50",
+    hoverBorder: "group-hover:border-cyan-500",
+    btnBg: "bg-blue-600",
     mischief: 5,
-    mischiefColor: "bg-primary",
-    quoteVi: "Gâu! Gâu gâu! Shin-chan lại quên cho tớ ăn cơm rồi! Cuộn tròn làm kẹo bông gòn đây! Gâu gâu!",
+    mischiefColor: "bg-blue-600",
+    quoteVi: "Gâu! Gâu gâu! Shin-chan mau đổ hạt vào bát cho tớ đi!",
     quoteJp: "ワン！わたあめの術〜！ご飯まだ〜？",
-    rate: 1.3,
-    pitch: 1.6,
-    playSfx: () => soundFx.playShiroSFX(),
+    tagline: '"Woof! (The only responsible one here)"',
   },
 ];
 
-const NOHARA_CLAN: ClanMember[] = [
+interface NoharaMember {
+  id: string;
+  name: string;
+  japaneseTitle?: string;
+  colorName: string;
+  cardBadge: string;
+  cardBadgeClass: string;
+  image: string;
+  bgFrame: string;
+  hoverBorder: string;
+  btnBg: string;
+  quoteVi: string;
+  quoteJp: string;
+  tagline: string;
+}
+
+const NOHARA_CLAN: NoharaMember[] = [
   {
     id: "misae",
-    name: "Misae Nohara",
-    japaneseTitle: "Nohara Misae (29 tuổi)",
-    colorName: "text-secondary",
+    name: "Misae",
+    japaneseTitle: "Mẹ Misae",
+    colorName: "text-error",
+    cardBadge: "29 Tuổi (Tâm hồn 20)",
+    cardBadgeClass: "bg-red-100 text-error border-error",
     image: ASSETS.characters.misae.src,
-    quoteVi: "SHIN-CHAN! Lại không dọn đồ chơi hả?! Có tin mẹ cho ăn nắm đấm xoay cuồng nghiền thái dương không?!",
+    bgFrame: "bg-red-50",
+    hoverBorder: "group-hover:border-error",
+    btnBg: "bg-error",
+    quoteVi: "SHIN-CHAN! Lại không chịu dọn đồ chơi hả?! Cốc đầu sấm sét!",
     quoteJp: "しんのすけ！グリグリ攻撃をお見舞いするわよ！！",
-    badgeText: "Mischief Manager Level: 100",
-    badgeBg: "bg-secondary-fixed",
-    rate: 1.2,
-    pitch: 1.35,
-    playSfx: () => soundFx.playMisaeRageSFX(),
+    tagline: '"Shin-chan! Stop showing your butt to the neighbors!"',
   },
   {
     id: "hiroshi",
-    name: "Hiroshi Nohara",
-    japaneseTitle: "Nohara Hiroshi (Trụ cột 32 năm nợ nhà)",
-    colorName: "text-tertiary",
+    name: "Hiroshi",
+    japaneseTitle: "Bố Hiroshi",
+    colorName: "text-amber-800",
+    cardBadge: "Trưởng Phòng Futaba",
+    cardBadgeClass: "bg-amber-100 text-amber-800 border-amber-700",
     image: ASSETS.characters.hiroshi.src,
-    quoteVi: "Haizz... Mùi tất chân 32 năm tiền nhà này sẽ cứu rỗi thế giới! Cạn ly bia sau ngày làm việc vất vả nào!",
+    bgFrame: "bg-amber-50",
+    hoverBorder: "group-hover:border-amber-600",
+    btnBg: "bg-amber-700",
+    quoteVi: "Haizz... Mùi tất chân 32 năm tiền nhà này sẽ cứu thế giới! Bia ngon quá!",
     quoteJp: "ああ〜今日も残業疲れた…ビールがうまい！",
-    badgeText: "Smelly Feet Level: OVER 9000",
-    badgeBg: "bg-tertiary-fixed",
-    rate: 0.9,
-    pitch: 0.75,
-    playSfx: () => soundFx.playHiroshiSFX(),
+    tagline: '"My socks... they\'re more powerful than any weapon."',
   },
   {
     id: "himawari",
-    name: "Himawari Nohara",
-    japaneseTitle: "Nohara Himawari (0 tuổi)",
-    colorName: "text-primary",
+    name: "Himawari",
+    japaneseTitle: "Bé Himawari",
+    colorName: "text-pink-600",
+    cardBadge: "0 Tuổi • Mê Hột Xoàn",
+    cardBadgeClass: "bg-pink-100 text-pink-600 border-pink-400",
     image: ASSETS.characters.himawari.src,
-    quoteVi: "Ta-da! Kira-kira! Trai đẹp và kim cương sáng lấp lánh đâu rồi! Ta-ya-ya!",
+    bgFrame: "bg-pink-50",
+    hoverBorder: "group-hover:border-pink-500",
+    btnBg: "bg-pink-600",
+    quoteVi: "Ta-ya! Kira-kira! Kim cương lấp lánh và trai đẹp đâu rồi?!",
     quoteJp: "たいやー！キラキラ〜イケメンどこ〜？",
-    badgeText: "Shiny Radar: ACTIVATED",
-    badgeBg: "bg-primary-fixed",
-    rate: 1.4,
-    pitch: 1.7,
-    playSfx: () => soundFx.playHimawariSFX(),
+    tagline: '"Da-da! *points at shiny diamonds*"',
   },
 ];
 
 export default function SquadPage() {
   const [tickerText, setTickerText] = useState(
-    "Đang sẵn sàng! Bấm nút 'Bấm nghe giọng' trên bất kỳ thẻ nhân vật nào dưới đây để nghe lồng tiếng thật."
+    'Đang sẵn sàng! Bấm nút "ACTION BEAM" hoặc bấm vào thẻ nhân vật để nghe giọng.'
   );
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const [voiceLang, setVoiceLang] = useState<"vi" | "ja">("vi");
+  const [isBeamActive, setIsBeamActive] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Play Character Voice (Real Character Audio Clip MP3)
+  // Play Character Voice
   const triggerVoice = (
     id: string,
     name: string,
     quoteVi: string,
     quoteJp: string
   ) => {
-    // Clear previous timer & audio
     if (timerRef.current) clearTimeout(timerRef.current);
     soundFx.stopVoiceClip();
 
     setSpeakingId(id);
     const currentLine = voiceLang === "vi" ? quoteVi : quoteJp;
-    setTickerText(`🎙️ Đang phát [${voiceLang === "vi" ? "Tiếng Việt" : "Tiếng Nhật"}]: ${name} — "${currentLine}"`);
+    setTickerText(
+      `🎙️ [${voiceLang === "vi" ? "Tiếng Việt" : "Tiếng Nhật"}]: ${name} — "${currentLine}"`
+    );
 
-    // Play authentic MP3 voice line
     soundFx.playVoiceClip(id, voiceLang, () => {
       timerRef.current = setTimeout(() => {
         setSpeakingId(null);
-        setTickerText("Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.");
+        setTickerText('Sẵn sàng! Bấm vào bất kỳ nhân vật nào để tiếp tục nghe giọng.');
       }, 500);
     });
 
-    // Safety fallback timer if audio stalls
     timerRef.current = setTimeout(() => {
       setSpeakingId((prev) => (prev === id ? null : prev));
     }, 6000);
@@ -216,30 +241,27 @@ export default function SquadPage() {
     soundFx.stopSpeech();
     if (timerRef.current) clearTimeout(timerRef.current);
     setSpeakingId(null);
-    setTickerText("Đã dừng âm thanh.");
+    setTickerText("Đã dừng âm thanh!");
   };
 
   const handleDuoBicker = () => {
-    // 1. Shin provocative line
     const shin = DEFENSE_GROUP[0];
     triggerVoice(shin.id, shin.name, shin.quoteVi, shin.quoteJp);
     setTickerText("🔥 Khẩu chiến: Shin-chan trêu chọc mẹ Misae!");
 
-    // 2. Misae counter attack after Shin finishes speaking
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       const misae = NOHARA_CLAN[0];
       triggerVoice(misae.id, misae.name, misae.quoteVi, misae.quoteJp);
-      setTickerText("💥 Khẩu chiến: Misae tung chiêu 'Nắm đấm xoay cuồng' phạt Shin!");
-    }, 3200);
+      setTickerText('💥 Khẩu chiến: Misae tung chiêu "Cốc đầu sấm sét" phạt Shin!');
+    }, 3000);
   };
 
   const handleRandomVoice = () => {
-    const allChars: (CharacterVoice | ClanMember)[] = [...DEFENSE_GROUP, ...NOHARA_CLAN];
+    const allChars = [...DEFENSE_GROUP, ...NOHARA_CLAN];
     const picked = allChars[Math.floor(Math.random() * allChars.length)];
     triggerVoice(picked.id, picked.name, picked.quoteVi, picked.quoteJp);
 
-    // Scroll smoothly to target card
     if (typeof document !== "undefined") {
       const el = document.getElementById(`card-${picked.id}`);
       if (el) {
@@ -248,10 +270,9 @@ export default function SquadPage() {
     }
   };
 
-  const handleRollCall = () => {
-    soundFx.playVoiceClip("action_mask", voiceLang);
-    soundFx.playActionBeam();
-    setTickerText("⚡ ACTION BEAM! Đội Phòng Vệ Kasukabe tập hợp đầy đủ!");
+  const handleTriggerActionBeam = () => {
+    setIsBeamActive(true);
+    setTickerText("⚡ SIÊU NHÂN HÀNH ĐỘNG BAY NGANG MÀN HÌNH BẮN ACTION BEAM! ⚡");
   };
 
   useEffect(() => {
@@ -263,246 +284,249 @@ export default function SquadPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container flex flex-col justify-between">
+    <div
+      id="app-body"
+      className={`min-h-screen bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container flex flex-col justify-between relative overflow-x-hidden ${
+        isBeamActive ? "beam-shake" : ""
+      }`}
+    >
+      {/* Background Comic Dots */}
+      <div className="fixed inset-0 comic-dots pointer-events-none z-0" />
+
+      {/* Cinematic Action Kamen Beam Overlay */}
+      <ActionBeamOverlay
+        isActive={isBeamActive}
+        onComplete={() => {
+          setIsBeamActive(false);
+          setTickerText("Action Beam hoàn tất! Bấm lại nút để triệu hồi Siêu Nhân bay ngang màn hình tiếp.");
+        }}
+      />
+
       <TopNavBar />
 
-      <main className="relative px-margin-mobile md:px-margin-desktop py-section-gap max-w-7xl mx-auto w-full flex-grow space-y-12">
+      <main className="relative z-10 px-4 md:px-12 py-10 max-w-7xl mx-auto w-full flex-grow">
         {/* Hero Section */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-tertiary-fixed px-4 py-1.5 border-[3px] border-on-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-xs md:text-sm font-label-bold uppercase tracking-wider">
-            <span className="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
-            <span>🔊 TƯƠNG TÁC ÂM THANH - BẤM VÀO NHÂN VẬT ĐỂ NGHE GIỌNG NÓI!</span>
+        <div className="mb-10 text-center space-y-3">
+          <div className="inline-flex items-center gap-2 bg-tertiary-fixed px-4 py-1.5 border-[3px] border-black shadow-[4px_4px_0px_0px_#000] text-xs md:text-sm font-label-bold uppercase tracking-wider rounded-lg">
+            <span className="w-3 h-3 rounded-full bg-primary border border-black animate-ping" />
+            <span className="text-black font-extrabold">
+              🔊 TƯƠNG TÁC ÂM THANH - BẤM VÀO NHÂN VẬT ĐỂ NGHE GIỌNG NÓI!
+            </span>
           </div>
-
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase italic text-on-background drop-shadow-[3px_3px_0px_#b7000c] leading-none">
-            Kasukabe Defense Group
+          <h1 className="font-display-lg text-4xl md:text-6xl uppercase italic text-black font-black tracking-tight drop-shadow-[3px_3px_0px_#ffd200]">
+            KASUKABE DEFENSE GROUP
           </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+          <p className="font-body-md text-sm md:text-base font-semibold text-on-surface-variant max-w-2xl mx-auto">
             Protecting the world from boredom, one diaper at a time! Meet the legends of Futaba
-            Kindergarten and listen to their iconic quotes with live synthesized sound effects.
+            Kindergarten and listen to their iconic quotes.
           </p>
         </div>
 
-        {/* 1. Kasukabe Soundboard Vibes Bar */}
+        {/* 1. Kasukabe Soundboard Section */}
         <SoundboardBar
           tickerText={tickerText}
           isPlaying={speakingId !== null}
           voiceLang={voiceLang}
           onToggleLang={() => setVoiceLang((prev) => (prev === "vi" ? "ja" : "vi"))}
+          onActionBeam={handleTriggerActionBeam}
           onDuoBicker={handleDuoBicker}
           onRandomVoice={handleRandomVoice}
           onStopAudio={handleStopAudio}
         />
 
-        {/* 2. Misae Rage Meter Interactive Minigame */}
-        <MisaeRageMeter
-          onTickerUpdate={(msg) => setTickerText(msg)}
-        />
+        {/* 2. Kasukabe Kids Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {DEFENSE_GROUP.map((c) => {
+            const isSpeaking = speakingId === c.id;
+            const mainQuote = voiceLang === "vi" ? c.quoteVi : c.quoteJp;
+            const subQuote = voiceLang === "vi" ? c.quoteJp : c.quoteVi;
 
-        {/* 3. Kasukabe Defense Group Character Bento Grid */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between border-b-2 border-black pb-2">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🎒</span>
-              <h2 className="font-display-lg text-xl md:text-2xl uppercase italic text-on-background">
-                Đội Phòng Vệ Mầm Non Futaba
-              </h2>
-            </div>
-            <NeoBadge variant="secondary" rotate={2} className="text-xs">
-              6 Thành Viên
-            </NeoBadge>
-          </div>
+            return (
+              <div
+                key={c.id}
+                id={`card-${c.id}`}
+                onClick={() => triggerVoice(c.id, c.name, c.quoteVi, c.quoteJp)}
+                className={`character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group select-none ${
+                  isSpeaking ? "speaking-card" : ""
+                }`}
+              >
+                {/* Boss Ribbon Badge */}
+                {c.bossRibbon && (
+                  <div className="absolute -top-3 -right-3 w-24 h-24 bg-primary text-white rotate-12 flex items-center justify-center border-[3px] border-black z-20 shadow-[2px_2px_0px_#000]">
+                    <span className="font-label-bold text-xs uppercase font-black text-center leading-none mt-2 mr-2">
+                      THE
+                      <br />
+                      BOSS
+                    </span>
+                  </div>
+                )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-            {DEFENSE_GROUP.map((c) => {
-              const isSpeaking = speakingId === c.id;
-              const mainText = voiceLang === "vi" ? c.quoteVi : c.quoteJp;
-              const subText = voiceLang === "vi" ? c.quoteJp : c.quoteVi;
-              return (
+                {/* Floating Comic Speech Bubble */}
                 <div
-                  key={c.id}
-                  id={`card-${c.id}`}
-                  onClick={() =>
-                    triggerVoice(c.id, c.name, c.quoteVi, c.quoteJp)
-                  }
-                  className={`character-card bg-surface neo-brutalist-border hard-shadow p-6 sm:p-8 flex flex-col gap-4 relative overflow-hidden group select-none ${
-                    isSpeaking ? "speaking-card" : ""
-                  }`}
+                  id={`bubble-${c.id}`}
+                  className={`comic-bubble top-4 left-4 right-4 ${isSpeaking ? "active" : ""}`}
                 >
-                  {/* Boss badge */}
-                  {c.badge && (
-                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary rotate-12 flex items-center justify-center neo-brutalist-border z-10 select-none shadow-[2px_2px_0px_#000]">
-                      <span className="text-on-primary font-label-bold text-center text-xs leading-tight">
-                        {c.badge}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Floating Comic Speech Bubble (visible on hover and active speech) */}
-                  <div className={`comic-bubble top-6 left-6 right-6 ${isSpeaking ? "active" : ""}`}>
-                    <div className="text-[11px] font-bold text-primary uppercase">
-                      📢 {c.japaneseTitle || c.name}:
-                    </div>
-                    <p className="font-label-bold text-xs md:text-sm text-on-background leading-snug">
-                      "{mainText}"
-                    </p>
-                    <span className="text-[10px] text-on-surface-variant font-mono">
-                      {subText}
-                    </span>
+                  <div className={`text-[11px] font-bold uppercase ${c.colorName}`}>
+                    📢 {c.japaneseTitle || c.name}:
                   </div>
-
-                  {/* Character Image Frame */}
-                  <div className="w-full aspect-square neo-brutalist-border overflow-hidden relative bg-white group-hover:border-primary transition-colors">
-                    <Image
-                      src={c.image}
-                      alt={c.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-
-                    {/* Equalizer Indicator overlay on bottom right */}
-                    <div
-                      className={`absolute bottom-2 right-2 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_#000] rounded transition-all cursor-pointer ${
-                        isSpeaking ? "bg-error animate-pulse" : "bg-primary hover:bg-red-700"
-                      }`}
-                    >
-                      <span className="material-symbols-outlined text-sm">
-                        {isSpeaking ? "graphic_eq" : "volume_up"}
-                      </span>
-                      <span>{isSpeaking ? "Đang phát..." : "Bấm nghe giọng"}</span>
-                    </div>
-                  </div>
-
-                  {/* Info Header & Mischief bar */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className={`font-headline-sm text-headline-sm uppercase ${c.colorName}`}>
-                        {c.name}
-                      </h3>
-                      {c.japaneseTitle && (
-                        <span className="text-[11px] font-mono text-neutral-500 font-bold">
-                          {c.japaneseTitle}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <span className="font-label-bold text-xs uppercase">Mischief:</span>
-                      <div className="flex-1 h-4 bg-surface-container neo-brutalist-border overflow-hidden relative rounded">
-                        <div
-                          className={`h-full comic-hatch ${c.mischiefColor} transition-all duration-300`}
-                          style={{ width: `${c.mischief}%` }}
-                        />
-                      </div>
-                      <span className="font-mono font-bold text-xs">{c.mischief}%</span>
-                    </div>
-
-                    <p className="italic font-body-md text-sm text-on-surface-variant line-clamp-2">
-                      "{mainText}"
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* 4. Nohara Clan Section */}
-        <section className="space-y-6 pt-4">
-          <div className="text-center space-y-2">
-            <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase italic text-secondary drop-shadow-[2px_2px_0px_#001b3b] leading-none">
-              The Nohara Clan
-            </h2>
-            <p className="font-body-md text-on-surface-variant">
-              Gia đình hỗn loạn nhưng ấm áp nhất Nhật Bản tại số nhà 904-2 Kasukabe!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {NOHARA_CLAN.map((n) => {
-              const isSpeaking = speakingId === n.id;
-              const mainText = voiceLang === "vi" ? n.quoteVi : n.quoteJp;
-              const subText = voiceLang === "vi" ? n.quoteJp : n.quoteVi;
-              return (
-                <div
-                  key={n.id}
-                  id={`card-${n.id}`}
-                  onClick={() =>
-                    triggerVoice(n.id, n.name, n.quoteVi, n.quoteJp)
-                  }
-                  className={`character-card bg-surface neo-brutalist-border hard-shadow p-6 sm:p-8 flex flex-col gap-4 relative overflow-hidden group select-none ${
-                    isSpeaking ? "speaking-card" : ""
-                  }`}
-                >
-                  {/* Floating Comic Speech Bubble */}
-                  <div className={`comic-bubble top-6 left-6 right-6 ${isSpeaking ? "active" : ""}`}>
-                    <div className="text-[11px] font-bold text-primary uppercase">
-                      📢 {n.japaneseTitle || n.name}:
-                    </div>
-                    <p className="font-label-bold text-xs md:text-sm text-on-background leading-snug">
-                      "{mainText}"
-                    </p>
-                    <span className="text-[10px] text-on-surface-variant font-mono">
-                      {subText}
-                    </span>
-                  </div>
-
-                  {/* Character Image */}
-                  <div className="w-full h-52 neo-brutalist-border overflow-hidden relative bg-white group-hover:border-primary transition-colors rounded">
-                    <Image
-                      src={n.image}
-                      alt={n.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-
-                    {/* Audio status badge */}
-                    <div
-                      className={`absolute bottom-2 right-2 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black flex items-center gap-1 shadow-[2px_2px_0px_#000] rounded transition-all cursor-pointer ${
-                        isSpeaking ? "bg-error animate-pulse" : "bg-primary hover:bg-red-700"
-                      }`}
-                    >
-                      <span className="material-symbols-outlined text-sm">
-                        {isSpeaking ? "graphic_eq" : "volume_up"}
-                      </span>
-                      <span>{isSpeaking ? "Đang phát..." : "Bấm nghe giọng"}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <h3 className={`font-headline-sm text-headline-sm uppercase ${n.colorName}`}>
-                      {n.name}
-                    </h3>
-                    <span className="text-[11px] font-mono text-neutral-500 font-bold">
-                      {n.japaneseTitle}
-                    </span>
-                  </div>
-
-                  <p className="italic font-body-md text-sm text-on-surface-variant flex-grow line-clamp-2">
-                    "{mainText}"
+                  <p className="font-label-bold text-xs md:text-sm text-black leading-snug">
+                    "{mainQuote}"
                   </p>
+                  <span className="text-[10px] text-gray-500 font-mono">{subQuote}</span>
+                </div>
 
+                {/* Character Image Frame */}
+                <div
+                  className={`w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative ${c.hoverBorder} transition-colors ${c.bgFrame}`}
+                >
+                  <Image
+                    src={c.image}
+                    alt={c.name}
+                    fill
+                    className="object-cover block group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                   <div
-                    className={`${n.badgeBg} p-3 neo-brutalist-border font-label-bold text-xs uppercase text-center shadow-[2px_2px_0px_#000] rounded`}
+                    className={`absolute bottom-2.5 right-2.5 ${c.btnBg} text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-transform`}
                   >
-                    {n.badgeText}
+                    <span className="material-symbols-outlined text-[15px]">
+                      {isSpeaking ? "graphic_eq" : "volume_up"}
+                    </span>
+                    <span>{isSpeaking ? "ĐANG PHÁT" : "BẤM NGHE"}</span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </section>
 
-        {/* Floating Action Button: Roll Call / Action Beam */}
+                {/* Info & Mischief */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <h2 className={`font-display-lg text-2xl font-black uppercase tracking-tight ${c.colorName}`}>
+                      {c.name}
+                    </h2>
+                    {c.cardBadge && (
+                      <span
+                        className={`text-xs px-2.5 py-0.5 border-2 font-label-bold rounded-md ${c.cardBadgeClass}`}
+                      >
+                        {c.cardBadge}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+                    <div className="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+                      <div
+                        className={`h-full ${c.mischiefColor} comic-hatch transition-all duration-300`}
+                        style={{ width: `${c.mischief}%` }}
+                      />
+                    </div>
+                    <span className={`text-xs font-mono font-bold ${c.colorName}`}>{c.mischief}%</span>
+                  </div>
+
+                  <p className="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">
+                    {c.tagline}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 3. Nohara Clan Section Header */}
+        <div className="mt-16 text-center mb-8">
+          <div className="inline-block bg-tertiary-fixed text-black text-xs font-label-bold px-3 py-1 border-2 border-black uppercase rounded shadow-[2px_2px_0px_#000] mb-2">
+            Gia Đình Nohara Huyền Thoại
+          </div>
+          <h2 className="font-display-lg text-3xl md:text-5xl uppercase italic text-black font-black drop-shadow-[3px_3px_0px_#e60012]">
+            THE NOHARA CLAN
+          </h2>
+          <p className="font-body-md text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 mt-1">
+            Nhấp Để Nghe Khẩu Chiến Nảy Lửa Giữa Các Thành Viên
+          </p>
+        </div>
+
+        {/* 4. Nohara Clan Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-14">
+          {NOHARA_CLAN.map((n) => {
+            const isSpeaking = speakingId === n.id;
+            const mainQuote = voiceLang === "vi" ? n.quoteVi : n.quoteJp;
+            const subQuote = voiceLang === "vi" ? n.quoteJp : n.quoteVi;
+
+            return (
+              <div
+                key={n.id}
+                id={`card-${n.id}`}
+                onClick={() => triggerVoice(n.id, n.name, n.quoteVi, n.quoteJp)}
+                className={`character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group select-none ${
+                  isSpeaking ? "speaking-card" : ""
+                }`}
+              >
+                {/* Floating Comic Speech Bubble */}
+                <div
+                  id={`bubble-${n.id}`}
+                  className={`comic-bubble top-4 left-4 right-4 ${isSpeaking ? "active" : ""}`}
+                >
+                  <div className={`text-[11px] font-bold uppercase ${n.colorName}`}>
+                    📢 {n.japaneseTitle || n.name}:
+                  </div>
+                  <p className="font-label-bold text-xs md:text-sm text-black leading-snug">
+                    "{mainQuote}"
+                  </p>
+                  <span className="text-[10px] text-gray-500 font-mono">{subQuote}</span>
+                </div>
+
+                {/* Character Image Frame */}
+                <div
+                  className={`w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative ${n.hoverBorder} transition-colors ${n.bgFrame}`}
+                >
+                  <Image
+                    src={n.image}
+                    alt={n.name}
+                    fill
+                    className="object-cover block group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div
+                    className={`absolute bottom-2.5 right-2.5 ${n.btnBg} text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}
+                  >
+                    <span className="material-symbols-outlined text-[15px]">
+                      {isSpeaking ? "graphic_eq" : "volume_up"}
+                    </span>
+                    <span>{isSpeaking ? "ĐANG PHÁT" : "BẤM NGHE"}</span>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <h2 className={`font-display-lg text-2xl font-black uppercase tracking-tight ${n.colorName}`}>
+                      {n.name}
+                    </h2>
+                    <span
+                      className={`text-xs px-2.5 py-0.5 border-2 font-label-bold rounded-md ${n.cardBadgeClass}`}
+                    >
+                      {n.cardBadge}
+                    </span>
+                  </div>
+                  <p className="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">
+                    {n.tagline}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 5. Misae Anger Meter Interactive Section */}
+        <MisaeRageMeter onTickerUpdate={(msg) => setTickerText(msg)} />
+
+        {/* Floating Action Button: Action Beam Flying Summoner */}
         <button
-          onClick={handleRollCall}
-          className="fixed bottom-6 right-6 md:bottom-12 md:right-12 w-16 h-16 bg-primary text-on-primary neo-brutalist-border hard-shadow hard-shadow-hover hard-shadow-active rounded-full flex items-center justify-center z-50 cursor-pointer hover:scale-110 active:scale-95 transition-transform"
-          aria-label="Roll Call Đội Kasukabe"
-          title="⚡ Roll Call: Bắn Action Beam!"
+          onClick={handleTriggerActionBeam}
+          className="fixed bottom-6 right-6 md:bottom-12 md:right-12 w-16 h-16 bg-primary text-white border-[3px] border-black shadow-[4px_4px_0px_0px_#000] rounded-full flex items-center justify-center z-50 cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+          aria-label="Triệu hồi Siêu Nhân Hành Động Action Beam"
+          title="⚡ ACTION BEAM: Triệu hồi Siêu Nhân bay ngang màn hình!"
         >
-          <span className="material-symbols-outlined text-3xl">bolt</span>
+          <span className="material-symbols-outlined text-3xl animate-bounce">bolt</span>
         </button>
       </main>
 

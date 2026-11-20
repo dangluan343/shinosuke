@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHIN-CHAN! - Kasukabe Squad &amp; Action Beam</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#b7000c",
+          "primary-container": "#e60012",
+          "secondary": "#0b5eaf",
+          "secondary-container": "#1e88e5",
+          "tertiary": "#d49700",
+          "tertiary-fixed": "#ffd200",
+          "background": "#fff8f5",
+          "surface": "#ffffff",
+          "surface-container": "#fdf3eb",
+          "surface-container-high": "#f5ece7",
+          "on-background": "#1e1b18",
+          "on-surface-variant": "#5f3f3b",
+          "error": "#e60012"
+        },
+        fontFamily: {
+          "display-lg": ["Bricolage Grotesque", "sans-serif"],
+          "headline-md": ["Bricolage Grotesque", "sans-serif"],
+          "headline-sm": ["Bricolage Grotesque", "sans-serif"],
+          "label-bold": ["Space Grotesk", "sans-serif"],
+          "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+          "body-md": ["Plus Jakarta Sans", "sans-serif"],
+          "caption": ["Plus Jakarta Sans", "sans-serif"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+  }
+  .comic-dots {
+    background-image: radial-gradient(#1e1b18 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    opacity: 0.08;
+  }
+  .comic-hatch {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0,0,0,0.15) 5px, rgba(0,0,0,0.15) 10px);
+  }
+  .hazard-stripe {
+    background-image: repeating-linear-gradient(-45deg, #ffd200, #ffd200 14px, #1e1b18 14px, #1e1b18 28px);
+  }
+  .character-card {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+  .character-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px 0px #1e1b18 !important;
+  }
+  .speaking-card {
+    transform: translate(-3px, -3px) scale(1.02) !important;
+    box-shadow: 6px 6px 0px 0px #e60012, 10px 10px 0px 0px #1e1b18 !important;
+    border-color: #e60012 !important;
+    animation: comicWiggle 0.45s ease-in-out infinite alternate;
+  }
+  @keyframes comicWiggle {
+    0% { transform: translate(-3px, -3px) rotate(-0.5deg); }
+    100% { transform: translate(-3px, -5px) rotate(0.8deg); }
+  }
+  @keyframes eqBounce {
+    0%, 100% { height: 4px; }
+    50% { height: 18px; }
+  }
+  .eq-bar-1 { animation: eqBounce 0.4s ease-in-out infinite; }
+  .eq-bar-2 { animation: eqBounce 0.6s ease-in-out 0.15s infinite; }
+  .eq-bar-3 { animation: eqBounce 0.35s ease-in-out 0.05s infinite; }
+  .eq-bar-4 { animation: eqBounce 0.5s ease-in-out 0.2s infinite; }
+
+  @keyframes screenShake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    15% { transform: translate(-10px, 8px) rotate(-1.5deg); }
+    30% { transform: translate(12px, -9px) rotate(2deg); }
+    45% { transform: translate(-14px, -5px) rotate(-1deg); }
+    60% { transform: translate(9px, 12px) rotate(1.8deg); }
+    75% { transform: translate(-8px, -11px) rotate(-2deg); }
+    90% { transform: translate(6px, 7px) rotate(0.8deg); }
+  }
+  .shake-screen {
+    animation: screenShake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+  }
+  @keyframes beamScreenShake {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-6px, 5px) rotate(-0.5deg); }
+    20% { transform: translate(8px, -6px) rotate(0.7deg); }
+    35% { transform: translate(-8px, 6px) rotate(-0.8deg); }
+    50% { transform: translate(7px, -5px) rotate(0.6deg); }
+    65% { transform: translate(-5px, 4px); }
+    80% { transform: translate(4px, -3px); }
+  }
+  .beam-shake {
+    animation: beamScreenShake 0.8s ease-in-out both;
+  }
+
+  .comic-bubble {
+    position: absolute;
+    z-index: 30;
+    background: #ffffff;
+    border: 3px solid #1e1b18;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    border-radius: 14px;
+    padding: 10px 14px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px) scale(0.85);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .comic-bubble.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Action Kamen Flight Animation Across Screen */
+  @keyframes kamenFlyAcross {
+    0% {
+      transform: translate(-140%, 40%) rotate(18deg) scale(0.7);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    45% {
+      transform: translate(32vw, -15px) rotate(-4deg) scale(1.15);
+    }
+    60% {
+      transform: translate(48vw, 10px) rotate(4deg) scale(1.12);
+    }
+    100% {
+      transform: translate(140vw, -25%) rotate(-12deg) scale(0.85);
+      opacity: 1;
+    }
+  }
+  .kamen-flying {
+    animation: kamenFlyAcross 2.3s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+  }
+
+  @keyframes capeFlutter {
+    0%, 100% { transform: skewX(-4deg) scaleY(1); }
+    50% { transform: skewX(12deg) scaleY(1.08) rotate(3deg); }
+  }
+  .cape-anim {
+    animation: capeFlutter 0.22s infinite alternate;
+    transform-origin: top left;
+  }
+
+  @keyframes beamSweep {
+    0% {
+      width: 0%;
+      opacity: 0;
+      transform: scaleY(0.2);
+    }
+    20% {
+      width: 55%;
+      opacity: 1;
+      transform: scaleY(1.4);
+    }
+    50% {
+      width: 100%;
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    85% {
+      width: 100%;
+      opacity: 0.95;
+      transform: scaleY(1.2);
+    }
+    100% {
+      width: 100%;
+      opacity: 0;
+      transform: scaleY(0.1);
+    }
+  }
+  .laser-sweep-anim {
+    animation: beamSweep 1.9s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+  }
+
+  @keyframes comicTextPop {
+    0% {
+      transform: scale(0.2) rotate(-16deg);
+      opacity: 0;
+    }
+    25% {
+      transform: scale(1.15) rotate(4deg);
+      opacity: 1;
+    }
+    35% {
+      transform: scale(1) rotate(-2deg);
+      opacity: 1;
+    }
+    80% {
+      transform: scale(1.05) rotate(1deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.3) rotate(8deg);
+      opacity: 0;
+    }
+  }
+  .comic-banner-pop {
+    animation: comicTextPop 2.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes shockwaveExpand {
+    0% {
+      transform: scale(0.1);
+      opacity: 0.9;
+      border-width: 18px;
+    }
+    100% {
+      transform: scale(2.8);
+      opacity: 0;
+      border-width: 2px;
+    }
+  }
+  .shockwave-anim {
+    animation: shockwaveExpand 0.95s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+  }
+
+  @keyframes flashGlory {
+    0% { opacity: 0; }
+    15% { opacity: 0.65; }
+    30% { opacity: 0.2; }
+    45% { opacity: 0.8; }
+    70% { opacity: 0.25; }
+    100% { opacity: 0; }
+  }
+  .glory-flash-anim {
+    animation: flashGlory 1.6s ease-out forwards;
+  }
+
+  @keyframes sparkleTwinkle {
+    0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+  }
+  .sparkle-item {
+    animation: sparkleTwinkle 0.8s ease-in-out infinite;
+  }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md overflow-x-hidden selection:bg-tertiary-fixed selection:text-black relative" id="app-body">
+<div class="fixed inset-0 comic-dots pointer-events-none z-0"></div>
+<!-- ======================================================== -->
+<!-- ACTION KAMEN CINEMATIC BEAM OVERLAY (STAGE) -->
+<!-- ======================================================== -->
+<div class="fixed inset-0 z-[100] pointer-events-none hidden overflow-hidden" id="action-beam-overlay">
+<!-- Energy Flash Background -->
+<div class="absolute inset-0 bg-gradient-to-r from-red-600/30 via-yellow-400/35 to-emerald-500/30 opacity-0" id="beam-glory-flash"></div>
+<!-- Radial Speedlines -->
+<div class="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none" style="background-image: repeating-conic-gradient(from 0deg, rgba(255,255,255,0.5) 0deg 6deg, transparent 6deg 14deg);"></div>
+<!-- Shockwave Rings -->
+<div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-white opacity-0" id="beam-shockwave"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border-yellow-300 opacity-0" id="beam-shockwave-2"></div>
+<!-- Action Beam Laser Track across screen -->
+<div class="absolute top-[48%] left-0 w-0 h-28 -translate-y-1/2 flex flex-col justify-center pointer-events-none" id="beam-laser-track">
+<div class="relative w-full h-full flex items-center">
+<div class="absolute inset-x-0 h-32 bg-gradient-to-r from-lime-400 via-emerald-400 to-yellow-300 opacity-70 blur-xl"></div>
+<div class="absolute inset-x-0 h-16 bg-gradient-to-r from-red-600 via-yellow-400 to-cyan-300 border-y-4 border-black shadow-[0_0_35px_#ffff00]"></div>
+<div class="absolute inset-x-0 h-6 bg-white border-y-2 border-black shadow-[0_0_20px_#ffffff]"></div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-24 h-24 bg-yellow-300 rounded-full blur-md opacity-80 animate-ping"></div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-16 h-16 bg-white rounded-full border-4 border-black"></div>
+</div>
+</div>
+<!-- Floating Starbursts -->
+<div class="absolute inset-0 pointer-events-none" id="beam-sparkles-container">
+<div class="sparkle-item absolute top-[28%] left-[25%] text-4xl text-yellow-300 drop-shadow-[2px_2px_0px_#000]">✨</div>
+<div class="sparkle-item absolute top-[62%] left-[45%] text-5xl text-white drop-shadow-[2px_2px_0px_#000]" style="animation-delay: 0.15s;">💥</div>
+<div class="sparkle-item absolute top-[35%] left-[70%] text-6xl text-yellow-400 drop-shadow-[3px_3px_0px_#000]" style="animation-delay: 0.3s;">⚡</div>
+<div class="sparkle-item absolute top-[55%] left-[82%] text-4xl text-emerald-400 drop-shadow-[2px_2px_0px_#000]" style="animation-delay: 0.2s;">✨</div>
+<div class="sparkle-item absolute top-[20%] left-[55%] text-5xl text-red-500 drop-shadow-[3px_3px_0px_#000]" style="animation-delay: 0.35s;">⚡</div>
+</div>
+<!-- Action Kamen Hero Flying Figure -->
+<div class="absolute top-[32%] -left-36 w-80 md:w-96 pointer-events-none drop-shadow-[12px_12px_0px_rgba(0,0,0,1)]" id="action-kamen-hero">
+<svg class="w-full h-auto overflow-visible" fill="none" viewbox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+<!-- Cape -->
+<path class="cape-anim" d="M125 105 C70 90 20 120 5 185 C45 160 80 170 120 145 Z" fill="#e60012" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<path class="cape-anim" d="M110 115 C60 110 30 150 15 210 C50 180 85 185 115 160 Z" fill="#b7000c" stroke="#1e1b18" stroke-linejoin="round" stroke-width="5"></path>
+<!-- Legs -->
+<path d="M135 155 L75 205 L60 195 L115 145 Z" fill="#003b74" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<path d="M75 205 L45 220 L35 205 L60 195 Z" fill="#e60012" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<path d="M160 160 L95 230 L80 215 L140 148 Z" fill="#0b5eaf" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<path d="M95 230 L60 250 L50 235 L80 215 Z" fill="#ffd700" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<!-- Torso -->
+<path d="M150 95 L225 80 L235 150 L145 155 Z" fill="#00a86b" stroke="#1e1b18" stroke-linejoin="round" stroke-width="8"></path>
+<polygon fill="#ffd700" points="175,90 220,85 195,140" stroke="#1e1b18" stroke-width="5"></polygon>
+<text fill="#e60012" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="900" stroke="#1e1b18" stroke-width="1.5" x="187" y="125">A</text>
+<path d="M140 150 L235 145 L232 165 L143 168 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="6"></path>
+<circle cx="188" cy="157" fill="#ffd700" r="14" stroke="#1e1b18" stroke-width="5"></circle>
+<circle cx="188" cy="157" fill="#e60012" r="6"></circle>
+<!-- Left Arm -->
+<path d="M150 95 L125 55 L145 45 L175 85 Z" fill="#003b74" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<path d="M125 55 L115 35 L135 25 L145 45 Z" fill="#ffd700" stroke="#1e1b18" stroke-linejoin="round" stroke-width="6"></path>
+<!-- Helmet / Face -->
+<ellipse cx="235" cy="55" fill="#00a86b" rx="34" ry="32" stroke="#1e1b18" stroke-width="8"></ellipse>
+<path d="M220 28 L235 8 L250 28 Z" fill="#ffd700" stroke="#1e1b18" stroke-linejoin="round" stroke-width="6"></path>
+<line stroke="#1e1b18" stroke-linecap="round" stroke-width="6" x1="235" x2="235" y1="8" y2="-12"></line>
+<circle cx="235" cy="-14" fill="#e60012" r="7" stroke="#1e1b18" stroke-width="4"></circle>
+<ellipse cx="225" cy="48" fill="#ffd700" rx="10" ry="14" stroke="#1e1b18" stroke-width="5" transform="rotate(-15 225 48)"></ellipse>
+<ellipse cx="250" cy="46" fill="#ffd700" rx="11" ry="14" stroke="#1e1b18" stroke-width="5" transform="rotate(10 250 46)"></ellipse>
+<path d="M225 65 Q238 82 255 65 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="5"></path>
+<path d="M230 68 Q240 76 250 68" stroke="#1e1b18" stroke-linecap="round" stroke-width="4"></path>
+<!-- Right Arm Extended Firing Beam -->
+<path d="M220 90 L290 82 L300 110 L230 118 Z" fill="#00a86b" stroke="#1e1b18" stroke-linejoin="round" stroke-width="8"></path>
+<path d="M285 82 L340 78 L345 115 L295 112 Z" fill="#ffffff" stroke="#1e1b18" stroke-linejoin="round" stroke-width="7"></path>
+<rect fill="#e60012" height="34" stroke="#1e1b18" stroke-width="4" width="12" x="298" y="78"></rect>
+<ellipse cx="348" cy="96" fill="#ffd700" rx="16" ry="18" stroke="#1e1b18" stroke-width="7"></ellipse>
+<polygon fill="#ffffff" points="350,96 385,88 360,96 395,96 360,102 385,110 350,100 340,118 344,98 330,95 344,92 340,75" stroke="#e60012" stroke-width="4"></polygon>
+<circle cx="355" cy="96" fill="#ffff00" r="10"></circle>
+</svg>
+</div>
+<!-- Comic Burst Dialogue Banner -->
+<div class="absolute top-[18%] left-1/2 -translate-x-1/2 z-50 pointer-events-none" id="beam-comic-burst">
+<div class="relative bg-tertiary-fixed border-[5px] border-black p-4 md:p-6 rounded-3xl shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] text-center transform rotate-[-3deg]">
+<div class="inline-block bg-primary text-white text-xs md:text-sm font-label-bold uppercase px-3 py-1 border-2 border-black rounded mb-2 shadow-[2px_2px_0px_#000]">
+        ⚡ SIÊU NHÂN HÀNH ĐỘNG XUẤT HIỆN! ⚡
+      </div>
+<h2 class="font-display-lg text-2xl md:text-5xl uppercase italic text-error tracking-tight drop-shadow-[4px_4px_0px_#1e1b18] whitespace-nowrap">
+        WA-HA-HA-HA! ACTION BEAMMMMM! ⚡💥
+      </h2>
+<p class="font-mono text-xs md:text-base font-black text-black tracking-widest mt-1">
+        アクションビーム！正義は必ず勝つ！ (CÔNG LÝ BẤT DIỆT!)
+      </p>
+</div>
+</div>
+</div>
+<!-- Header -->
+<header class="flex justify-between items-center w-full px-4 md:px-12 py-3.5 sticky top-0 z-50 border-b-[4px] border-on-background bg-white shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-3">
+<span class="font-display-lg text-3xl md:text-4xl text-primary font-black uppercase italic tracking-tighter drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">SHIN-CHAN!</span>
+<span class="hidden sm:inline-block bg-tertiary-fixed text-black text-[11px] font-label-bold px-2 py-0.5 border-2 border-black rounded shadow-[2px_2px_0px_#000]">ふたば幼稚園</span>
+</div>
+<nav class="hidden md:flex gap-7 items-center">
+<a class="text-on-background font-label-bold hover:text-primary transition-colors uppercase text-sm tracking-wide" href="#">Home</a>
+<a class="text-secondary font-label-bold border-b-[3px] border-secondary pb-0.5 uppercase text-sm tracking-wide" href="#">Squad</a>
+<a class="text-on-background font-label-bold hover:text-primary transition-colors uppercase text-sm tracking-wide" href="#soundboard-section">Soundboard</a>
+<a class="text-on-background font-label-bold hover:text-error transition-colors flex items-center gap-1 uppercase text-sm tracking-wide" href="#misae-meter-section">
+<span class="material-symbols-outlined text-[18px] text-error font-bold">local_fire_department</span>
+<span>Nộ Khí Misae</span>
+</a>
+<a class="text-on-background font-label-bold hover:text-primary transition-colors uppercase text-sm tracking-wide" href="#">Kasukabe</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="bg-primary text-white px-4 md:px-5 py-2 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-label-bold uppercase text-xs md:text-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all flex items-center gap-1.5 cursor-pointer group" onclick="playActionMaskBeam()">
+<span class="material-symbols-outlined text-[20px] group-hover:rotate-45 transition-transform">bolt</span>
+<span>ACTION BEAM!</span>
+</button>
+</div>
+</header>
+<main class="relative z-10 px-4 md:px-12 py-10 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<div class="mb-10 text-center space-y-3">
+<div class="inline-flex items-center gap-2 bg-tertiary-fixed px-4 py-1.5 border-[3px] border-black shadow-[4px_4px_0px_0px_#000] text-xs md:text-sm font-label-bold uppercase tracking-wider rounded-lg">
+<span class="w-3 h-3 rounded-full bg-primary border border-black animate-ping"></span>
+<span class="text-black font-extrabold">🔊 TƯƠNG TÁC ÂM THANH - BẤM VÀO NHÂN VẬT ĐỂ NGHE GIỌNG NÓI!</span>
+</div>
+<h1 class="font-display-lg text-4xl md:text-6xl uppercase italic text-black font-black tracking-tight drop-shadow-[3px_3px_0px_#ffd200]">
+      KASUKABE DEFENSE GROUP
+    </h1>
+<p class="font-body-md text-sm md:text-base font-semibold text-on-surface-variant max-w-2xl mx-auto">
+      Protecting the world from boredom, one diaper at a time! Meet the legends of Futaba Kindergarten and listen to their iconic quotes.
+    </p>
+</div>
+<!-- Soundboard Control Section -->
+<section class="mb-14 bg-white border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-5 md:p-6 rounded-2xl relative overflow-hidden" id="soundboard-section">
+<div class="absolute -right-8 -bottom-8 w-28 h-28 bg-tertiary-fixed rounded-full opacity-30 pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row items-center justify-between gap-5 relative z-10">
+<div class="flex items-center gap-3.5 w-full lg:w-auto">
+<div class="w-14 h-14 bg-primary text-white rounded-xl border-[3px] border-black flex items-center justify-center shadow-[3px_3px_0px_0px_#000] shrink-0">
+<span class="material-symbols-outlined text-3xl">volume_up</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="bg-primary text-white text-[10px] font-label-bold px-2 py-0.5 border border-black uppercase rounded">Interactive</span>
+<h3 class="font-display-lg text-xl md:text-2xl uppercase text-black font-extrabold tracking-tight">KASUKABE SOUNDBOARD VIBES</h3>
+</div>
+<p class="text-xs md:text-sm font-caption text-gray-600 font-semibold mt-0.5">Web Audio API lồng tiếng sống động • Không cần tải file âm thanh ngoài!</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2.5 items-center justify-start lg:justify-end w-full lg:w-auto">
+<button class="bg-primary text-white px-4 py-2.5 border-[3px] border-black shadow-[3px_3px_0px_0px_#000] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer rounded-lg" onclick="playActionMaskBeam()">
+<span class="material-symbols-outlined text-base">bolt</span>
+<span>Bắn Action Beam Bay</span>
+</button>
+<button class="bg-tertiary-fixed text-black px-4 py-2.5 border-[3px] border-black shadow-[3px_3px_0px_0px_#000] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer rounded-lg" onclick="playDuoBicker()">
+<span class="material-symbols-outlined text-base">sports_kabaddi</span>
+<span>Shin &amp; Misae Khẩu Chiến</span>
+</button>
+<button class="bg-surface-container-high text-black px-4 py-2.5 border-[3px] border-black shadow-[3px_3px_0px_0px_#000] font-label-bold text-xs md:text-sm uppercase flex items-center gap-1.5 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer rounded-lg" onclick="stopAllAudio()">
+<span class="material-symbols-outlined text-base">stop_circle</span>
+<span>Dừng tiếng</span>
+</button>
+</div>
+</div>
+<!-- Soundboard Ticker -->
+<div class="mt-4 bg-tertiary-fixed/20 border-[3px] border-black p-3.5 rounded-xl flex items-center justify-between text-xs md:text-sm font-label-bold shadow-[3px_3px_0px_0px_#000]" id="sound-ticker">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-primary text-xl shrink-0">graphic_eq</span>
+<span class="truncate text-on-background font-bold" id="ticker-text">Đang sẵn sàng! Bấm nút "ACTION BEAM" hoặc bấm vào thẻ nhân vật để nghe giọng.</span>
+</div>
+<div class="hidden sm:flex items-end gap-1 h-5 w-16 justify-end shrink-0" id="global-visualizer">
+<span class="w-1.5 bg-primary rounded-full h-2 eq-bar-1 border border-black"></span>
+<span class="w-1.5 bg-secondary rounded-full h-4 eq-bar-2 border border-black"></span>
+<span class="w-1.5 bg-tertiary rounded-full h-3 eq-bar-3 border border-black"></span>
+<span class="w-1.5 bg-emerald-500 rounded-full h-5 eq-bar-4 border border-black"></span>
+</div>
+</div>
+</section>
+<!-- Kasukabe Kids Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+<!-- Shin-chan -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-shinchan" onclick="triggerCharacterVoice('shinchan')">
+<div class="absolute -top-3 -right-3 w-24 h-24 bg-primary text-white rotate-12 flex items-center justify-center border-[3px] border-black z-20 shadow-[2px_2px_0px_#000]">
+<span class="font-label-bold text-xs uppercase font-black text-center leading-none mt-2 mr-2">THE<br/>BOSS</span>
+</div>
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-shinchan">
+<div class="text-[11px] font-bold text-primary uppercase">📢 Nohara Shinnosuke (5 tuổi):</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Ora Shin-chan da zo! Chị gái xinh đẹp ơi có thích ăn ớt chuông không? Ho-ho-ho-i! He-he-he!"</p>
+<span class="text-[10px] text-gray-500 font-mono">オラしんのすけだゾ〜！</span>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-primary transition-colors bg-amber-100">
+<img alt="Shin-chan" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn52cwgQ0ur2Z40p0lP3HeZVq5tw6Tse9NLaGHu944WgfDubI61BZAnCHGjPQSdOPoFGa3CGZdre1uBSDe_y0CfEcrCq-CX-JjmuT1_I4S0pd6erpDD__gfktErRvUb-hMa2sE63eaL-VlUJZxVplQmwTBjrTim8KsQbuBHONyHj8OrK9Fgtaf6FH-OIAY4L3gHyf29WFP1d5hX4sWaUVikPWhBeRWCN8-pZ57MXMk5-k7y-Hedch9hA"/>
+<div class="absolute bottom-2.5 right-2.5 bg-primary text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-primary font-black uppercase tracking-tight">Shin-chan</h2>
+<span class="text-xs bg-red-100 text-primary px-2.5 py-0.5 border-2 border-primary font-label-bold rounded-md">5 Tuổi</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+<div class="h-full bg-primary w-[98%] comic-hatch"></div>
+</div>
+<span class="text-xs font-mono font-bold text-primary">98%</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Hey, Action Mask! Wait for meeeee!"</p>
+</div>
+</div>
+<!-- Kazama -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-kazama" onclick="triggerCharacterVoice('kazama')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-kazama">
+<div class="text-[11px] font-bold text-secondary uppercase">📢 Kazama Tooru (Thiếu gia học giả):</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Shin-chan, đừng có thổi vào tai tớ nữa mà! Xấu hổ chết đi được! Tớ phải đi học thêm tiếng Anh rồi!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-secondary transition-colors bg-blue-100">
+<img alt="Kazama" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrA8-utZ_bEDdlDFttUdyNycuZTDG0OQEynGSVFAbYqftDhSHDw4UvBx35OFJg8Dgj7Pud6836EL7kxX2sUHxF6ma9wQ7l48FTCGMS_A9w3heWyTtJcXJkxMyAwugWgDZHfxEp6Thw8ksYyDhOoc5ZKMYeggTso05SlvwirCXvyfE_MnoobvR_cxFtsfIEdF1znzKI0jVN1RHoJfx0doyU_4a7G_Z7oCfp8bEnIb9Ug5Rg"/>
+<div class="absolute bottom-2.5 right-2.5 bg-secondary text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-secondary font-black uppercase tracking-tight">Kazama-kun</h2>
+<span class="text-xs bg-blue-100 text-secondary px-2.5 py-0.5 border-2 border-secondary font-label-bold rounded-md">Lớp Hướng Dương</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+<div class="h-full bg-secondary w-[15%] comic-hatch"></div>
+</div>
+<span class="text-xs font-mono font-bold text-secondary">15%</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"I am a refined gentleman from a high-class family!"</p>
+</div>
+</div>
+<!-- Nene -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-nene" onclick="triggerCharacterVoice('nene')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-nene">
+<div class="text-[11px] font-bold text-pink-600 uppercase">📢 Nene-chan (Công chúa dấm đài):</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Chơi trò Gia Đình Thực Tế nào! Đưa thỏ bông đây! Bop bop!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-pink-500 transition-colors bg-pink-100">
+<img alt="Nene" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrDL_pib7hTBzFQ-PBKJZpBKQztYPwDMVtcMsoXYEtiRKb2XIGuJbGfGWQw07V3lOa63X92JdHJJaIyFnNtGanC3rd1fMbDtxI_wJyN2FYqrrCfDQB8Iv-NodiA7AUOVB2_HnQ26-KQjMcy_keopicPhwZINmp7pnXUiV0-on5nhhJ63HcXnwBSPvYER1SnQaUXVkMGJnitMSB_a54wD1NO-oUz5UYU12VPXwBzA8iXg"/>
+<div class="absolute bottom-2.5 right-2.5 bg-pink-600 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-pink-600 font-black uppercase tracking-tight">Nene-chan</h2>
+<span class="text-xs bg-pink-100 text-pink-700 px-2.5 py-0.5 border-2 border-pink-500 font-label-bold rounded-md">Thỏ Bông Nổi Giận</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+<div class="h-full bg-pink-600 w-[75%] comic-hatch"></div>
+</div>
+<span class="text-xs font-mono font-bold text-pink-600">75%</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Time to play Real House! You're the salaryman!"</p>
+</div>
+</div>
+<!-- Masao -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-masao" onclick="triggerCharacterVoice('masao')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-masao">
+<div class="text-[11px] font-bold text-emerald-700 uppercase">📢 Masao-kun:</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Oa oa oa! Shin-chan đừng kéo tụt quần tớ nữa! Tớ sợ lắm!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-emerald-600 transition-colors bg-emerald-100">
+<img alt="Masao" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrCBoADnxFN3jcD106npALvE2eT517tmfwV8aZuNJ9u44WXJOJwGlV3hFc-vzh7RMQYq75z0gFPG4e8EKElg6WC_AsxQN2Cbu6oOpZrsnTAcXhwIZdNJEYLXafUE9gjZGo3nNQf_aD_i36cg7p4tuk2XdOCGm_rJ8pYJbF2hK9BpjBKEAWjigQ1IDC6cXQLl6DC3_76iukLPYDdZrB47_WMQEWz7W5A8kcvIISZ1q909AQ"/>
+<div class="absolute bottom-2.5 right-2.5 bg-emerald-700 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-emerald-800 font-black uppercase tracking-tight">Masao-kun</h2>
+<span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-0.5 border-2 border-emerald-600 font-label-bold rounded-md">Onigiri Tròn Vo</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+<div class="h-full bg-emerald-600 w-[20%] comic-hatch"></div>
+</div>
+<span class="text-xs font-mono font-bold text-emerald-700">20%</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Why does this always happen to me? *cries*"</p>
+</div>
+</div>
+<!-- Bo-chan -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-bochan" onclick="triggerCharacterVoice('bochan')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-bochan">
+<div class="text-[11px] font-bold text-amber-700 uppercase">📢 Bo-chan:</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Bo... tớ tìm thấy một hòn đá hình mũi tên kỳ diệu... Bo..."</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-amber-600 transition-colors bg-amber-100">
+<img alt="Bo-chan" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrBiPLYwkb8_BWaqx9F5_1lJpDCAzqy4VqxQNb7CfazHBCPrt8UOhNl5m9NC3w-jjx8-DtS0XgGgGshoESmiwZdLXBObnJdkPQMYE-f4bwFMdy4zwiMmYVBfMbQflWla-2RKfYRgjheycnrYGatwXqxnvOSLDOdATFHjsn4YpF9aM8zR5U6-iFO-UCksEx9HDOBDeuAq6mcVh5fGJ0Ps9_4iNfgGGFIDfTHcBZLYxY06hg"/>
+<div class="absolute bottom-2.5 right-2.5 bg-amber-600 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-amber-800 font-black uppercase tracking-tight">Bo-chan</h2>
+<span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 border-2 border-amber-600 font-label-bold rounded-md">Thần Đá Kasukabe</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+<div class="h-full bg-amber-600 w-[10%] comic-hatch"></div>
+</div>
+<span class="text-xs font-mono font-bold text-amber-800">10%</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Bo... found a nice rock... Bo."</p>
+</div>
+</div>
+<!-- Shiro -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-shiro" onclick="triggerCharacterVoice('shiro')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-shiro">
+<div class="text-[11px] font-bold text-blue-600 uppercase">📢 Bạch Tuyết (Shiro):</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Gâu! Gâu gâu! Shin-chan mau đổ hạt vào bát cho tớ đi!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-cyan-500 transition-colors bg-cyan-50">
+<img alt="Shiro" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrAj98L9INkAiFaos2jOS1mX8Z8DzCLZ-C4nVVE2ttNlAjqhfIUG1fuqFPnSbH7wZrVrQrUMUtg8UH_K0LQcmGW4EdI0OE-5TlHbL48dzuAOH4-vlB4L5idyYxLj0mDHns8smCokgHOYxbG-EdPj_KV4767EyII-uPpOX8jSvLgVBMdq8YH_pGGDe-rb0qNlv7P-0q-XhIAX4XQEaV-zOMXD6zscHmBmKwGjsNwa4jMDHQ"/>
+<div class="absolute bottom-2.5 right-2.5 bg-blue-600 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-blue-700 font-black uppercase tracking-tight">Shiro</h2>
+<span class="text-xs bg-cyan-100 text-blue-800 px-2.5 py-0.5 border-2 border-blue-600 font-label-bold rounded-md">Kẹo Bông Gòn</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-bold text-xs uppercase text-gray-700">Mischief:</span>
+<div class="flex-1 h-4 bg-surface-container-high border-[2px] border-black rounded-full overflow-hidden relative">
+<div class="h-full bg-blue-600 w-[5%] comic-hatch"></div>
+</div>
+<span class="text-xs font-mono font-bold text-blue-700">5%</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Woof! (The only responsible one here)"</p>
+</div>
+</div>
+</div>
+<!-- Nohara Clan Section Header -->
+<div class="mt-16 text-center mb-8">
+<div class="inline-block bg-tertiary-fixed text-black text-xs font-label-bold px-3 py-1 border-2 border-black uppercase rounded shadow-[2px_2px_0px_#000] mb-2">
+      Gia Đình Nohara Huyền Thoại
+    </div>
+<h2 class="font-display-lg text-3xl md:text-5xl uppercase italic text-black font-black drop-shadow-[3px_3px_0px_#e60012]">THE NOHARA CLAN</h2>
+<p class="font-body-md text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 mt-1">Nhấp Để Nghe Khẩu Chiến Nảy Lửa Giữa Các Thành Viên</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-7 mb-14">
+<!-- Misae -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-misae" onclick="triggerCharacterVoice('misae')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-misae">
+<div class="text-[11px] font-bold text-error uppercase">📢 Mẹ Misae:</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"SHIN-CHAN! Lại không chịu dọn đồ chơi hả?! Cốc đầu sấm sét!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-error transition-colors bg-red-50">
+<img alt="Misae" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrCRH-7nIkt6EUfI06j4zH3sz_QuOArDeCtGhGCFvbp5hQeotzdOCPr_-EucStBgbjnA5Q1wcpMBj0jr8ta2J2tixhgumxUVJ7mcYS1vUtJAvvtzlRo4OeFzX3Hj08Oc1kNLzK26DBv5nFG-94H-Yx4NtZpa0n36oAP3aejIOvxDamZpIo-MbDSbZTOpxkb54EDcpOfsPdmeD0C-EqoepJF-tQASWnY505rAXxT9hhpJ5w"/>
+<div class="absolute bottom-2.5 right-2.5 bg-error text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-error font-black uppercase tracking-tight">Misae</h2>
+<span class="text-xs bg-red-100 text-error px-2.5 py-0.5 border-2 border-error font-label-bold rounded-md">29 Tuổi (Tâm hồn 20)</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Shin-chan! Stop showing your butt to the neighbors!"</p>
+</div>
+</div>
+<!-- Hiroshi -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-hiroshi" onclick="triggerCharacterVoice('hiroshi')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-hiroshi">
+<div class="text-[11px] font-bold text-amber-700 uppercase">📢 Bố Hiroshi:</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Haizz... Mùi tất chân 32 năm tiền nhà này sẽ cứu thế giới! Bia ngon quá!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-amber-600 transition-colors bg-amber-50">
+<img alt="Hiroshi" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrDsVUg2P91lTR4IbO5cMiFoX7KCMApjpD13u_PmKx0QKH_N4DFLNudhcfpeNb1oInfuPKilkVyfols_BOZc3bhG9ZIH9BiypQnDnRXmVylieWuwMXig7uHW7KbUb8ONXeVSAr--UdX7CFgaQaH43WVI50V5AkxeondDkCTU8SIjWrKZZCSjyy3FQkx8KxnefFxrDyTIvkGNLFP2Q07i-qAf9FsNNkjOTewXmyvBJT3JjQ"/>
+<div class="absolute bottom-2.5 right-2.5 bg-amber-700 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-amber-800 font-black uppercase tracking-tight">Hiroshi</h2>
+<span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 border-2 border-amber-700 font-label-bold rounded-md">Trưởng Phòng Futaba</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"My socks... they're more powerful than any weapon."</p>
+</div>
+</div>
+<!-- Himawari -->
+<div class="character-card bg-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden group" id="card-himawari" onclick="triggerCharacterVoice('himawari')">
+<div class="comic-bubble top-4 left-4 right-4" id="bubble-himawari">
+<div class="text-[11px] font-bold text-pink-600 uppercase">📢 Bé Himawari:</div>
+<p class="font-label-bold text-xs md:text-sm text-black leading-snug">"Ta-ya! Kira-kira! Kim cương lấp lánh và trai đẹp đâu rồi?!"</p>
+</div>
+<div class="w-full aspect-square border-[3px] border-black rounded-xl overflow-hidden relative group-hover:border-pink-500 transition-colors bg-pink-50">
+<img alt="Himawari" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/ALJJyrC-Tny3487olk1jBNUPRwloasLUbXokcg7GpNAp6vuY1nboFgTccJ5Oww1Jn-CbAYbEU9B0mp2YcV2AuNPC7DtUQIv2eoPxd3KEp3hCkEuAC9Ra6LdrmlEfWevQ76WxqLgYfwvJDiyOWgmTRfsKjBeckqHaO-m7D0Yr-Hi3hBT1E8sNOkXNRgYm1sXGlAQ8NUZ3O5csrArIzsMb5hWnhHtvSnFkS08zRt1Y0u0p-WRB"/>
+<div class="absolute bottom-2.5 right-2.5 bg-pink-600 text-white text-[11px] font-label-bold px-2.5 py-1 border-[2px] border-black rounded-md flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-[15px]">volume_up</span> BẤM NGHE
+        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="font-display-lg text-2xl text-pink-600 font-black uppercase tracking-tight">Himawari</h2>
+<span class="text-xs bg-pink-100 text-pink-600 px-2.5 py-0.5 border-2 border-pink-400 font-label-bold rounded-md">0 Tuổi • Mê Hột Xoàn</span>
+</div>
+<p class="italic font-body-md text-xs md:text-sm text-gray-600 font-medium">"Da-da! *points at shiny diamonds*"</p>
+</div>
+</div>
+</div>
+<!-- Misae Anger Meter Section -->
+<section class="mb-14 bg-white border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-2xl overflow-hidden" id="misae-meter-section">
+<div class="hazard-stripe h-6 w-full border-b-[3px] border-black"></div>
+<div class="p-6 md:p-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+<div>
+<span class="inline-block bg-primary text-white text-xs font-label-bold px-3 py-1 border-2 border-black uppercase mb-2 rounded shadow-[2px_2px_0px_0px_#000]">Version 3000 • Futaba Lab</span>
+<h2 class="font-display-lg text-2xl md:text-4xl text-error uppercase italic font-black tracking-tight drop-shadow-[2px_2px_0px_#000]">MÁY ĐO NỘ KHÍ MẸ MISAE</h2>
+<p class="text-xs md:text-sm font-body-md text-gray-600 font-semibold mt-1">Thử thách lòng can đảm của Shin: Bạn có dám chọc giận Misae chạm ngưỡng 100%?</p>
+</div>
+<div class="bg-tertiary-fixed border-[3px] border-black px-6 py-3 rounded-xl shadow-[4px_4px_0px_0px_#000] text-center shrink-0">
+<div class="text-[11px] font-label-bold text-black uppercase font-black">N��� KHÍ HIỆN TẠI</div>
+<div class="text-3xl md:text-4xl font-display-lg font-black text-error drop-shadow-[1px_1px_0px_#000]" id="misae-meter-val">0%</div>
+</div>
+</div>
+<!-- Meter Progress -->
+<div class="w-full h-8 bg-surface-container-high border-[3px] border-black rounded-full overflow-hidden p-1 shadow-inner relative mb-6">
+<div class="h-full bg-gradient-to-r from-emerald-400 via-yellow-400 to-red-600 rounded-full transition-all duration-300 relative" id="misae-progress-bar" style="width: 5%;">
+<div class="absolute right-0 top-0 bottom-0 w-3 bg-white/70 animate-pulse"></div>
+</div>
+</div>
+<!-- Action Buttons to Trigger Anger -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+<button class="bg-white border-[3px] border-black p-3.5 font-label-bold text-xs uppercase flex items-center justify-between hover:bg-yellow-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer shadow-[3px_3px_0px_#000] rounded-xl font-bold" onclick="addMisaeAnger(20, 'Shin kiên quyết không chịu ăn ớt chuông!')">
+<span class="flex items-center gap-1.5">🥦 Không ăn ớt chuông</span>
+<span class="bg-primary text-white px-2 py-0.5 rounded text-[11px] font-black border border-black">+20%</span>
+</button>
+<button class="bg-white border-[3px] border-black p-3.5 font-label-bold text-xs uppercase flex items-center justify-between hover:bg-yellow-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer shadow-[3px_3px_0px_#000] rounded-xl font-bold" onclick="addMisaeAnger(25, 'Shin múa mông Buriburi trước mặt cô hàng xóm!')">
+<span class="flex items-center gap-1.5">🍑 Múa mông lắc lắc</span>
+<span class="bg-primary text-white px-2 py-0.5 rounded text-[11px] font-black border border-black">+25%</span>
+</button>
+<button class="bg-white border-[3px] border-black p-3.5 font-label-bold text-xs uppercase flex items-center justify-between hover:bg-yellow-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer shadow-[3px_3px_0px_#000] rounded-xl font-bold" onclick="addMisaeAnger(35, 'Shin lấy son của mẹ vẽ mặt cho Shiro!')">
+<span class="flex items-center gap-1.5">💄 Lấy son vẽ Shiro</span>
+<span class="bg-primary text-white px-2 py-0.5 rounded text-[11px] font-black border border-black">+35%</span>
+</button>
+<button class="bg-white border-[3px] border-black p-3.5 font-label-bold text-xs uppercase flex items-center justify-between hover:bg-emerald-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer shadow-[3px_3px_0px_#000] rounded-xl font-bold" onclick="resetMisaeAnger()">
+<span class="flex items-center gap-1.5">🌸 Khen mẹ đẹp / Hứa ngoan</span>
+<span class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[11px] font-black border border-black">Hạ 0%</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-tertiary-fixed border-t-[4px] border-black py-8 text-center text-black">
+<p class="font-display-lg text-2xl md:text-3xl font-black mb-1 drop-shadow-[2px_2px_0px_#fff]">SHIN-CHAN!</p>
+<p class="font-label-bold text-xs uppercase tracking-wider font-extrabold">© USUI YOSHITO / SHIN-EI ANIMATION - NO MISCHIEF INTENDED!</p>
+</footer>
+<script>
+  // Web Audio Context initialization
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  // ACTION KAMEN FLYING BEAM ANIMATION & SOUND
+  let isBeamActive = false;
+  function playActionMaskBeam() {
+    if (isBeamActive) return;
+    isBeamActive = true;
+
+    const overlay = document.getElementById('action-beam-overlay');
+    const hero = document.getElementById('action-kamen-hero');
+    const laser = document.getElementById('beam-laser-track');
+    const burst = document.getElementById('beam-comic-burst');
+    const flash = document.getElementById('beam-glory-flash');
+    const shockwave1 = document.getElementById('beam-shockwave');
+    const shockwave2 = document.getElementById('beam-shockwave-2');
+    const body = document.getElementById('app-body');
+    const ticker = document.getElementById('ticker-text');
+
+    if (ticker) {
+      ticker.textContent = "⚡ SIÊU NHÂN HÀNH ĐỘNG BAY NGANG MÀN HÌNH BẮN ACTION BEAM! ⚡";
+    }
+
+    // Show Overlay
+    overlay.classList.remove('hidden');
+
+    // Add CSS animations
+    hero.classList.add('kamen-flying');
+    laser.classList.add('laser-sweep-anim');
+    burst.classList.add('comic-banner-pop');
+    flash.classList.add('glory-flash-anim');
+    shockwave1.classList.add('shockwave-anim');
+    shockwave2.classList.add('shockwave-anim');
+    body.classList.add('beam-shake');
+
+    // Play Action Beam sound synthesizer via Web Audio
+    try {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      // 1. Whoosh jet flight sound
+      const flightOsc = ctx.createOscillator();
+      const flightGain = ctx.createGain();
+      flightOsc.type = 'sawtooth';
+      flightOsc.frequency.setValueAtTime(140, now);
+      flightOsc.frequency.exponentialRampToValueAtTime(720, now + 0.6);
+      flightOsc.frequency.exponentialRampToValueAtTime(280, now + 2.0);
+      flightGain.gain.setValueAtTime(0.01, now);
+      flightGain.gain.linearRampToValueAtTime(0.25, now + 0.4);
+      flightGain.gain.exponentialRampToValueAtTime(0.001, now + 2.2);
+      flightOsc.connect(flightGain);
+      flightGain.connect(ctx.destination);
+      flightOsc.start(now);
+      flightOsc.stop(now + 2.2);
+
+      // 2. High energy laser blast (Action Beam)
+      const laserOsc = ctx.createOscillator();
+      const laserGain = ctx.createGain();
+      laserOsc.type = 'square';
+      laserOsc.frequency.setValueAtTime(880, now + 0.4);
+      laserOsc.frequency.exponentialRampToValueAtTime(1760, now + 0.8);
+      laserOsc.frequency.setValueAtTime(1320, now + 1.2);
+      laserOsc.frequency.exponentialRampToValueAtTime(440, now + 1.8);
+      laserGain.gain.setValueAtTime(0, now);
+      laserGain.gain.setValueAtTime(0.2, now + 0.4);
+      laserGain.gain.linearRampToValueAtTime(0.35, now + 0.9);
+      laserGain.gain.exponentialRampToValueAtTime(0.001, now + 2.0);
+      laserOsc.connect(laserGain);
+      laserGain.connect(ctx.destination);
+      laserOsc.start(now + 0.4);
+      laserOsc.stop(now + 2.0);
+
+      // 3. Heroic Fanfare C-E-G Chord
+      [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+        const chordOsc = ctx.createOscillator();
+        const chordGain = ctx.createGain();
+        chordOsc.type = 'triangle';
+        chordOsc.frequency.setValueAtTime(freq, now + 0.5);
+        chordGain.gain.setValueAtTime(0, now);
+        chordGain.gain.setValueAtTime(0.12, now + 0.5 + i * 0.08);
+        chordGain.gain.exponentialRampToValueAtTime(0.001, now + 1.9);
+        chordOsc.connect(chordGain);
+        chordGain.connect(ctx.destination);
+        chordOsc.start(now + 0.5);
+        chordOsc.stop(now + 2.0);
+      });
+    } catch(e) {
+      console.log('Audio error:', e);
+    }
+
+    // Reset overlay after flight animation finishes
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      hero.classList.remove('kamen-flying');
+      laser.classList.remove('laser-sweep-anim');
+      burst.classList.remove('comic-banner-pop');
+      flash.classList.remove('glory-flash-anim');
+      shockwave1.classList.remove('shockwave-anim');
+      shockwave2.classList.remove('shockwave-anim');
+      body.classList.remove('beam-shake');
+      isBeamActive = false;
+      if (ticker) {
+        ticker.textContent = "Action Beam hoàn tất! Bấm lại nút để triệu hồi Siêu Nhân bay ngang màn hình tiếp.";
+      }
+    }, 2400);
+  }
+
+  // Character Voices sound synthesis
+  function triggerCharacterVoice(char) {
+    const bubble = document.getElementById('bubble-' + char);
+    const card = document.getElementById('card-' + char);
+    const ticker = document.getElementById('ticker-text');
+
+    if (card) {
+      card.classList.add('speaking-card');
+      setTimeout(() => card.classList.remove('speaking-card'), 2200);
+    }
+
+    if (bubble) {
+      bubble.classList.add('active');
+      setTimeout(() => bubble.classList.remove('active'), 2500);
+    }
+
+    try {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (char === 'shinchan') {
+        if (ticker) ticker.textContent = "Shin: Ora Shin-chan da zo! Chị gái ơi có thích ớt chuông không? He-he-he!";
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.linearRampToValueAtTime(640, now + 0.3);
+        osc.frequency.linearRampToValueAtTime(300, now + 0.7);
+        osc.frequency.linearRampToValueAtTime(700, now + 1.1);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 1.3);
+        osc.start(now);
+        osc.stop(now + 1.3);
+      } else if (char === 'misae') {
+        if (ticker) ticker.textContent = "Misae: SHIN-CHAN! Lại không dọn đồ chơi hả?! Cốc đầu sấm sét!";
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(550, now);
+        osc.frequency.linearRampToValueAtTime(780, now + 0.2);
+        osc.frequency.linearRampToValueAtTime(400, now + 0.8);
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 1.1);
+        osc.start(now);
+        osc.stop(now + 1.1);
+      } else if (char === 'shiro') {
+        if (ticker) ticker.textContent = "Shiro: Gâu gâu! (Shin-chan mau đổ hạt cho tớ!)";
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.setValueAtTime(600, now + 0.15);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+        osc.start(now);
+        osc.stop(now + 0.4);
+      } else {
+        if (ticker) ticker.textContent = "Đang phát âm thanh biểu cảm của " + char + "...";
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.4);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+        osc.start(now);
+        osc.stop(now + 0.6);
+      }
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  function playDuoBicker() {
+    triggerCharacterVoice('shinchan');
+    setTimeout(() => triggerCharacterVoice('misae'), 1200);
+  }
+
+  function stopAllAudio() {
+    const bubbles = document.querySelectorAll('.comic-bubble');
+    bubbles.forEach(b => b.classList.remove('active'));
+    const cards = document.querySelectorAll('.character-card');
+    cards.forEach(c => c.classList.remove('speaking-card'));
+    const ticker = document.getElementById('ticker-text');
+    if (ticker) ticker.textContent = "Đã dừng âm thanh!";
+  }
+
+  // Misae Anger Meter Logic
+  let currentAnger = 0;
+  function addMisaeAnger(amt, desc) {
+    currentAnger = Math.min(100, currentAnger + amt);
+    const bar = document.getElementById('misae-progress-bar');
+    const val = document.getElementById('misae-meter-val');
+    const ticker = document.getElementById('ticker-text');
+
+    if (bar) bar.style.width = currentAnger + '%';
+    if (val) val.textContent = currentAnger + '%';
+    if (ticker) ticker.textContent = "Mẹ Misae nổi giận: " + desc;
+
+    if (currentAnger >= 100) {
+      document.getElementById('app-body').classList.add('shake-screen');
+      setTimeout(() => document.getElementById('app-body').classList.remove('shake-screen'), 700);
+      triggerCharacterVoice('misae');
+    }
+  }
+
+  function resetMisaeAnger() {
+    currentAnger = 0;
+    const bar = document.getElementById('misae-progress-bar');
+    const val = document.getElementById('misae-meter-val');
+    const ticker = document.getElementById('ticker-text');
+    if (bar) bar.style.width = '0%';
+    if (val) val.textContent = '0%';
+    if (ticker) ticker.textContent = "Shin hứa ngoan! Mẹ Misae đã hạ nhiệt nộ khí về 0%.";
+  }
+</script>
+</body></html>
